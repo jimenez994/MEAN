@@ -7,7 +7,7 @@ function getStuffFromDatabase(callback) {
             data = [{ name: 'Todd' }, { name: 'Michael' }, { name: 'Portia' }];
             callback(data);
         }
-    }, 10000);
+    }, 1000);
     // it takes 10 seconds to get anything back <- you should fix your cloud server.!!!
     return data;
 }
@@ -24,4 +24,3 @@ requestDataFromDatabase();
 console.log('Hello');
 catchFly();
 //etc.
-fjoewirjgowiehrgoiehrgorhg
