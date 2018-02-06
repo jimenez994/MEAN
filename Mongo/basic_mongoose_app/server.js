@@ -32,11 +32,12 @@ app.get('/', function (req, res) {
 })
 app.post('/users', function (req, res) {
     console.log(req.body);
-    var user = new User({first_name: req.body.first_name,last_name: req.body.last_name,age: req.body.age,email:req.body.email});
+    var user = new User(req.body);
     user.save(function(err){
         if(err){
             console.log('something went wrong');
             res.redirect('/');
+            // res.render('index', {errors: user.errors});
         } else { // else console.log that we did well and then redirect to the root route
             console.log('successfully added a user!');
             res.redirect('/');
