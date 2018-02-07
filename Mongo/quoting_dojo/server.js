@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
     })
 })
 
-app.post('/process',function (req, res){
+app.post('/quote',function (req, res){
     var quote = new Quote(req.body);
     quote.save(function(err){
        if(err){
@@ -37,8 +37,15 @@ app.post('/process',function (req, res){
             // res.render('index', {errors: user.errors});
         } else { // else console.log that we did well and then redirect to the root route
             console.log('successfully added a user!');
-            res.redirect('/');
+            res.redirect('/quote');
         } 
+    })
+})
+
+app.get('/quote', function (req, res) {
+    Quote.find({}, function (err, quotes) {
+        console.log(quotes);
+        res.render("quotes",{quotes, quotes});
     })
 })
 

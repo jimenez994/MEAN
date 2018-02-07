@@ -7,15 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
-     
-
-    <form action="/quote" method="post">
-        Name: <input type="text" name="name"><br>
-        Quote: <textarea name="message" id="" cols="30" rows="5"></textarea>
-        <input type="submit" value="submit">
-    </form>
-
-    
+    <h1>quotes</h1>
+    <% for(let x in quotes){ %>
+        <h2><%= quotes[x].message %></h2>
+        -<%= quotes[x].name %>, <%= quotes[x].createdAt %>
+            
+        <hr>
+    <% } %>
 </body>
 </html>

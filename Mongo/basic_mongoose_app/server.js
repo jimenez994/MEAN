@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
     })
    
 })
-app.post('/users', function (req, res) {
+app.post('/quotes', function (req, res) {
     console.log(req.body);
     var user = new User(req.body);
     user.save(function(err){
@@ -39,7 +39,7 @@ app.post('/users', function (req, res) {
             res.redirect('/');
             // res.render('index', {errors: user.errors});
         } else { // else console.log that we did well and then redirect to the root route
-            console.log('successfully added a user!');
+            console.log('successfully added a quote!');
             res.redirect('/');
         }
     })
