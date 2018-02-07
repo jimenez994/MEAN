@@ -1,8 +1,7 @@
-var foo = "bar";
-function magic() {
-    foo = "hello world";
-    console.log(foo);
-    var foo;
+function merge(arr){
+    for(let x in arr){
+        arr[x] = [arr[x]];
+    }
+    return arr;
 }
-magic();
-console.log(foo);
+console.log(merge([1,2,3,4,5,6,7,8,9,1,1]));
