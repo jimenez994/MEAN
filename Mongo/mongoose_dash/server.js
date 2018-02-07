@@ -60,9 +60,10 @@ app.get('/mongooses/edit/:id', function (req, res) {
 
 app.post('/mongooses/process/:id',function (req,res) {
     console.log(req.body);
-    Mongoose.findOneAndUpdate(req.params.id, req.body, { upsert: false }, function (err, mongoose){
+    console.log(req.params.id);
+    Mongoose.findOneAndUpdate({_id:req.params.id}, req.body, { upsert: false }, function (err, mongoose){
         if (err) return handleError(err);
-       
+       console.log(mongoose);
         res.redirect('/');
     } )
     
