@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <%if(typeof(regErrs) != "undefined"){%>
+            <%for(err in regErrs){%>
+                    <%if(typeof(regErrs[err].message) != "undefined"){%>
+                       * <%=regErrs[err].message%> <br>
+                    <%}else{%>
+                       * <%=regErrs[err]%> <br>
+                    <%}%>                
+            <%}%>
+        <%}%>
+        <form action="/register" method="post">
+            Email: 
+            <input type="email" name="email"><br>
+            First Name: 
+            <input type="text" name="first_name"><br>
+            Last Name: 
+            <input type="text" name="last_name"><br>
+            Password: 
+            <input type="password" name="password"><br>
+            Confirm Password: 
+            <input type="password" name="password_confirm"><br>
+            Birthday:
+            <input type="date" placeholder="Enter Birthday" name="birthday"><br>
+            <input type="submit" value="Register">
+        </form>
+
+        <%if(typeof(logErrs) != "undefined"){%>
+            <%for(err in logErrs){%>
+                   * <%=logErrs[err]%> <br>              
+            <%}%>
+        <%}%>
+
+        <form action="/login" method="post">
+            email:
+            <input type="email" name="email"><br>
+            password:
+            <input type="password" name="password"><br>
+            <input type="submit" value="login">
+        </form>
+
+
+</body>
+</html>
