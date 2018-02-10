@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
-var fs = require('fs');
-var path = require('path');
+const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 mongoose.connect('mongodb://localhost/quote');
 var models_path = path.join(__dirname, './../models');
 
