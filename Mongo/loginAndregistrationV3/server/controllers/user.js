@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs');
 const User = mongoose.model('User');
 
 class UsersController {
+    homepage(req, res){
+        return res.render('index');
+    }
     create(req, res){
         console.log(req.body);
         req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
