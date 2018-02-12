@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { Post } from '../post';
 import { PostService } from '../post.service';
 @Component({
@@ -9,7 +10,8 @@ import { PostService } from '../post.service';
 export class PostNewComponent implements OnInit {
   post: Post;
   constructor(
-    private _postService: PostService
+    private _postService: PostService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -17,6 +19,8 @@ export class PostNewComponent implements OnInit {
   }
   onSubmit(){
     this._postService.createPost(this.post);
+    this.post = new Post();
+    this._router.navigateByUrl('/post')
   }
 
 }

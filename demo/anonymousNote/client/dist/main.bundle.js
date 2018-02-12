@@ -35,14 +35,14 @@ var post_component_1 = __webpack_require__("../../../../../src/app/post/post.com
 var post_new_component_1 = __webpack_require__("../../../../../src/app/post/post-new/post-new.component.ts");
 var post_list_component_1 = __webpack_require__("../../../../../src/app/post/post-list/post-list.component.ts");
 var routes = [
-    { path: '', component: post_component_1.PostComponent, children: [
+    { path: 'post', component: post_component_1.PostComponent, children: [
             // localhost:8001/post
             { path: '', pathMatch: 'full', component: post_list_component_1.PostListComponent },
             // localhost:8001/post/new
             { path: 'new', component: post_new_component_1.PostNewComponent }
         ] },
     { path: '', pathMatch: 'full', component: post_component_1.PostComponent, children: [
-            { path: '', pathMatch: 'full', component: post_component_1.PostComponent }
+            { path: '', pathMatch: 'full', component: post_new_component_1.PostNewComponent }
         ] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -192,7 +192,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/post/post-list/post-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  post-list works!\n</p>\n"
+module.exports = "<div *ngFor=\"let post of posts\">\n  <p>Title: {{ post.title }}</p>\n  <p>Comment: {{ post.content }}</p>\n\n</div>"
 
 /***/ }),
 
@@ -212,10 +212,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var post_service_1 = __webpack_require__("../../../../../src/app/post/post.service.ts");
 var PostListComponent = /** @class */ (function () {
-    function PostListComponent() {
+    function PostListComponent(_postService) {
+        this._postService = _postService;
     }
     PostListComponent.prototype.ngOnInit = function () {
+        this.posts = this._postService.retrivePosts();
     };
     PostListComponent = __decorate([
         core_1.Component({
@@ -223,7 +226,7 @@ var PostListComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/post/post-list/post-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/post/post-list/post-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [post_service_1.PostService])
     ], PostListComponent);
     return PostListComponent;
 }());
@@ -273,17 +276,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var post_1 = __webpack_require__("../../../../../src/app/post/post.ts");
 var post_service_1 = __webpack_require__("../../../../../src/app/post/post.service.ts");
 var PostNewComponent = /** @class */ (function () {
-    function PostNewComponent(_postService) {
+    function PostNewComponent(_postService, _router) {
         this._postService = _postService;
+        this._router = _router;
     }
     PostNewComponent.prototype.ngOnInit = function () {
         this.post = new post_1.Post();
     };
     PostNewComponent.prototype.onSubmit = function () {
         this._postService.createPost(this.post);
+        this.post = new post_1.Post();
+        this._router.navigateByUrl('/post');
     };
     PostNewComponent = __decorate([
         core_1.Component({
@@ -291,7 +298,8 @@ var PostNewComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/post/post-new/post-new.component.html"),
             styles: [__webpack_require__("../../../../../src/app/post/post-new/post-new.component.css")]
         }),
-        __metadata("design:paramtypes", [post_service_1.PostService])
+        __metadata("design:paramtypes", [post_service_1.PostService,
+            router_1.Router])
     ], PostNewComponent);
     return PostNewComponent;
 }());
@@ -321,7 +329,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/post/post.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<h1>All posts</h1>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -384,6 +392,9 @@ var PostService = /** @class */ (function () {
     PostService.prototype.createPost = function (post) {
         this.posts.push(post);
         console.log(this.posts);
+    };
+    PostService.prototype.retrivePosts = function () {
+        return this.posts;
     };
     PostService = __decorate([
         core_1.Injectable(),

@@ -13,5 +13,8 @@ export class PostService {
     this.posts.push(post)
     console.log(this.posts);
   }
+  retrivePosts(){
+    return this.posts
+  }
 
 }
