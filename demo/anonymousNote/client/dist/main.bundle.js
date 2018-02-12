@@ -31,7 +31,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
-var routes = [];
+var post_component_1 = __webpack_require__("../../../../../src/app/post/post.component.ts");
+var post_new_component_1 = __webpack_require__("../../../../../src/app/post/post-new/post-new.component.ts");
+var post_list_component_1 = __webpack_require__("../../../../../src/app/post/post-list/post-list.component.ts");
+var routes = [
+    { path: '', component: post_component_1.PostComponent, children: [
+            // localhost:8001/post
+            { path: '', pathMatch: 'full', component: post_list_component_1.PostListComponent },
+            // localhost:8001/post/new
+            { path: 'new', component: post_new_component_1.PostNewComponent }
+        ] },
+    { path: '', pathMatch: 'full', component: post_component_1.PostComponent, children: [
+            { path: '', pathMatch: 'full', component: post_component_1.PostComponent }
+        ] }
+];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
@@ -69,7 +82,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    Welcome to {{ title }}!\n  </h1>\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\n</div>\n<h2>Here are some links to help you start: </h2>\n<ul>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/tutorial\">Tour of Heroes</a></h2>\n  </li>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://github.com/angular/angular-cli/wiki\">CLI Documentation</a></h2>\n  </li>\n  <li>\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://blog.angular.io/\">Angular blog</a></h2>\n  </li>\n</ul>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -118,27 +131,283 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var forms_1 = __webpack_require__("../../../forms/esm5/forms.js");
+// Routing
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+// Components
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
+// Post
+var post_component_1 = __webpack_require__("../../../../../src/app/post/post.component.ts");
+var post_new_component_1 = __webpack_require__("../../../../../src/app/post/post-new/post-new.component.ts");
+var post_list_component_1 = __webpack_require__("../../../../../src/app/post/post-list/post-list.component.ts");
+// Services
+var post_service_1 = __webpack_require__("../../../../../src/app/post/post.service.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                post_component_1.PostComponent,
+                post_new_component_1.PostNewComponent,
+                post_list_component_1.PostListComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
+                forms_1.FormsModule
             ],
-            providers: [],
+            providers: [
+                post_service_1.PostService
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
     return AppModule;
 }());
 exports.AppModule = AppModule;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post-list/post-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post-list/post-list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  post-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post-list/post-list.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var PostListComponent = /** @class */ (function () {
+    function PostListComponent() {
+    }
+    PostListComponent.prototype.ngOnInit = function () {
+    };
+    PostListComponent = __decorate([
+        core_1.Component({
+            selector: 'app-post-list',
+            template: __webpack_require__("../../../../../src/app/post/post-list/post-list.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/post/post-list/post-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PostListComponent);
+    return PostListComponent;
+}());
+exports.PostListComponent = PostListComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post-new/post-new.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post-new/post-new.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<form (submit)=\"onSubmit(); \" #createPost=\"ngForm\">\n  <input \n    name=\"title\" \n    required \n    minlength=\"2\" \n    maxlength=\"30\" \n    [(ngModel)]=\"post.title\" \n    #title=\"ngModel\"\n    />\n      {{ title.errors | json }}\n    <textarea \n      name=\"content\"\n      required\n      minlength=\"5\"\n      maxlength=\"320\"\n      [(ngModel)]=\"post.content\"\n      #content=\"ngModel\"\n    >\n    </textarea>\n       {{ content.errors | json }}     \n    <button type=\"submit\">Create Post</button>\n</form>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post-new/post-new.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var post_1 = __webpack_require__("../../../../../src/app/post/post.ts");
+var post_service_1 = __webpack_require__("../../../../../src/app/post/post.service.ts");
+var PostNewComponent = /** @class */ (function () {
+    function PostNewComponent(_postService) {
+        this._postService = _postService;
+    }
+    PostNewComponent.prototype.ngOnInit = function () {
+        this.post = new post_1.Post();
+    };
+    PostNewComponent.prototype.onSubmit = function () {
+        this._postService.createPost(this.post);
+    };
+    PostNewComponent = __decorate([
+        core_1.Component({
+            selector: 'app-post-new',
+            template: __webpack_require__("../../../../../src/app/post/post-new/post-new.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/post/post-new/post-new.component.css")]
+        }),
+        __metadata("design:paramtypes", [post_service_1.PostService])
+    ], PostNewComponent);
+    return PostNewComponent;
+}());
+exports.PostNewComponent = PostNewComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet></router-outlet>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var PostComponent = /** @class */ (function () {
+    function PostComponent() {
+    }
+    PostComponent.prototype.ngOnInit = function () {
+    };
+    PostComponent = __decorate([
+        core_1.Component({
+            selector: 'app-post',
+            template: __webpack_require__("../../../../../src/app/post/post.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/post/post.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PostComponent);
+    return PostComponent;
+}());
+exports.PostComponent = PostComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post.service.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var PostService = /** @class */ (function () {
+    function PostService() {
+        this.posts = [];
+    }
+    PostService.prototype.createPost = function (post) {
+        this.posts.push(post);
+        console.log(this.posts);
+    };
+    PostService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], PostService);
+    return PostService;
+}());
+exports.PostService = PostService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/post/post.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Post = /** @class */ (function () {
+    function Post() {
+    }
+    return Post;
+}());
+exports.Post = Post;
 
 
 /***/ }),

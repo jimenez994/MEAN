@@ -1,0 +1,22 @@
+<form (submit)="onSubmit(); " #createPost="ngForm">
+  <input 
+    name="title" 
+    required 
+    minlength="2" 
+    maxlength="30" 
+    [(ngModel)]="post.title" 
+    #title="ngModel"
+    />
+      {{ title.errors | json }}
+    <textarea 
+      name="content"
+      required
+      minlength="5"
+      maxlength="320"
+      [(ngModel)]="post.content"
+      #content="ngModel"
+    >
+    </textarea>
+       {{ content.errors | json }}     
+    <button type="submit">Create Post</button>
+</form>
