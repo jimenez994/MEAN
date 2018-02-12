@@ -132,6 +132,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var forms_1 = __webpack_require__("../../../forms/esm5/forms.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
 // Routing
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 // Components
@@ -156,7 +157,8 @@ var AppModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                http_1.HttpModule
             ],
             providers: [
                 post_service_1.PostService
@@ -218,7 +220,13 @@ var PostListComponent = /** @class */ (function () {
         this._postService = _postService;
     }
     PostListComponent.prototype.ngOnInit = function () {
-        this.posts = this._postService.retrivePosts();
+        var _this = this;
+        // this.posts = this._postService.retrivePosts();
+        this._postService.retrivePosts(function (posts) {
+            _this.posts = posts;
+        }, function (err) {
+            console.log(err);
+        });
     };
     PostListComponent = __decorate([
         core_1.Component({
@@ -256,7 +264,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/post/post-new/post-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"onSubmit(); \" #createPost=\"ngForm\">\n  <input \n    name=\"title\" \n    required \n    minlength=\"2\" \n    maxlength=\"30\" \n    [(ngModel)]=\"post.title\" \n    #title=\"ngModel\"\n    />\n      {{ title.errors | json }}\n    <textarea \n      name=\"content\"\n      required\n      minlength=\"5\"\n      maxlength=\"320\"\n      [(ngModel)]=\"post.content\"\n      #content=\"ngModel\"\n    >\n    </textarea>\n       {{ content.errors | json }}     \n    <button type=\"submit\">Create Post</button>\n</form>\n"
+module.exports = "<form (submit)=\"onSubmit(); createPost.resetForm()\" #createPost=\"ngForm\">\n  <input \n    name=\"title\" \n    required \n    minlength=\"2\" \n    maxlength=\"30\" \n    [(ngModel)]=\"post.title\" \n    #title=\"ngModel\"\n    />\n      {{ title.errors | json }}\n    <textarea \n      name=\"content\"\n      required\n      minlength=\"5\"\n      maxlength=\"320\"\n      [(ngModel)]=\"post.content\"\n      #content=\"ngModel\"\n    >\n    </textarea>\n       {{ content.errors | json }}     \n    <button type=\"submit\">Create Post</button>\n</form>\n"
 
 /***/ }),
 
@@ -288,9 +296,13 @@ var PostNewComponent = /** @class */ (function () {
         this.post = new post_1.Post();
     };
     PostNewComponent.prototype.onSubmit = function () {
-        this._postService.createPost(this.post);
-        this.post = new post_1.Post();
-        this._router.navigateByUrl('/post');
+        var _this = this;
+        this._postService.createPost(this.post, function (post) {
+            _this._router.navigateByUrl('/post');
+            console.log("you created a post");
+        }, function (err) {
+            console.log(err);
+        });
     };
     PostNewComponent = __decorate([
         core_1.Component({
@@ -385,20 +397,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
 var PostService = /** @class */ (function () {
-    function PostService() {
-        this.posts = [];
+    function PostService(_http) {
+        this._http = _http;
     }
-    PostService.prototype.createPost = function (post) {
-        this.posts.push(post);
-        console.log(this.posts);
+    PostService.prototype.createPost = function (post, callback, errorback) {
+        this._http.post('/posts', post).subscribe(function (res) {
+            var post = res.json();
+            console.log(post);
+            // this.posts.push(post);
+            callback(post);
+        }, function (err) {
+            errorback(err.json());
+        });
     };
-    PostService.prototype.retrivePosts = function () {
-        return this.posts;
+    PostService.prototype.retrivePosts = function (callback, errorback) {
+        var _this = this;
+        this._http.get('/posts').subscribe(function (res) {
+            _this.posts = res.json();
+            callback(_this.posts);
+        }, function (err) {
+            errorback(err.json());
+        });
     };
     PostService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http])
     ], PostService);
     return PostService;
 }());

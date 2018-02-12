@@ -18,9 +18,16 @@ export class PostNewComponent implements OnInit {
     this.post = new Post();
   }
   onSubmit(){
-    this._postService.createPost(this.post);
-    this.post = new Post();
-    this._router.navigateByUrl('/post')
+    this._postService.createPost(this.post, 
+      (post) => {
+
+        this._router.navigateByUrl('/post')
+        console.log("you created a post")
+      },
+      (err) => {
+        console.log(err);
+      });
+   
   }
 
 }

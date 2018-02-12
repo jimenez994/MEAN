@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 // const modelPath = path.join(__dirname, "./../models");
 
-mongoose.connect("mongodb://localhost/notes", { useMongoClient: true });
+mongoose.connect("mongodb://localhost/anon_posts", { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 // fs.readdirSync(modelPath).forEach(function (file) {

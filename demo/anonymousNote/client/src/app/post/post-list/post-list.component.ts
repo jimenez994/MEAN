@@ -13,7 +13,15 @@ export class PostListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.posts = this._postService.retrivePosts();
+    // this.posts = this._postService.retrivePosts();
+    this._postService.retrivePosts(
+      (posts) => {
+        this.posts = posts;
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
 }
