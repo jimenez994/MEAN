@@ -192,7 +192,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/post/post-list/post-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let post of posts\">\n  <p>Title: {{ post.title }}</p>\n  <p>Comment: {{ post.content }}</p>\n\n</div>"
+module.exports = "<a [routerLink]=\"['/post','new']\">Create A New Post</a>\n\n<div *ngFor=\"let post of posts\">\n  \n  <p>Title: {{ post.title }}</p>\n  <p>Comment: {{ post.content }}</p>\n\n</div>\n\n"
 
 /***/ }),
 

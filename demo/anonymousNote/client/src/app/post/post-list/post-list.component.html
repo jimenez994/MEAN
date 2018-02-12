@@ -1,5 +1,9 @@
+<a [routerLink]="['/post','new']">Create A New Post</a>
+
 <div *ngFor="let post of posts">
+  
   <p>Title: {{ post.title }}</p>
   <p>Comment: {{ post.content }}</p>
 
 </div>
+
