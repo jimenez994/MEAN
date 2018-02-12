@@ -21,10 +21,12 @@ class TasksController {
         })
     }
     show(req, res){
+
         Task.findById(req.params.id, (err,task) => {
             if(err){
                 return res.json({ error : '404 - Task not found'});
             }
+            console.log(task);
             return res.json(task);
         } )
     }

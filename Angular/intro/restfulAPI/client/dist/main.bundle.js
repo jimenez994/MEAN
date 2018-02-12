@@ -95,6 +95,10 @@ var AppComponent = /** @class */ (function () {
         this._httpService = _httpService;
         this.title = 'MEAN';
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this._httpService.getTasks();
+        this._httpService.getTask();
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
@@ -172,11 +176,17 @@ var http_1 = __webpack_require__("../../../common/esm5/http.js");
 var HttpService = /** @class */ (function () {
     function HttpService(_http) {
         this._http = _http;
-        this.getTasks();
+        // this.getTasks();
+        // this.getTask();
     }
     HttpService.prototype.getTasks = function () {
         var tempObservable = this._http.get('/tasks');
         tempObservable.subscribe(function (data) { return console.log("Got our tasks!", data); });
+    };
+    HttpService.prototype.getTask = function () {
+        var tempObservable = this._http.get('/tasks/5a82006163043433febf8b0c');
+        tempObservable.subscribe(function (data) { return console.log("Got some task", data); });
+        console.log("Hey you there is something");
     };
     HttpService = __decorate([
         core_1.Injectable(),

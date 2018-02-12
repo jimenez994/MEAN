@@ -11,6 +11,10 @@ export class AppComponent {
   title = 'MEAN';
 
   constructor(private _httpService: HttpService){
-    
+  }
+
+  ngOnInit(){
+    this._httpService.getTasks();
+    this._httpService.getTask();
   }
 }
