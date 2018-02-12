@@ -65,6 +65,7 @@ var multiply = (x, y) => x * y;
 console.log(multiply(4, 3));
 // Nor is this working:
 var math = (x, y) => {
+    
     let sum = x + y;
     let product = x * y;
     let difference = Math.abs(x - y);

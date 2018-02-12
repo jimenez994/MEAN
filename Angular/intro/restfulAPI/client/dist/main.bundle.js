@@ -84,10 +84,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_service_1 = __webpack_require__("../../../../../src/app/http.service.ts");
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(_httpService) {
+        this._httpService = _httpService;
         this.title = 'MEAN';
     }
     AppComponent = __decorate([
@@ -95,7 +100,8 @@ var AppComponent = /** @class */ (function () {
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [http_service_1.HttpService])
     ], AppComponent);
     return AppComponent;
 }());
@@ -120,6 +126,8 @@ var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/pla
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
+var http_service_1 = __webpack_require__("../../../../../src/app/http.service.ts");
+var http_1 = __webpack_require__("../../../common/esm5/http.js");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -130,15 +138,53 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
+                http_1.HttpClientModule
             ],
-            providers: [],
+            providers: [http_service_1.HttpService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
     return AppModule;
 }());
 exports.AppModule = AppModule;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/http.service.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../common/esm5/http.js");
+var HttpService = /** @class */ (function () {
+    function HttpService(_http) {
+        this._http = _http;
+        this.getTasks();
+    }
+    HttpService.prototype.getTasks = function () {
+        var tempObservable = this._http.get('/tasks');
+        tempObservable.subscribe(function (data) { return console.log("Got our tasks!", data); });
+    };
+    HttpService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.HttpClient])
+    ], HttpService);
+    return HttpService;
+}());
+exports.HttpService = HttpService;
 
 
 /***/ }),
