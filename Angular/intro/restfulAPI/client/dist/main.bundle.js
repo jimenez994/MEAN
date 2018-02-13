@@ -76,7 +76,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<a [routerLink]=\"['']\">Landing</a>\n<a [routerLink]=\"['home']\">Home</a>\n\n<div *ngFor=\"let task of tasks\">\n  <p>title: {{task.title}}</p>\n  <p>description: {{task.description}}</p>\n  <p>completed: {{task.completed}}</p>\n  <hr>\n</div>\n\n<router-outlet></router-outlet>\n\n"
+module.exports = "<a [routerLink]=\"['']\">Landing</a>\n<a [routerLink]=\"['home']\">Home</a>\n\n\n\n<router-outlet></router-outlet>\n\n"
 
 /***/ }),
 
@@ -262,7 +262,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  home works!\n</p>\n"
+module.exports = "<p>\n  home works!\n</p>\n<div *ngFor=\"let task of tasks\">\n  <p>title: {{task.title}}</p>\n  <p>description: {{task.description}}</p>\n  <p>completed: {{task.completed}}</p>\n  <hr>\n</div>\n"
 
 /***/ }),
 

@@ -1,3 +1,9 @@
 <p>
   home works!
 </p>
+<div *ngFor="let task of tasks">
+  <p>title: {{task.title}}</p>
+  <p>description: {{task.description}}</p>
+  <p>completed: {{task.completed}}</p>
+  <hr>
+</div>

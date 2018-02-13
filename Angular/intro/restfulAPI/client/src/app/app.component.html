@@ -1,12 +1,7 @@
 <a [routerLink]="['']">Landing</a>
 <a [routerLink]="['home']">Home</a>
 
-<div *ngFor="let task of tasks">
-  <p>title: {{task.title}}</p>
-  <p>description: {{task.description}}</p>
-  <p>completed: {{task.completed}}</p>
-  <hr>
-</div>
+
 
 <router-outlet></router-outlet>
 
