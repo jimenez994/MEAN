@@ -32,11 +32,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var login_component_1 = __webpack_require__("../../../../../src/app/login/login.component.ts");
+var poll_list_component_1 = __webpack_require__("../../../../../src/app/poll-list/poll-list.component.ts");
 var routes = [
     {
         path: '',
         pathMatch: 'full',
         component: login_component_1.LoginComponent
+    },
+    {
+        path: 'dashboard',
+        pathMatch: 'full',
+        component: poll_list_component_1.PollListComponent
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -177,7 +183,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".error {\n    color: red;\n}", ""]);
 
 // exports
 
@@ -190,7 +196,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  login works!\n</p>\n"
+module.exports = "<div>\n  <form (submit)=\"createUser()\">\n    <label >Your name</label>\n    <input type=\"text\" name=\"name\" [(ngModel)]=\"newUser.name\">\n    <div>\n      <input type=\"submit\" value=\"login\">\n    </div>\n  </form>\n  <div>\n    <p class=\"error\" *ngFor=\"let error of errors\">{{ error }}</p>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -210,10 +216,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_1 = __webpack_require__("../../../../../src/app/user.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/user.service.ts");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
+    function LoginComponent(_router, _userService) {
+        this._router = _router;
+        this._userService = _userService;
+        this.newUser = new user_1.User();
+        this.errors = [];
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.createUser = function () {
+        var _this = this;
+        this.errors = [];
+        this._userService.create(this.newUser, function (user) {
+            if (user.errors) {
+                for (var _i = 0, _a = Object.keys(user.errors); _i < _a.length; _i++) {
+                    var key = _a[_i];
+                    var error = user.errors[key];
+                    _this.errors.push(error.message);
+                }
+            }
+            else {
+                _this._router.navigateByUrl('/dashboard');
+            }
+        });
     };
     LoginComponent = __decorate([
         core_1.Component({
@@ -221,7 +250,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/login/login.component.html"),
             styles: [__webpack_require__("../../../../../src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router,
+            user_service_1.UserService])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -281,7 +311,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/poll-list/poll-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  poll-list works!\n</p>\n"
+module.exports = "<p>\n  poll-list works!\n</p>\n{{polls | json }}\n<h1>{{currentUser.name}}</h1>\n"
 
 /***/ }),
 
@@ -301,10 +331,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/user.service.ts");
+var user_1 = __webpack_require__("../../../../../src/app/user.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var poll_service_1 = __webpack_require__("../../../../../src/app/poll.service.ts");
 var PollListComponent = /** @class */ (function () {
-    function PollListComponent() {
+    function PollListComponent(_userService, _router, _pollService) {
+        this._userService = _userService;
+        this._router = _router;
+        this._pollService = _pollService;
+        this.currentUser = new user_1.User();
     }
     PollListComponent.prototype.ngOnInit = function () {
+        this.setCurrentUser();
+        this.getPolls();
+    };
+    PollListComponent.prototype.setCurrentUser = function () {
+        this.currentUser = this._userService.getCurrentUser();
+        if (this.currentUser == null) {
+            this._router.navigateByUrl('/');
+        }
+    };
+    PollListComponent.prototype.getPolls = function () {
+        var _this = this;
+        this._pollService.index(function (polls) { return _this.polls = polls; });
     };
     PollListComponent = __decorate([
         core_1.Component({
@@ -312,7 +362,9 @@ var PollListComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/poll-list/poll-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/poll-list/poll-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [user_service_1.UserService,
+            router_1.Router,
+            poll_service_1.PollService])
     ], PollListComponent);
     return PollListComponent;
 }());
@@ -459,12 +511,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
 var PollService = /** @class */ (function () {
-    function PollService() {
+    function PollService(_http) {
+        this._http = _http;
     }
+    PollService.prototype.index = function (callback) {
+        this._http.get('/polls').subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
+    };
+    PollService.prototype.create = function (newPoll, callback) {
+        this._http.post('/polls', newPoll).subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
+    };
+    PollService.prototype.show = function (id, callback) {
+        this._http.get("/polls/" + id).subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
+    };
+    PollService.prototype.destroy = function (id, callback) {
+        this._http.delete("/polls/" + id).subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
+    };
     PollService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http])
     ], PollService);
     return PollService;
 }());
@@ -489,16 +555,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
 var UserService = /** @class */ (function () {
-    function UserService() {
+    function UserService(_http) {
+        this._http = _http;
+        this.currentUser = null;
     }
+    UserService.prototype.getCurrentUser = function () {
+        return this.currentUser;
+    };
+    UserService.prototype.create = function (newUser, callback) {
+        var _this = this;
+        this._http.post('/users', newUser).subscribe(function (res) {
+            var user = res.json();
+            if (!user.errors) {
+                _this.currentUser = user;
+            }
+            callback(user);
+        }, function (err) { return console.log(err); });
+    };
+    UserService.prototype.logout = function (callback) {
+        this._http.delete('/users').subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
+    };
+    UserService.prototype.session = function (callback) {
+        this._http.get('/session').subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
+    };
     UserService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http])
     ], UserService);
     return UserService;
 }());
 exports.UserService = UserService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/user.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var User = /** @class */ (function () {
+    function User() {
+    }
+    return User;
+}());
+exports.User = User;
 
 
 /***/ }),
