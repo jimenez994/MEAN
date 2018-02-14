@@ -4,7 +4,7 @@ var morgan = require("morgan");
 var app = express();
 var port = 8000;
 var bodyParser = require("body-parser");
-// app.use(express.static(__dirname + "/client/dist"));
+app.use(express.static(__dirname + "/client/dist"));
 app.use(bodyParser.json());
 app.use(session({
     secret: "funtime",
