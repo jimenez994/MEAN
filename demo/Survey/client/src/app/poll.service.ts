@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Poll } from './poll';
+import { NewPoll } from './new-poll';
 
 @Injectable()
 export class PollService {
@@ -14,7 +15,7 @@ export class PollService {
       err => console.log(err)
     )
   }
-  create(newPoll: Poll, callback){
+  create(newPoll: NewPoll, callback){
     this._http.post('/polls', newPoll).subscribe(
       res => callback(res.json()),
       err => console.log(err)

@@ -1,5 +1,28 @@
-<p>
-  poll-list works!
-</p>
-{{polls | json }}
+<div>
+  <button (click)="logout()" class="float_rigth">Logout</button>
+  <button [routerLink]="['/create']" class="float_rigth">Add a new Poll</button>
+  
+</div>
 <h1>{{currentUser.name}}</h1>
+<div>
+  <h2>Current polls</h2>
+  <table>
+    <tr>
+      <th>user</th>
+      <th>Question</th>
+      <th>Date Posted</th>
+      <th>Actions</th>
+    </tr>
+
+    <tr *ngFor="let poll of polls"> 
+      <td>{{ poll.user.name }}</td>
+      <td> <a href [routerLink]="['/poll', poll._id]"> {{ poll.question }}</a></td>
+      <td>{{ poll.createdAt | date: 'short' }}</td>
+      <td> <button (click)="destroyPoll(poll._id)" *ngIf="currentUser._id === poll.user._id">Delete</button> </td>
+      
+    </tr>
+
+  </table>
+</div>
+
+

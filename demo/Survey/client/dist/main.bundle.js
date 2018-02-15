@@ -33,6 +33,8 @@ var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var login_component_1 = __webpack_require__("../../../../../src/app/login/login.component.ts");
 var poll_list_component_1 = __webpack_require__("../../../../../src/app/poll-list/poll-list.component.ts");
+var poll_new_component_1 = __webpack_require__("../../../../../src/app/poll-new/poll-new.component.ts");
+var poll_show_component_1 = __webpack_require__("../../../../../src/app/poll-show/poll-show.component.ts");
 var routes = [
     {
         path: '',
@@ -43,6 +45,14 @@ var routes = [
         path: 'dashboard',
         pathMatch: 'full',
         component: poll_list_component_1.PollListComponent
+    },
+    {
+        path: 'create',
+        component: poll_new_component_1.PollNewComponent
+    },
+    {
+        path: 'poll/:id',
+        component: poll_show_component_1.PollShowComponent
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -260,6 +270,26 @@ exports.LoginComponent = LoginComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/new-poll.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var NewPoll = /** @class */ (function () {
+    function NewPoll() {
+        this.option1 = { option: '' };
+        this.option2 = { option: '' };
+        this.option3 = { option: '' };
+        this.option4 = { option: '' };
+    }
+    return NewPoll;
+}());
+exports.NewPoll = NewPoll;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/option.service.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -276,12 +306,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
 var OptionService = /** @class */ (function () {
-    function OptionService() {
+    function OptionService(_http) {
+        this._http = _http;
     }
+    OptionService.prototype.update = function (id, callback) {
+        this._http.put("options/" + id + "/easy", {}).subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log("this is a error"); });
+    };
     OptionService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http])
     ], OptionService);
     return OptionService;
 }());
@@ -298,7 +333,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".float_rigth{\n    float: right;\n}", ""]);
 
 // exports
 
@@ -311,7 +346,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/poll-list/poll-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  poll-list works!\n</p>\n{{polls | json }}\n<h1>{{currentUser.name}}</h1>\n"
+module.exports = "<div>\n  <button (click)=\"logout()\" class=\"float_rigth\">Logout</button>\n  <button [routerLink]=\"['/create']\" class=\"float_rigth\">Add a new Poll</button>\n  \n</div>\n<h1>{{currentUser.name}}</h1>\n<div>\n  <h2>Current polls</h2>\n  <table>\n    <tr>\n      <th>user</th>\n      <th>Question</th>\n      <th>Date Posted</th>\n      <th>Actions</th>\n    </tr>\n\n    <tr *ngFor=\"let poll of polls\"> \n      <td>{{ poll.user.name }}</td>\n      <td> <a href [routerLink]=\"['/poll', poll._id]\"> {{ poll.question }}</a></td>\n      <td>{{ poll.createdAt | date: 'short' }}</td>\n      <td> <button (click)=\"destroyPoll(poll._id)\" *ngIf=\"currentUser._id === poll.user._id\">Delete</button> </td>\n      \n    </tr>\n\n  </table>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -356,6 +391,18 @@ var PollListComponent = /** @class */ (function () {
         var _this = this;
         this._pollService.index(function (polls) { return _this.polls = polls; });
     };
+    PollListComponent.prototype.destroyPoll = function (id) {
+        var _this = this;
+        this._pollService.destroy(id, function (res) {
+            if (res.status == true) {
+                _this.getPolls();
+            }
+        });
+    };
+    PollListComponent.prototype.logout = function () {
+        var _this = this;
+        this._userService.logout(function (res) { return _this._router.navigateByUrl('/'); });
+    };
     PollListComponent = __decorate([
         core_1.Component({
             selector: 'app-poll-list',
@@ -394,7 +441,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/poll-new/poll-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  poll-new works!\n</p>\n"
+module.exports = "<div>\n  <button [routerLink]=\"['/dashboard']\">Cancel</button>\n</div>\n<div>\n  <h3>Put the question and options</h3>\n</div>\n<div>\n  <form (submit)=\"createPoll()\">\n    <div>\n      <label > Question</label>\n      <input type=\"text\" name=\"question\" [(ngModel)]=\"newPoll.question\">\n    </div>\n    <div>\n      <label>options 1</label>\n      <input type=\"text\" name=\"option1\" [(ngModel)]=\"newPoll.option1.option\">\n    </div>\n    <div>\n      <label>options 2</label>\n      <input type=\"text\" name=\"option2\" [(ngModel)]=\"newPoll.option2.option\">\n    </div>\n    <div>\n      <label>options 3</label>\n      <input type=\"text\" name=\"option3\" [(ngModel)]=\"newPoll.option3.option\">\n    </div>\n    <div>\n      <label>options 4</label>\n      <input type=\"text\" name=\"option4\" [(ngModel)]=\"newPoll.option4.option\">\n    </div>\n    <div>\n      \n      <input type=\"submit\" value=\"Create\">\n    </div>\n\n  </form>\n  <p class=\"errors\" *ngFor=\"let error of errors\">{{error}}</p>\n</div>\n"
 
 /***/ }),
 
@@ -414,10 +461,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var new_poll_1 = __webpack_require__("../../../../../src/app/new-poll.ts");
+var poll_service_1 = __webpack_require__("../../../../../src/app/poll.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_1 = __webpack_require__("../../../../../src/app/user.ts");
+var user_service_1 = __webpack_require__("../../../../../src/app/user.service.ts");
 var PollNewComponent = /** @class */ (function () {
-    function PollNewComponent() {
+    function PollNewComponent(_pollService, _userService, _router) {
+        this._pollService = _pollService;
+        this._userService = _userService;
+        this._router = _router;
+        this.newPoll = new new_poll_1.NewPoll();
+        this.errors = [];
+        this.currentUser = new user_1.User();
     }
     PollNewComponent.prototype.ngOnInit = function () {
+    };
+    PollNewComponent.prototype.setCurrentUser = function () {
+        this.currentUser = this._userService.getCurrentUser();
+        if (this.currentUser == null) {
+            this._router.navigateByUrl('/');
+        }
+    };
+    PollNewComponent.prototype.createPoll = function () {
+        var _this = this;
+        this.errors = [];
+        if (this.newPoll.option1.option.length < 3 || this.newPoll.option2.option.length < 3 || this.newPoll.option3.option.length < 3 || this.newPoll.option4.option.length < 3) {
+            this.errors.push('the options must be at least three characters');
+        }
+        this._pollService.create(this.newPoll, function (poll) {
+            if (poll.errors) {
+                for (var _i = 0, _a = Object.keys(poll.errors); _i < _a.length; _i++) {
+                    var key = _a[_i];
+                    var error = poll.error[key];
+                    _this.errors.push(error.message);
+                }
+            }
+            else {
+                _this._router.navigateByUrl('/dashboard');
+            }
+        });
     };
     PollNewComponent = __decorate([
         core_1.Component({
@@ -425,7 +508,9 @@ var PollNewComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/poll-new/poll-new.component.html"),
             styles: [__webpack_require__("../../../../../src/app/poll-new/poll-new.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [poll_service_1.PollService,
+            user_service_1.UserService,
+            router_1.Router])
     ], PollNewComponent);
     return PollNewComponent;
 }());
@@ -455,7 +540,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/poll-show/poll-show.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  poll-show works!\n</p>\n"
+module.exports = "<div>\n  <button [routerLink]=\"['/dashboard']\" >go to polls</button>\n</div>\n<div>\n  <h2>{{poll.question}}</h2>\n  <p>something</p>\n</div>\n<div>\n  <table>\n    <tr>\n      <th>Option</th>\n      <th>votes</th>\n      <th>actions</th>\n    </tr>\n    <tr *ngFor=\"let option of poll.options\">\n      <td>{{ option.option }}</td>\n      <td>{{option.vote}}</td>\n      <td><button (click)=\"update(option._id)\"> vote </button></td>\n    </tr>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -475,10 +560,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/user.service.ts");
+var poll_service_1 = __webpack_require__("../../../../../src/app/poll.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_1 = __webpack_require__("../../../../../src/app/user.ts");
+var router_2 = __webpack_require__("../../../router/esm5/router.js");
+var option_service_1 = __webpack_require__("../../../../../src/app/option.service.ts");
 var PollShowComponent = /** @class */ (function () {
-    function PollShowComponent() {
+    function PollShowComponent(_userService, _pollService, _optionService, _route, _router) {
+        this._userService = _userService;
+        this._pollService = _pollService;
+        this._optionService = _optionService;
+        this._route = _route;
+        this._router = _router;
+        this.currentUser = new user_1.User();
     }
     PollShowComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.setCurrentUser();
+        this._route.params.subscribe(function (params) { return _this.poll_id = params.id; });
+        this.getPoll();
+    };
+    PollShowComponent.prototype.setCurrentUser = function () {
+        this.currentUser = this._userService.getCurrentUser();
+        if (this.currentUser == null) {
+            this._router.navigateByUrl('/');
+        }
+    };
+    PollShowComponent.prototype.getPoll = function () {
+        var _this = this;
+        this._pollService.show(this.poll_id, function (poll) { return _this.poll = poll; });
+    };
+    PollShowComponent.prototype.update = function (option_id) {
+        var _this = this;
+        this._optionService.update(option_id, function (res) { return _this.getPoll(); });
     };
     PollShowComponent = __decorate([
         core_1.Component({
@@ -486,7 +601,11 @@ var PollShowComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/poll-show/poll-show.component.html"),
             styles: [__webpack_require__("../../../../../src/app/poll-show/poll-show.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [user_service_1.UserService,
+            poll_service_1.PollService,
+            option_service_1.OptionService,
+            router_1.ActivatedRoute,
+            router_2.Router])
     ], PollShowComponent);
     return PollShowComponent;
 }());

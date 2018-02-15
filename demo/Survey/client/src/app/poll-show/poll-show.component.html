@@ -1,3 +1,21 @@
-<p>
-  poll-show works!
-</p>
+<div>
+  <button [routerLink]="['/dashboard']" >go to polls</button>
+</div>
+<div>
+  <h2>{{poll.question}}</h2>
+  <p>something</p>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Option</th>
+      <th>votes</th>
+      <th>actions</th>
+    </tr>
+    <tr *ngFor="let option of poll.options">
+      <td>{{ option.option }}</td>
+      <td>{{option.vote}}</td>
+      <td><button (click)="update(option._id)"> vote </button></td>
+    </tr>
+  </table>
+</div>

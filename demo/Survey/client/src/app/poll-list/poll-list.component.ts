@@ -33,5 +33,16 @@ export class PollListComponent implements OnInit {
     this. _pollService.index((polls) => this.polls = polls)
     
   }
+  destroyPoll(id: string) {
+    this._pollService.destroy(id, (res) => {
+      if(res.status == true){
+        this.getPolls();
+      }
+    })
+
+  }
+  logout(){
+    this._userService.logout(res => this._router.navigateByUrl('/'));
+  }
 
 }
