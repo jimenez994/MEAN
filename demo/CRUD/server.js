@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Morgan
+// Morgan 
 let morgan = require("morgan");
 app.use(morgan("dev"))
 
@@ -33,15 +33,14 @@ app.use(express.static(path.join(__dirname, '/client/dist')));
 app.get("/users", (req, res, next) => {
     User.find({}, (err, users)=>{
         return res.json(users)
-    })
-})
+    });
+});
 app.post("/users", (req, res, next) => {
-    console.log("You to this part ***********************"+req.body);
     delete req.body._id
     User.create(req.body, (err, user) => {
         if (err) return res.json(err)
         else return res.json(user)
-    })
+    });
 });
 
 app.delete("/users/:id", (req, res, next) => {
