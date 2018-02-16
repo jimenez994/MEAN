@@ -36,13 +36,13 @@ app.get("/users", (req, res, next) => {
     })
 })
 app.post("/users", (req, res, next) => {
-    console.log("You to this part **************************"+req.body);
+    console.log("You to this part ***********************"+req.body);
     delete req.body._id
     User.create(req.body, (err, user) => {
         if (err) return res.json(err)
         else return res.json(user)
     })
-})
+});
 
 app.delete("/users/:id", (req, res, next) => {
     console.log("you deleted this ")
@@ -50,7 +50,7 @@ app.delete("/users/:id", (req, res, next) => {
         if (err) return res.json(err)
         else return res.json(true)
     })
-})
+});
 
 app.put("/users/:id", (req, res, next) => {
     console.log("you edit this ", req.params.id)
