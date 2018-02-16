@@ -11,7 +11,7 @@ module.exports = {
     },
     create: (req, res) => {
         const post = new Post(req.body);
-        post.save(  (err) => {
+        post.save((err) => {
             if(err){
                 return res.json(err);
             }

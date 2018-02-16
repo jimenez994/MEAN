@@ -4,7 +4,7 @@ const PlayerSchema = new mongoose.Schema({
         type: String, 
         required: [true, 'must have a name']
     },
-    positions: {
+    position: {
         type: String,
         require: [true, "must have a position "]
     },
@@ -12,6 +12,6 @@ const PlayerSchema = new mongoose.Schema({
         type: Number,
         default: 0
     }
-}, { timestamps: true })
+}, { timestamps: true });
 mongoose.model("Player", PlayerSchema);
-var Player = mongoose.model('Player')
+var Player = mongoose.model('Player');
