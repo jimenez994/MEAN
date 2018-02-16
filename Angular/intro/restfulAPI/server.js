@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 app.use(session({ secret: 'Real Madrid'}));
-app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, "./client/static")));
 app.set('views', path.join(__dirname, './client/views'));
 app.set('view engine','ejs');
