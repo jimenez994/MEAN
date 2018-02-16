@@ -11,7 +11,8 @@ const PlayerSchema = new mongoose.Schema({
     status: {
         type: Number,
         default: 0
-    }
+    },
+
 }, { timestamps: true });
 mongoose.model("Player", PlayerSchema);
 var Player = mongoose.model('Player');

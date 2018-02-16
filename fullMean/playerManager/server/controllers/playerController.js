@@ -8,7 +8,7 @@ class PlayerController {
             if (err) {
                 return res.json("sorry the player could not be created");
             }
-            return res.json(req.body);
+            return res.json(player);
         })
     }
     singlePlayer(req, res){
@@ -43,6 +43,7 @@ class PlayerController {
             return res.json(player);
         })
     }
+    
 }
 
 module.exports = new PlayerController();

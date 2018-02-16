@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 8001;
 app.use(bodyParser.json());
-// app.use(express.static(__dirname + '/client/dist'));
+app.use(express.static(__dirname + '/client/dist'));
 require('./server/config/mongoose.js');
 var routes_setter = require('./server/config/routes.js');
 routes_setter(app);
