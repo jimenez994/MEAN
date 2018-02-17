@@ -24,7 +24,7 @@ export class AddPlayerComponent implements OnInit {
   onSubmit(){
     this._playerService.createPlayer(this.player,
       (player) => {
-        this._router.navigateByUrl('/')
+        this._router.navigateByUrl('/new')
         console.log("you created a player")
 
       },

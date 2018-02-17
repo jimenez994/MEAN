@@ -82,7 +82,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<!-- <h1>Bicycle Marketplace</h1> -->\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -232,7 +232,7 @@ var AddPlayerComponent = /** @class */ (function () {
     AddPlayerComponent.prototype.onSubmit = function () {
         var _this = this;
         this._playerService.createPlayer(this.player, function (player) {
-            _this._router.navigateByUrl('/');
+            _this._router.navigateByUrl('/new');
             console.log("you created a player");
         }, function (err) {
             console.log(err);
