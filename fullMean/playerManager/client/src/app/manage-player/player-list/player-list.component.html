@@ -4,12 +4,17 @@
 </h4>
 <h2>Player list Component</h2>
 
+<table>
+<tr>
+  <th>name</th>
+  <th>position</th>
+  <th>actions</th>
+</tr>
 
-<div *ngFor="let player of players">
-  <tr>
+<tr *ngFor="let player of players">
     <td>{{player.name}}    </td>
     <td>{{ player.position }} </td>
-    <td> <button (click)="destroy(player._id)">Delete</button> </td>
-  </tr>
-   
-</div>
+    <td> <button (click)="destroyC(player._id)">Delete</button> </td>
+</tr>
+</table>
+

@@ -366,7 +366,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/manage-player/player-list/player-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4>\n  <a [routerLink]=\"['/']\">List</a> /\n  <a [routerLink]=\"['/new']\">Add Player</a>\n</h4>\n<h2>Player list Component</h2>\n\n\n<div *ngFor=\"let player of players\">\n  <tr>\n    <td>{{player.name}}    </td>\n    <td>{{ player.position }} </td>\n    <td> <button (click)=\"destroy(player._id)\">Delete</button> </td>\n  </tr>\n   \n</div>\n"
+module.exports = "<h4>\n  <a [routerLink]=\"['/']\">List</a> /\n  <a [routerLink]=\"['/new']\">Add Player</a>\n</h4>\n<h2>Player list Component</h2>\n\n<table>\n<tr>\n  <th>name</th>\n  <th>position</th>\n  <th>actions</th>\n</tr>\n\n<tr *ngFor=\"let player of players\">\n    <td>{{player.name}}    </td>\n    <td>{{ player.position }} </td>\n    <td> <button (click)=\"destroyC(player._id)\">Delete</button> </td>\n</tr>\n</table>\n\n"
 
 /***/ }),
 
@@ -403,12 +403,18 @@ var PlayerListComponent = /** @class */ (function () {
             console.log(err);
         });
     };
-    PlayerListComponent.prototype.destroy = function (id) {
+    PlayerListComponent.prototype.destroyC = function (id) {
         var _this = this;
-        this._playerService.destroyPlayer(id, function (res) {
-            _this.getUsers();
-            console.log("you just deleted a player");
-        });
+        var h = confirm(" Are you sure you wanna delete this player?");
+        if (h == true) {
+            this._playerService.destroyPlayer(id, function (res) {
+                _this.getUsers();
+                console.log("you just deleted a player");
+            });
+        }
+        else {
+            console.log("do nothing");
+        }
     };
     __decorate([
         core_1.Output(),
@@ -473,6 +479,10 @@ var PlayerService = /** @class */ (function () {
     PlayerService.prototype.destroyPlayer = function (id, callback) {
         this._http.delete("/player/" + id).subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
     };
+    PlayerService.prototype.update = function (player) {
+        console.log("player service update");
+        return this._http.put("/player/" + player._id, player);
+    };
     PlayerService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http])
@@ -492,7 +502,6 @@ exports.PlayerService = PlayerService;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Player = /** @class */ (function () {
     function Player() {
-        this.status = 0;
     }
     return Player;
 }());
@@ -509,7 +518,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".Gplaying{\n    background-color: green;\n    color: white;\n}\n.Rnoplaying{\n    background-color: red;\n    color: white;\n}\n.Ymaybeplaying{\n    background-color: yellow;\n    /* color: white; */\n}", ""]);
 
 // exports
 
@@ -522,7 +531,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/player-status/game/game.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Player Status</h3>\n<a href=\"\">Game 1</a> | <a href=\"\">Game 2</a> | <a href=\"\">Game3</a>\n\n<div *ngFor=\"let player of players\">\n  <tr>\n    <td>{{player.name}} </td>\n    <td>{{ player.position }} </td>\n    <td>\n      <button >Playing</button>\n      <button >Not Playing</button>\n      <button >Undecide</button>\n    </td>\n  </tr>\n\n</div>"
+module.exports = "<h3>Player Status</h3>\n<a href=\"\">Game 1</a> | <a href=\"\">Game 2</a> | <a href=\"\">Game3</a>\n<table>\n<tr>\n  <th>name</th>\n  <th>position</th>\n  <th>actions</th>\n</tr>\n\n<tr *ngFor=\"let player of players\">\n    <td>{{player.name}} </td>\n    <td>{{ player.position }} </td>\n    <td>\n      <button class=\"G{{player.status}}\" (click)=\"update(player._id, 'playing')\" [ngClass]=\"{playing: player.status == 'playing'}\">Playing</button>\n      <button class=\"R{{player.status}}\" (click)=\"update(player._id, 'noplaying')\" [ngClass]=\"{playing: player.status == 'noplaying'}\">Not Playing</button>\n      <button class=\"Y{{player.status}}\" (click)=\"update(player._id, 'maybeplaying')\" [ngClass]=\"{playing: player.status == 'maybeplaying'}\">Undecided</button>\n    </td>\n</tr>\n</table>"
 
 /***/ }),
 
@@ -557,6 +566,12 @@ var GameComponent = /** @class */ (function () {
         }, function (err) {
             console.log(err);
         });
+    };
+    GameComponent.prototype.update = function (id, status) {
+        var _this = this;
+        console.log("player update" + status);
+        var player = { _id: id, status: status };
+        this._playerService.update(player).subscribe(function (res) { return _this.getPlayers(); });
     };
     GameComponent = __decorate([
         core_1.Component({
@@ -594,7 +609,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/player-status/player-status.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<a [routerLink]=\"['/']\">Manage Players</a> /\n<a [routerLink]=\"['/status']\">Player Status</a>\n\n<h2>Player Status component</h2>\n\n<router-outlet></router-outlet>\n\n\n"
+module.exports = "<a [routerLink]=\"['/']\">Manage Players</a> /\n<a [routerLink]=\"['/status']\">Player Status</a>\n\n<h2>Player Status component</h2>\n\n<router-outlet></router-outlet>\n\n\n\n"
 
 /***/ }),
 

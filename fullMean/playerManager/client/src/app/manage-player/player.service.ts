@@ -9,6 +9,7 @@ import "rxjs/add/operator/map";
 export class PlayerService {
 
   players: Player[];
+  player: Player
 
   constructor(
     private _http: Http
@@ -44,5 +45,9 @@ export class PlayerService {
       err => console.log(err)
     )
   }
-
+  update(player){
+    console.log("player service update")
+    return this._http.put(`/player/${player._id}`,player)
+  }
 }
+

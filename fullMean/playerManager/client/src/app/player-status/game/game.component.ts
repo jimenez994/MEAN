@@ -9,7 +9,7 @@ import { Player } from '../../manage-player/player';
 })
 export class GameComponent implements OnInit {
   players: Player[]
-
+  player: Player;
   constructor(
     private _playerService: PlayerService
   ) { }
@@ -27,5 +27,9 @@ export class GameComponent implements OnInit {
       }
     )
   }
-
+  update(id, status){
+    console.log("player update"+status)
+    let player = { _id:id, status: status }
+    this._playerService.update(player).subscribe(res => this.getPlayers())
+  }
 }

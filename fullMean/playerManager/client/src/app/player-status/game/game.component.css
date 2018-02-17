@@ -1,0 +1,12 @@
+.Gplaying{
+    background-color: green;
+    color: white;
+}
+.Rnoplaying{
+    background-color: red;
+    color: white;
+}
+.Ymaybeplaying{
+    background-color: yellow;
+    /* color: white; */
+}

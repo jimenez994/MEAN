@@ -1,15 +1,19 @@
 <h3>Player Status</h3>
 <a href="">Game 1</a> | <a href="">Game 2</a> | <a href="">Game3</a>
+<table>
+<tr>
+  <th>name</th>
+  <th>position</th>
+  <th>actions</th>
+</tr>
 
-<div *ngFor="let player of players">
-  <tr>
+<tr *ngFor="let player of players">
     <td>{{player.name}} </td>
     <td>{{ player.position }} </td>
     <td>
-      <button >Playing</button>
-      <button >Not Playing</button>
-      <button >Undecide</button>
+      <button class="G{{player.status}}" (click)="update(player._id, 'playing')" [ngClass]="{playing: player.status == 'playing'}">Playing</button>
+      <button class="R{{player.status}}" (click)="update(player._id, 'noplaying')" [ngClass]="{playing: player.status == 'noplaying'}">Not Playing</button>
+      <button class="Y{{player.status}}" (click)="update(player._id, 'maybeplaying')" [ngClass]="{playing: player.status == 'maybeplaying'}">Undecided</button>
     </td>
-  </tr>
-
-</div>
+</tr>
+</table>

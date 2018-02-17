@@ -29,14 +29,19 @@ export class PlayerListComponent implements OnInit {
       }
     )
   }
-
-  destroy(id: string){
-    this._playerService.destroyPlayer(id, 
-      (res) => {
-        this.getUsers()
-        console.log("you just deleted a player")
-      }
-  )
+  destroyC(id: string){
+    var h = confirm(" Are you sure you wanna delete this player?")
+    if(h== true){
+      this._playerService.destroyPlayer(id,
+        (res) => {
+          this.getUsers()
+          console.log("you just deleted a player")
+        })
+    }else{
+      console.log("do nothing")
+    }
   }
+ 
+ 
 
 }
