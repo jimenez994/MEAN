@@ -14,6 +14,7 @@ import { AddPlayerComponent } from './manage-player/add-player/add-player.compon
 import { ManagePlayerService } from './manage-player/manage-player.service';
 import { PlayerStatusService } from './player-status/player-status.service';
 import { PlayerService } from './manage-player/player.service';
+import { GameComponent } from './player-status/game/game.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { PlayerService } from './manage-player/player.service';
     ManagePlayerComponent,
     PlayerStatusComponent,
     PlayerListComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

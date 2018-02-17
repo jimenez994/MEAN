@@ -1,0 +1,15 @@
+<h3>Player Status</h3>
+<a href="">Game 1</a> | <a href="">Game 2</a> | <a href="">Game3</a>
+
+<div *ngFor="let player of players">
+  <tr>
+    <td>{{player.name}} </td>
+    <td>{{ player.position }} </td>
+    <td>
+      <button >Playing</button>
+      <button >Not Playing</button>
+      <button >Undecide</button>
+    </td>
+  </tr>
+
+</div>

@@ -35,12 +35,15 @@ var manage_player_component_1 = __webpack_require__("../../../../../src/app/mana
 var player_status_component_1 = __webpack_require__("../../../../../src/app/player-status/player-status.component.ts");
 var player_list_component_1 = __webpack_require__("../../../../../src/app/manage-player/player-list/player-list.component.ts");
 var add_player_component_1 = __webpack_require__("../../../../../src/app/manage-player/add-player/add-player.component.ts");
+var game_component_1 = __webpack_require__("../../../../../src/app/player-status/game/game.component.ts");
 var routes = [
     { path: '', component: manage_player_component_1.ManagePlayerComponent, children: [
             { path: '', component: player_list_component_1.PlayerListComponent },
             { path: 'new', component: add_player_component_1.AddPlayerComponent }
         ] },
-    { path: 'status', component: player_status_component_1.PlayerStatusComponent }
+    { path: 'status', component: player_status_component_1.PlayerStatusComponent, children: [
+            { path: '', component: game_component_1.GameComponent }
+        ] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -139,6 +142,7 @@ var add_player_component_1 = __webpack_require__("../../../../../src/app/manage-
 var manage_player_service_1 = __webpack_require__("../../../../../src/app/manage-player/manage-player.service.ts");
 var player_status_service_1 = __webpack_require__("../../../../../src/app/player-status/player-status.service.ts");
 var player_service_1 = __webpack_require__("../../../../../src/app/manage-player/player.service.ts");
+var game_component_1 = __webpack_require__("../../../../../src/app/player-status/game/game.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -149,7 +153,8 @@ var AppModule = /** @class */ (function () {
                 manage_player_component_1.ManagePlayerComponent,
                 player_status_component_1.PlayerStatusComponent,
                 player_list_component_1.PlayerListComponent,
-                add_player_component_1.AddPlayerComponent
+                add_player_component_1.AddPlayerComponent,
+                game_component_1.GameComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -492,6 +497,78 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 exports.Player = Player;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/player-status/game/game.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/player-status/game/game.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Player Status</h3>\n<a href=\"\">Game 1</a> | <a href=\"\">Game 2</a> | <a href=\"\">Game3</a>\n\n<div *ngFor=\"let player of players\">\n  <tr>\n    <td>{{player.name}} </td>\n    <td>{{ player.position }} </td>\n    <td>\n      <button >Playing</button>\n      <button >Not Playing</button>\n      <button >Undecide</button>\n    </td>\n  </tr>\n\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/player-status/game/game.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var player_service_1 = __webpack_require__("../../../../../src/app/manage-player/player.service.ts");
+var GameComponent = /** @class */ (function () {
+    function GameComponent(_playerService) {
+        this._playerService = _playerService;
+    }
+    GameComponent.prototype.ngOnInit = function () {
+        this.getPlayers();
+    };
+    GameComponent.prototype.getPlayers = function () {
+        var _this = this;
+        this._playerService.retrivePlayers(function (players) {
+            _this.players = players;
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    GameComponent = __decorate([
+        core_1.Component({
+            selector: 'app-game',
+            template: __webpack_require__("../../../../../src/app/player-status/game/game.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/player-status/game/game.component.css")]
+        }),
+        __metadata("design:paramtypes", [player_service_1.PlayerService])
+    ], GameComponent);
+    return GameComponent;
+}());
+exports.GameComponent = GameComponent;
 
 
 /***/ }),

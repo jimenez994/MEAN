@@ -30,7 +30,6 @@ export class PlayerListComponent implements OnInit {
     )
   }
 
-
   destroy(id: string){
     this._playerService.destroyPlayer(id, 
       (res) => {
