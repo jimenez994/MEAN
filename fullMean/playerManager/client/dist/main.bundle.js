@@ -361,7 +361,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/manage-player/player-list/player-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4>\n  <a [routerLink]=\"['/']\">List</a> /\n  <a [routerLink]=\"['/new']\">Add Player</a>\n</h4>\n<h2>Player list Component</h2>"
+module.exports = "<h4>\n  <a [routerLink]=\"['/']\">List</a> /\n  <a [routerLink]=\"['/new']\">Add Player</a>\n</h4>\n<h2>Player list Component</h2>\n\n\n<div *ngFor=\"let player of players\">\n  <tr>\n    <td>{{player.name}}    </td>\n    <td>{{ player.position }} </td>\n    <td> <button (click)=\"destroy(player._id)\">Delete</button> </td>\n  </tr>\n   \n</div>\n"
 
 /***/ }),
 
@@ -381,18 +381,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var player_service_1 = __webpack_require__("../../../../../src/app/manage-player/player.service.ts");
 var PlayerListComponent = /** @class */ (function () {
-    function PlayerListComponent() {
+    function PlayerListComponent(_playerService) {
+        this._playerService = _playerService;
+        this.destroyPlayer = new core_1.EventEmitter();
     }
     PlayerListComponent.prototype.ngOnInit = function () {
+        this.getUsers();
     };
+    PlayerListComponent.prototype.getUsers = function () {
+        var _this = this;
+        this._playerService.retrivePlayers(function (players) {
+            _this.players = players;
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    PlayerListComponent.prototype.destroy = function (id) {
+        var _this = this;
+        this._playerService.destroyPlayer(id, function (res) {
+            _this.getUsers();
+            console.log("you just deleted a player");
+        });
+    };
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], PlayerListComponent.prototype, "destroyPlayer", void 0);
     PlayerListComponent = __decorate([
         core_1.Component({
             selector: 'app-player-list',
             template: __webpack_require__("../../../../../src/app/manage-player/player-list/player-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/manage-player/player-list/player-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [player_service_1.PlayerService])
     ], PlayerListComponent);
     return PlayerListComponent;
 }());
@@ -418,6 +441,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var http_1 = __webpack_require__("../../../http/esm5/http.js");
+__webpack_require__("../../../../rxjs/Rx.js");
+__webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 var PlayerService = /** @class */ (function () {
     function PlayerService(_http) {
         this._http = _http;
@@ -439,6 +464,9 @@ var PlayerService = /** @class */ (function () {
         }, function (err) {
             errorback(err.json());
         });
+    };
+    PlayerService.prototype.destroyPlayer = function (id, callback) {
+        this._http.delete("/player/" + id).subscribe(function (res) { return callback(res.json()); }, function (err) { return console.log(err); });
     };
     PlayerService = __decorate([
         core_1.Injectable(),

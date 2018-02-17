@@ -3,3 +3,13 @@
   <a [routerLink]="['/new']">Add Player</a>
 </h4>
 <h2>Player list Component</h2>
+
+
+<div *ngFor="let player of players">
+  <tr>
+    <td>{{player.name}}    </td>
+    <td>{{ player.position }} </td>
+    <td> <button (click)="destroy(player._id)">Delete</button> </td>
+  </tr>
+   
+</div>

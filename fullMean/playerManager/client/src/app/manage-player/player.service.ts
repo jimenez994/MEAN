@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Player } from './player';
+import { Observable } from 'rxjs/Observable';
+import "rxjs";
+import "rxjs/add/operator/map";
 
 @Injectable()
 export class PlayerService {
@@ -32,6 +35,13 @@ export class PlayerService {
       (err) => {
         errorback(err.json());
       }
+    )
+  }
+
+  destroyPlayer(id: string, callback){
+    this._http.delete(`/player/${id}`).subscribe(
+      res => callback(res.json()),
+      err => console.log(err)
     )
   }
 
