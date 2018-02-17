@@ -1,0 +1,14 @@
+<h4>
+<a [routerLink]="['/']">List</a> /
+<a [routerLink]="['/new']">Add Player</a>
+</h4>
+<h2>Add Player Component</h2>
+
+<form (submit)="onSubmit(); createPlayer.resetForm()" #createPlayer="ngForm">
+    name:<br>
+    <input name="name" required minlength="2" maxlength="30" [(ngModel)]="player.name" #title="ngModel" /><br>
+    Preferred Position:<br>
+    <input name="position" required minlength="2" maxlength="30" [(ngModel)]="player.position" #title="ngModel" />
+    <input type="submit" value="create player">
+</form>
+
