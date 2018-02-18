@@ -6,7 +6,7 @@ module.exports = (app) => {
     app.post("/user/login", User.login);
     app.get("/user", User.session);
     app.delete("/user/logout", User.logout);
-    // app.all("*", (req, res, next) => {
-    //     res.sendFile(path.resolve("./client/dist/index.html"));
-    // })
+    app.all("*", (req, res, next) => {
+        res.sendFile(path.resolve("./client/dist/index.html"));
+    })
 }
