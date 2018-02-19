@@ -8,14 +8,12 @@ import { UserService } from '../../server/controllers/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  currentUser;
   constructor(
     private _router: Router,
     private _userService: UserService
   ) { }
 
   ngOnInit() {
-    this._userService.getCurrentUser();
   }
 
 

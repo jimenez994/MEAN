@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   userLogin(){
-    this._userService.login(this.user, (user) => {
-      if(user.json().error){
-        console.log(user.json())
+    this._userService.login(this.user, (res) => {
+      if(res.json().error){
+        console.log(res.json())
       }else{
         this._router.navigateByUrl('/dashboard')
       }

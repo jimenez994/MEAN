@@ -198,7 +198,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  body works!\n</p>\n"
+module.exports = "<h4 *ngIf=\"currentUser != null \">Welcome {{ currentUser.first_name}}</h4>\n<a href (click)=\"logout()\">Logout</a>\n"
 
 /***/ }),
 
@@ -218,10 +218,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var BodyComponent = /** @class */ (function () {
-    function BodyComponent() {
+    function BodyComponent(_http, _router, _userService) {
+        this._http = _http;
+        this._router = _router;
+        this._userService = _userService;
+        this.currentUser = null;
     }
     BodyComponent.prototype.ngOnInit = function () {
+        this.getUserSession();
+    };
+    BodyComponent.prototype.getUserSession = function () {
+        var _this = this;
+        this._userService.getCurrentUser().subscribe(function (res) {
+            console.log(res.json());
+            _this.currentUser = res.json();
+            console.log(_this.currentUser);
+            if (_this.currentUser == null) {
+                _this._router.navigateByUrl('/');
+            }
+        });
+    };
+    BodyComponent.prototype.logout = function () {
+        var _this = this;
+        this._userService.getCurrentUser().subscribe(function (res) {
+            _this.currentUser = null;
+        });
     };
     BodyComponent = __decorate([
         core_1.Component({
@@ -229,7 +254,9 @@ var BodyComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/body/body.component.html"),
             styles: [__webpack_require__("../../../../../src/app/body/body.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http,
+            router_1.Router,
+            user_service_1.UserService])
     ], BodyComponent);
     return BodyComponent;
 }());
@@ -259,7 +286,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "{{currentUser | json }}\n"
+module.exports = "\n"
 
 /***/ }),
 
@@ -287,7 +314,6 @@ var DashboardComponent = /** @class */ (function () {
         this._userService = _userService;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        this._userService.getCurrentUser();
     };
     DashboardComponent = __decorate([
         core_1.Component({
@@ -421,9 +447,9 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.userLogin = function () {
         var _this = this;
-        this._userService.login(this.user, function (user) {
-            if (user.json().error) {
-                console.log(user.json());
+        this._userService.login(this.user, function (res) {
+            if (res.json().error) {
+                console.log(res.json());
             }
             else {
                 _this._router.navigateByUrl('/dashboard');
