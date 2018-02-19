@@ -31,7 +31,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
-var routes = [];
+var body_component_1 = __webpack_require__("../../../../../src/app/body/body.component.ts");
+var dashboard_component_1 = __webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.ts");
+var login_body_component_1 = __webpack_require__("../../../../../src/app/login-body/login-body.component.ts");
+var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
+var routes = [
+    {
+        // localhost:8000/dashboard/
+        path: 'dashboard', component: body_component_1.BodyComponent, children: [
+            { path: '', component: dashboard_component_1.DashboardComponent }
+        ]
+    },
+    {
+        // localhost:8000/
+        path: '', component: login_body_component_1.LoginBodyComponent, children: [
+            { path: '', component: registration_component_1.RegistrationComponent }
+        ]
+    }
+];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
@@ -126,6 +143,8 @@ var login_body_component_1 = __webpack_require__("../../../../../src/app/login-b
 var login_component_1 = __webpack_require__("../../../../../src/app/login-body/login/login.component.ts");
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var body_component_1 = __webpack_require__("../../../../../src/app/body/body.component.ts");
+var dashboard_component_1 = __webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -135,7 +154,9 @@ var AppModule = /** @class */ (function () {
                 app_component_1.AppComponent,
                 login_body_component_1.LoginBodyComponent,
                 login_component_1.LoginComponent,
-                registration_component_1.RegistrationComponent
+                registration_component_1.RegistrationComponent,
+                body_component_1.BodyComponent,
+                dashboard_component_1.DashboardComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -152,6 +173,134 @@ var AppModule = /** @class */ (function () {
     return AppModule;
 }());
 exports.AppModule = AppModule;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/body.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/body.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  body works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/body.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var BodyComponent = /** @class */ (function () {
+    function BodyComponent() {
+    }
+    BodyComponent.prototype.ngOnInit = function () {
+    };
+    BodyComponent = __decorate([
+        core_1.Component({
+            selector: 'app-body',
+            template: __webpack_require__("../../../../../src/app/body/body.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/body/body.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], BodyComponent);
+    return BodyComponent;
+}());
+exports.BodyComponent = BodyComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/dashboard/dashboard.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "{{currentUser | json }}\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/dashboard/dashboard.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var DashboardComponent = /** @class */ (function () {
+    function DashboardComponent(_router, _userService) {
+        this._router = _router;
+        this._userService = _userService;
+    }
+    DashboardComponent.prototype.ngOnInit = function () {
+        this._userService.getCurrentUser();
+    };
+    DashboardComponent = __decorate([
+        core_1.Component({
+            selector: 'app-dashboard',
+            template: __webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.css")]
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            user_service_1.UserService])
+    ], DashboardComponent);
+    return DashboardComponent;
+}());
+exports.DashboardComponent = DashboardComponent;
 
 
 /***/ }),
@@ -177,7 +326,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/login-body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  login-body works!\n</p>\n"
+module.exports = "<p>\n  login-body works!\n</p>\n<app-login></app-login>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -238,7 +387,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  login works!\n</p>\n"
+module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"userLogin()\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"user.email\" value=\" \">\n    <br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\" required minlength=\"5\" [(ngModel)]=\"user.password\" value=\" \">\n    <br>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>"
 
 /***/ }),
 
@@ -258,10 +407,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_1 = __webpack_require__("../../../../../src/app/server/models/user.ts");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
+    function LoginComponent(_router, _userService) {
+        this._router = _router;
+        this._userService = _userService;
+        this.user = new user_1.User();
+        this.errors = [];
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.userLogin = function () {
+        var _this = this;
+        this._userService.login(this.user, function (user) {
+            if (user.json().error) {
+                console.log(user.json());
+            }
+            else {
+                _this._router.navigateByUrl('/dashboard');
+            }
+        });
     };
     LoginComponent = __decorate([
         core_1.Component({
@@ -269,7 +436,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/login-body/login/login.component.html"),
             styles: [__webpack_require__("../../../../../src/app/login-body/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router,
+            user_service_1.UserService])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -299,7 +467,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/registration/registration.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  registration works!\n</p>\n"
+module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"createUser()\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"newUser.email\"><br>\n\n    <label>First Name:</label>\n    <input type=\"text\" name=\"first_name\" [(ngModel)]=\"newUser.first_name\"><br>\n\n    <label>Last Name:</label>\n    <input type=\"text\" name=\"last_name\" [(ngModel)]=\"newUser.last_name\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\" [(ngModel)]=\"newUser.password\"><br>\n\n    <label>Comfirmation</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"newUser.password_confirm\"><br>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>\n"
 
 /***/ }),
 
@@ -319,10 +487,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_1 = __webpack_require__("../../../../../src/app/server/models/user.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var RegistrationComponent = /** @class */ (function () {
-    function RegistrationComponent() {
+    function RegistrationComponent(_router, _userService) {
+        this._router = _router;
+        this._userService = _userService;
+        this.newUser = new user_1.User();
     }
     RegistrationComponent.prototype.ngOnInit = function () {
+    };
+    RegistrationComponent.prototype.createUser = function () {
+        var _this = this;
+        this._userService.create(this.newUser).subscribe(function (res) {
+            if (res.json().errors) {
+                console.log(res.json());
+            }
+            else {
+                _this._router.navigateByUrl('/dashboard');
+            }
+        });
     };
     RegistrationComponent = __decorate([
         core_1.Component({
@@ -330,7 +515,8 @@ var RegistrationComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/login-body/registration/registration.component.html"),
             styles: [__webpack_require__("../../../../../src/app/login-body/registration/registration.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router,
+            user_service_1.UserService])
     ], RegistrationComponent);
     return RegistrationComponent;
 }());
@@ -359,10 +545,22 @@ var http_1 = __webpack_require__("../../../http/esm5/http.js");
 var UserService = /** @class */ (function () {
     function UserService(_http) {
         this._http = _http;
-        this.currentUser = null;
     }
     UserService.prototype.getCurrentUser = function () {
-        return this.currentUser;
+        return this._http.get("/user");
+    };
+    UserService.prototype.create = function (user) {
+        return this._http.post("/user/create", user);
+    };
+    UserService.prototype.login = function (user, callback) {
+        this._http.post("/user/login", user).subscribe(function (res) {
+            callback(res);
+        }, function (err) {
+            callback(err);
+        });
+    };
+    UserService.prototype.logout = function () {
+        return this._http.delete("/user/logout");
     };
     UserService = __decorate([
         core_1.Injectable(),
@@ -371,6 +569,22 @@ var UserService = /** @class */ (function () {
     return UserService;
 }());
 exports.UserService = UserService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/models/user.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var User = /** @class */ (function () {
+    function User() {
+    }
+    return User;
+}());
+exports.User = User;
 
 
 /***/ }),

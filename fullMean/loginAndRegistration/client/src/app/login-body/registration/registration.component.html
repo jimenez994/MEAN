@@ -1,3 +1,21 @@
-<p>
-  registration works!
-</p>
+<fieldset>
+  <legend>Register</legend>
+  <form (submit)="createUser()">
+    <label>Email:</label>
+    <input type="text" name="email" [(ngModel)]="newUser.email"><br>
+
+    <label>First Name:</label>
+    <input type="text" name="first_name" [(ngModel)]="newUser.first_name"><br>
+
+    <label>Last Name:</label>
+    <input type="text" name="last_name" [(ngModel)]="newUser.last_name"><br>
+
+    <label>Password</label>
+    <input type="text" name="password" [(ngModel)]="newUser.password"><br>
+
+    <label>Comfirmation</label>
+    <input type="text" name="email" [(ngModel)]="newUser.password_confirm"><br>
+
+    <input type="submit" value="Register">
+  </form>
+</fieldset>

@@ -1,3 +1,14 @@
-<p>
-  login works!
-</p>
+<fieldset>
+  <legend>Register</legend>
+  <form (submit)="userLogin()">
+    <label>Email:</label>
+    <input type="text" name="email" [(ngModel)]="user.email" value=" ">
+    <br>
+
+    <label>Password</label>
+    <input type="text" name="password" required minlength="5" [(ngModel)]="user.password" value=" ">
+    <br>
+
+    <input type="submit" value="Register">
+  </form>
+</fieldset>

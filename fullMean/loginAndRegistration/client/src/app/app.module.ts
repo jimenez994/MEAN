@@ -10,6 +10,8 @@ import { LoginBodyComponent } from './login-body/login-body.component';
 import { LoginComponent } from './login-body/login/login.component';
 import { RegistrationComponent } from './login-body/registration/registration.component';
 import { UserService } from './server/controllers/user.service';
+import { BodyComponent } from './body/body.component';
+import { DashboardComponent } from './body/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { UserService } from './server/controllers/user.service';
     AppComponent,
     LoginBodyComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    BodyComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -4,12 +4,26 @@ import { Http } from '@angular/http';
 
 @Injectable()
 export class UserService {
-  currentUser: User = null;
   constructor(
     private _http: Http
   ) { }
   getCurrentUser(){
-    return this.currentUser;
+    return this._http.get("/user");
   }
-  create(newUser: User, )
+  create(user){
+    return this._http.post("/user/create",user);
+  }
+  login(user: User, callback){
+    this._http.post("/user/login", user).subscribe(
+      res => {
+        callback(res);
+      },
+      err => {
+        callback(err)
+      }
+    );
+  }
+  logout(){
+    return this._http.delete("/user/logout");
+  }
 }
