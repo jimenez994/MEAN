@@ -1,0 +1,18 @@
+<h1>users list</h1>
+{{ users | json }}<br>
+
+<input type="text" (keydown)="search($event)" placeholder="search here">
+
+<div *ngFor="let user of users">
+    <h4>{{user?.first_name}}</h4>
+    <p>
+        {{user?.last_name}}
+    </p>
+</div>
+
+<div *ngIf="users?.length < 1 ">
+    <hr>
+    <p>
+        no results found ;(
+    </p>
+</div>

@@ -413,7 +413,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"userLogin()\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"user.email\" value=\" \">\n    <br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\" required minlength=\"5\" [(ngModel)]=\"user.password\" value=\" \">\n    <br>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>"
+module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"userLogin()\">\n    <label>Email:</label>\n    <input type=\"email\" required minlength=\"7\" name=\"email\" [(ngModel)]=\"user.email\">\n    <br>\n\n    <label>Password</label>\n    <input type=\"password\" name=\"password\" required minlength=\"5\" [(ngModel)]=\"user.password\">\n    <br>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>"
 
 /***/ }),
 
