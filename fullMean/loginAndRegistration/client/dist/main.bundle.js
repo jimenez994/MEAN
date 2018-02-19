@@ -244,7 +244,7 @@ var BodyComponent = /** @class */ (function () {
     };
     BodyComponent.prototype.logout = function () {
         var _this = this;
-        this._userService.getCurrentUser().subscribe(function (res) {
+        this._userService.logout().subscribe(function (res) {
             _this.currentUser = null;
         });
     };

@@ -34,7 +34,7 @@ export class BodyComponent implements OnInit {
     )
   }
   logout(){
-    this._userService.getCurrentUser().subscribe(
+    this._userService.logout().subscribe(
       res =>{
         this.currentUser = null
       }
