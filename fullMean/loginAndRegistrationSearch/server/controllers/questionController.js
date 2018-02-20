@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Question = mongoose.model('Question');
 const Answer = mongoose.model('Answer');
 const User = mongoose.model('User');
-var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 module.exports = {
     show: (req, res) => {
@@ -13,13 +12,21 @@ module.exports = {
             return res.json(questions);
         })
     },
+   
     create: (req, res) => {
-        req.body._user = req.session.user_id
-        Question.create(req.body , (err, newQuestion) => {
+        req.body._user = req.session.user_id       
+        User.findById(req.session.user_id, (err, currentUser) => {
             if(err){
-                return res.json(err);
+                return res.json(err)
             }
-            return res.json(newQuestion);
+            var newQuestion = new Question(req.body);
+            currentUser._question.push(newQuestion);
+            Question.create(newQuestion, (err, question) => {
+                if(err){
+                    return res.json(err);
+                }
+                return res.json(question);
+            })  
         })
     },
     findOne: (req, res) => {
@@ -30,5 +37,4 @@ module.exports = {
             return res.json(question);
         })
     }
-
 }

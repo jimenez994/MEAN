@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const likesPlugin = require('mongoose-likes');
-// const autopopulate = require('mongoose-autopopulate');
+const autopopulate = require('mongoose-autopopulate');
 
 const AnswerSchema = new mongoose.Schema({
     answer: {
@@ -15,17 +15,17 @@ const AnswerSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "Question",
-        // autopopulate: true
+        autopopulate: true
     },
     _user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "User",
-        // autopopulate: true
+        autopopulate: true
     },
 }, { timestamps: true });
 
 AnswerSchema.plugin(likesPlugin);
-// AnswerSchema.plugin(autopopulate);
+AnswerSchema.plugin(autopopulate);
 
 const Answer = mongoose.model("Answer", AnswerSchema);
