@@ -15,26 +15,29 @@ module.exports = {
    
     create: (req, res) => {
         req.body._user = req.session.user_id       
-        User.findById(req.session.user_id, (err, currentUser) => {
+        var newQuestion = new Question(req.body);
+        Question.create(newQuestion, (err, question) => {
             if(err){
-                return res.json(err)
-            }
-            var newQuestion = new Question(req.body);
-            currentUser._question.push(newQuestion);
-            Question.create(newQuestion, (err, question) => {
-                if(err){
-                    return res.json(err);
-                }
-                return res.json(question);
-            })  
-        })
-    },
-    findOne: (req, res) => {
-        Question.findById(req.params.id).deepPopulate('_answer').exec((err, question) => {
-            if(err){
-                return res.json(err)
+                return res.json(err);
             }
             return res.json(question);
+        })  
+    },
+    findOne: (req, res) => {
+        Question.findById(req.params.id, (err, question) => {
+            if(err){
+                return res.json(err)
+            }
+            console.log(question);
+            return res.json(question);
+        })
+    },
+    findOneWithAnswers: (req, res) => {
+        Question.findById(req.params.id).populate({path: "_answer", model:"Answer"}).exec((err, question)=>{
+            if(err){
+                return res.json(err)
+            }
+            return res.json(question)
         })
     }
 }

@@ -86,7 +86,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Bicycle Marketplace</h1>\n<router-outlet></router-outlet>\n"
+module.exports = "\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -145,6 +145,8 @@ var registration_component_1 = __webpack_require__("../../../../../src/app/login
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var body_component_1 = __webpack_require__("../../../../../src/app/body/body.component.ts");
 var dashboard_component_1 = __webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.ts");
+var question_service_1 = __webpack_require__("../../../../../src/app/server/controllers/question.service.ts");
+var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -165,7 +167,9 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpModule
             ],
             providers: [
-                user_service_1.UserService
+                user_service_1.UserService,
+                question_service_1.QuestionService,
+                answer_service_1.AnswerService
             ],
             bootstrap: [app_component_1.AppComponent]
         })
@@ -198,7 +202,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4 *ngIf=\"currentUser != null \">Welcome {{ currentUser.first_name}}</h4>\n<a href (click)=\"logout()\">Logout</a>\n\n<router-outlet></router-outlet>"
+module.exports = "<h4 *ngIf=\"currentUser != null \">Welcome {{ currentUser.first_name}}</h4>\n<a href (click)=\"logout()\">Logout</a>\n<a href=\"\">Home</a> |\n<a href=\"\">Add a Question</a>\n\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -238,7 +242,7 @@ var BodyComponent = /** @class */ (function () {
             _this.currentUser = res.json();
             console.log(_this.currentUser);
             if (_this.currentUser == null) {
-                _this._router.navigateByUrl('/');
+                // this._router.navigateByUrl('/');
             }
         });
     };
@@ -286,7 +290,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>users list</h1>\n{{ users | json }}<br>\n\n<input type=\"text\" (keydown)=\"search($event)\" placeholder=\"search here\">\n\n<div *ngFor=\"let user of users\">\n    <h4>{{user?.first_name}}</h4>\n    <p>\n        {{user?.last_name}}\n    </p>\n</div>\n\n<div *ngIf=\"users?.length < 1 \">\n    <hr>\n    <p>\n        no results found ;(\n    </p>\n</div>"
+module.exports = "{{ questions | json }}"
 
 /***/ }),
 
@@ -309,31 +313,30 @@ var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var http_1 = __webpack_require__("../../../http/esm5/http.js");
-var Subject_1 = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+var question_service_1 = __webpack_require__("../../../../../src/app/server/controllers/question.service.ts");
+var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(_http, _router, _userService) {
+    function DashboardComponent(_http, _router, _userService, _questionService, _answerService) {
         this._http = _http;
         this._router = _router;
         this._userService = _userService;
-        this.startAt = new Subject_1.Subject();
-        this.endAt = new Subject_1.Subject();
-        this.startobs = this.startAt.asObservable();
-        this.endobs = this.endAt.asObservable();
+        this._questionService = _questionService;
+        this._answerService = _answerService;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        this.getUsers();
+        console.log(this._userService);
+        console.log(this._answerService);
+        this.allQuestions();
     };
-    DashboardComponent.prototype.getUsers = function () {
+    // getAnswers(){
+    //   this._answerService
+    // }
+    DashboardComponent.prototype.allQuestions = function () {
         var _this = this;
-        this._userService.getUsers().subscribe(function (res) {
-            // console.log(res);
-            _this.users = res.json();
+        console.log(this._userService);
+        this._questionService.getQuestions().subscribe(function (res) {
+            _this.questions = res.json();
         });
-    };
-    DashboardComponent.prototype.search = function ($event) {
-        var q = $event.target.value;
-        this.startAt.next(q);
-        this.endAt.next(q + "\uf8ff");
     };
     DashboardComponent = __decorate([
         core_1.Component({
@@ -343,7 +346,9 @@ var DashboardComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [http_1.Http,
             router_1.Router,
-            user_service_1.UserService])
+            user_service_1.UserService,
+            question_service_1.QuestionService,
+            answer_service_1.AnswerService])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -568,6 +573,85 @@ var RegistrationComponent = /** @class */ (function () {
     return RegistrationComponent;
 }());
 exports.RegistrationComponent = RegistrationComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/controllers/answer.service.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+var AnswerService = /** @class */ (function () {
+    function AnswerService(_http) {
+        this._http = _http;
+    }
+    AnswerService.prototype.createAnswer = function (id) {
+        return this._http.post("/answer/create/:id", id);
+    };
+    AnswerService.prototype.likeAnswer = function (id) {
+        return this._http.post("//answer/like/:id", id);
+    };
+    AnswerService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], AnswerService);
+    return AnswerService;
+}());
+exports.AnswerService = AnswerService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/controllers/question.service.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+var QuestionService = /** @class */ (function () {
+    function QuestionService(_http) {
+        this._http = _http;
+    }
+    QuestionService.prototype.getQuestions = function () {
+        return this._http.get("/questions");
+    };
+    QuestionService.prototype.createQuestion = function (question) {
+        return this._http.post("/question/create", question);
+    };
+    QuestionService.prototype.getOneQuestion = function (id) {
+        return this._http.get("/question/answer/:id", id);
+    };
+    QuestionService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], QuestionService);
+    return QuestionService;
+}());
+exports.QuestionService = QuestionService;
 
 
 /***/ }),

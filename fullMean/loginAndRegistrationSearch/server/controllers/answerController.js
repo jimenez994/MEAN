@@ -4,7 +4,7 @@ const Answer = mongoose.model('Answer');
 const User = mongoose.model('User');
 
 module.exports = {
-    show: (req, res) => {
+    showAll: (req, res) => {
         Answer.find({}, (err, answers) => {
             if (err) {
                 return res.json(err);

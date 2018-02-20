@@ -5,4 +5,6 @@ export class User {
     last_name: string;
     password: string;
     password_confirm: string;
+    _question: any;
+    _answer: any;
 }

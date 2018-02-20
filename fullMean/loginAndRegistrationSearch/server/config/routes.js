@@ -15,10 +15,11 @@ module.exports = (app) => {
     app.post("/question/create", Question.create);
     app.get("/questions", Question.show);
     app.get("/question/:id", Question.findOne);
+    app.get("/question/answer/:id", Question.findOneWithAnswers);
 
     // Answer
     app.post("/answer/create/:id", Answer.create);
-    app.get("/answers", Answer.show);
+    app.get("/answers", Answer.showAll);
     app.post("/answer/like/:id", Answer.like);
     
     app.all("*", (req, res, next) => {

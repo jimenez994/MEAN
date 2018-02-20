@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { UserService } from '../../server/controllers/user.service';
 import { Http } from '@angular/http';
 import { User } from '../../server/models/user';
-import { Subject } from 'rxjs/Subject';
+import { Question } from '../../server/models/question';
+import { QuestionService } from '../../server/controllers/question.service';
+import { AnswerService } from '../../server/controllers/answer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,37 +14,38 @@ import { Subject } from 'rxjs/Subject';
 })
 
 export class DashboardComponent implements OnInit {
-  users;
-  startAt = new Subject()
-  endAt = new Subject()
-
-  startobs = this.startAt.asObservable();
-  endobs = this.endAt.asObservable();
-
+  questions: Question[];
 
   constructor(
     private _http: Http,
     private _router: Router,
-    private _userService: UserService
-  ) { }
-  
-  ngOnInit() {
-    this.getUsers()
+    private _userService: UserService,
+    private _questionService:QuestionService,
+    private _answerService: AnswerService
+
+  ) {
   }
   
-  getUsers(){
-    this._userService.getUsers().subscribe(
+  ngOnInit() {
+
+    console.log(this._userService);
+    console.log(this._answerService)
+    this.allQuestions()
+  }
+  // getAnswers(){
+  //   this._answerService
+  // }
+
+  allQuestions() {
+    console.log(this._userService);
+    this._questionService.getQuestions().subscribe(
       res => {
-        // console.log(res);
-        this.users = res.json();
+        this.questions = res.json()
       }
     )
   }
-  search($event) {
-    let q = $event.target.value;
-    this.startAt.next(q)
-    this.endAt.next(q+"\uf8ff")
-  }
+  
+ 
  
  
 

@@ -13,7 +13,6 @@ const QuestionSchema = new mongoose.Schema({
     _answer: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Answer",
-        autopopulate: true
     }],
     _user: {
         type: mongoose.Schema.Types.ObjectId,
