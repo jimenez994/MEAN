@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const autopopulate = require('mongoose-autopopulate');
+// const autopopulate = require('mongoose-autopopulate');
 const bcrypt = require("bcryptjs")
 
 const UserSchema = new mongoose.Schema({
@@ -82,6 +82,6 @@ UserSchema.pre("save", function(done){
     done()
 })
 
-UserSchema.plugin(autopopulate);
+// UserSchema.plugin(autopopulate);
 
 const User = mongoose.model("User", UserSchema);

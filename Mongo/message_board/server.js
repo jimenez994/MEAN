@@ -31,9 +31,7 @@ app.set('views', path.join(__dirname, "./views"));
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res){
-    Post.find({})
-        .populate("comments")
-        .exec(function (err, posts){
+    Post.find({}).populate("comments").exec(function (err, posts){
         res.render("index", {posts:posts})
     })
 })

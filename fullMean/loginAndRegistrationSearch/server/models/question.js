@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const autopopulate = require('mongoose-autopopulate');
+// const autopopulate = require('mongoose-autopopulate');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 const QuestionSchema = new mongoose.Schema({
     question: {
@@ -13,17 +14,18 @@ const QuestionSchema = new mongoose.Schema({
     _answer: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Answer",
-        autopopulate: true
+        // autopopulate: true
     }],
     _user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "User",
-        autopopulate: true
+        // autopopulate: true
     }
     
 }, { timestamps: true });
 
-QuestionSchema.plugin(autopopulate);
+// QuestionSchema.plugin(autopopulate);
+QuestionSchema.plugin(deepPopulate);
 
 const Question = mongoose.model("Question", QuestionSchema);

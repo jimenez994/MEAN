@@ -13,8 +13,10 @@ module.exports = {
         })
     },
     create: (req, res) => {
+        console.log(req.body)
         req.body._user = req.session.user_id
         req.body._question = req.params.id
+        console.log(req.body)
         Answer.create(req.body, (err, newAnswer) => {
             if (err) {
                 return res.json(err);
