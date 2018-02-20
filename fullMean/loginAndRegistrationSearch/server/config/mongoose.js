@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 
-mongoose.connect("mongodb://localhost/userdbSearch", { useMongoClient: true });
+mongoose.connect("mongodb://localhost/iceCream", { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 var models_path = __dirname + "/../models";

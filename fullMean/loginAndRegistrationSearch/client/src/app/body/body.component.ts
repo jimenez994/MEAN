@@ -28,7 +28,7 @@ export class BodyComponent implements OnInit {
         this.currentUser = res.json();
         console.log(this.currentUser)
         if(this.currentUser == null){
-          // this._router.navigateByUrl('/');
+          this._router.navigateByUrl('/');
         }
       }
     )

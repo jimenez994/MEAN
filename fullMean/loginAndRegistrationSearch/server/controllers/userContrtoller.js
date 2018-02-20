@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Question = mongoose.model('Question');
+const Answer = mongoose.model('Answer');
 
 module.exports = {
     create: (req, res) => {
@@ -55,5 +57,6 @@ module.exports = {
         delete req.session.user_id;
         return res.json(err)
     },
+    
    
 }

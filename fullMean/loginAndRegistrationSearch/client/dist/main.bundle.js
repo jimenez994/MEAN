@@ -238,7 +238,7 @@ var BodyComponent = /** @class */ (function () {
             _this.currentUser = res.json();
             console.log(_this.currentUser);
             if (_this.currentUser == null) {
-                // this._router.navigateByUrl('/');
+                _this._router.navigateByUrl('/');
             }
         });
     };
