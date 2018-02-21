@@ -8,8 +8,8 @@ export class AnswerService {
   constructor(
     private _http: Http
   ) { }
-  createAnswer(id){
-    return this._http.post("/answer/create/:id", id);
+  createAnswer(id,answer){
+    return this._http.post(`/answer/create/${id}`, answer);
   }
   likeAnswer(id){
     return this._http.post(`/answer/like/${id}`,id)

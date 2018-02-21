@@ -37,6 +37,7 @@ var login_body_component_1 = __webpack_require__("../../../../../src/app/login-b
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
 var create_question_component_1 = __webpack_require__("../../../../../src/app/body/create-question/create-question.component.ts");
 var show_question_component_1 = __webpack_require__("../../../../../src/app/body/show-question/show-question.component.ts");
+var create_answer_component_1 = __webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.ts");
 var routes = [
     {
         // localhost:8000/dashboard/
@@ -44,6 +45,7 @@ var routes = [
             { path: '', component: dashboard_component_1.DashboardComponent },
             { path: 'new/Question', component: create_question_component_1.CreateQuestionComponent },
             { path: 'question/:id', component: show_question_component_1.ShowQuestionComponent },
+            { path: 'new/Answer/:id', component: create_answer_component_1.CreateAnswerComponent },
         ]
     },
     {
@@ -153,6 +155,7 @@ var question_service_1 = __webpack_require__("../../../../../src/app/server/cont
 var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
 var create_question_component_1 = __webpack_require__("../../../../../src/app/body/create-question/create-question.component.ts");
 var show_question_component_1 = __webpack_require__("../../../../../src/app/body/show-question/show-question.component.ts");
+var create_answer_component_1 = __webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -166,7 +169,8 @@ var AppModule = /** @class */ (function () {
                 body_component_1.BodyComponent,
                 dashboard_component_1.DashboardComponent,
                 create_question_component_1.CreateQuestionComponent,
-                show_question_component_1.ShowQuestionComponent
+                show_question_component_1.ShowQuestionComponent,
+                create_answer_component_1.CreateAnswerComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -277,6 +281,67 @@ exports.BodyComponent = BodyComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/body/create-answer/create-answer.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/create-answer/create-answer.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  create-answer works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/create-answer/create-answer.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var CreateAnswerComponent = /** @class */ (function () {
+    function CreateAnswerComponent() {
+    }
+    CreateAnswerComponent.prototype.ngOnInit = function () {
+    };
+    CreateAnswerComponent = __decorate([
+        core_1.Component({
+            selector: 'app-create-answer',
+            template: __webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CreateAnswerComponent);
+    return CreateAnswerComponent;
+}());
+exports.CreateAnswerComponent = CreateAnswerComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/body/create-question/create-question.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -373,7 +438,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- {{ questions | json }} -->\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href=\"\">Answer</a></td>\n    </tr>\n\n</table>"
+module.exports = "<!-- {{ questions | json }} -->\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href [routerLink]=\"['/dashboard/new/Answer', question._id]\">Answer</a></td>\n    </tr>\n\n</table>"
 
 /***/ }),
 
@@ -768,8 +833,8 @@ var AnswerService = /** @class */ (function () {
     function AnswerService(_http) {
         this._http = _http;
     }
-    AnswerService.prototype.createAnswer = function (id) {
-        return this._http.post("/answer/create/:id", id);
+    AnswerService.prototype.createAnswer = function (id, answer) {
+        return this._http.post("/answer/create/" + id, answer);
     };
     AnswerService.prototype.likeAnswer = function (id) {
         return this._http.post("/answer/like/" + id, id);

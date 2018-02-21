@@ -9,7 +9,7 @@
     <tr *ngFor="let question of questions">
         <td>{{question.question}}</td>
         <td>{{question._answer.length}}</td>
-        <td><a href [routerLink]="['/dashboard/question', question._id]">Show</a>  <a href="">Answer</a></td>
+        <td><a href [routerLink]="['/dashboard/question', question._id]">Show</a>  <a href [routerLink]="['/dashboard/new/Answer', question._id]">Answer</a></td>
     </tr>
 
 </table>

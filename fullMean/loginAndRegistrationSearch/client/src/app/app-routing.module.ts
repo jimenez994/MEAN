@@ -7,6 +7,7 @@ import { LoginComponent } from './login-body/login/login.component';
 import { RegistrationComponent } from './login-body/registration/registration.component';
 import { CreateQuestionComponent } from './body/create-question/create-question.component';
 import { ShowQuestionComponent } from './body/show-question/show-question.component';
+import { CreateAnswerComponent } from './body/create-answer/create-answer.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,8 @@ const routes: Routes = [
       { path:'', component: DashboardComponent },
       { path: 'new/Question', component: CreateQuestionComponent },
       { path: 'question/:id', component: ShowQuestionComponent },
+      { path: 'new/Answer/:id', component: CreateAnswerComponent },
+      
       
     ]
   },
