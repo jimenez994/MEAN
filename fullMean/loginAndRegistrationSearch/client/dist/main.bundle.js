@@ -302,7 +302,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/create-answer/create-answer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  create-answer works!\n</p>\n"
+module.exports = "<h2>{{question.question}}</h2>\n<p>{{question.description}}</p>\n<fieldset>\n  <legend>New Answer</legend>\n  <form (submit)=\"createAnswer()\">\n    <label>Answer</label>\n    <input type=\"text\" name=\"answer\" [(ngModel)]=\"newAnswer.answer\">\n    <br>\n\n    <label>Detail(opt)</label>\n    <input type=\"text\" name=\"detail\" [(ngModel)]=\"newAnswer.detail\">\n    <br>\n    <button href [routerLink]=\"['/dashboard']\">cancel</button>\n    <input type=\"submit\" value=\"Submit\">\n  </form>\n</fieldset>"
 
 /***/ }),
 
@@ -322,10 +322,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var answer_1 = __webpack_require__("../../../../../src/app/server/models/answer.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var router_2 = __webpack_require__("../../../router/esm5/router.js");
+var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
+var question_service_1 = __webpack_require__("../../../../../src/app/server/controllers/question.service.ts");
+var question_1 = __webpack_require__("../../../../../src/app/server/models/question.ts");
 var CreateAnswerComponent = /** @class */ (function () {
-    function CreateAnswerComponent() {
+    function CreateAnswerComponent(_router, _route, _answerService, _questionService) {
+        this._router = _router;
+        this._route = _route;
+        this._answerService = _answerService;
+        this._questionService = _questionService;
+        this.newAnswer = new answer_1.Answer;
+        this.question = new question_1.Question;
     }
     CreateAnswerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._route.params.subscribe(function (params) { return _this.question_id = params.id; });
+        this.getQuestion;
+        this.getQuestion();
+    };
+    CreateAnswerComponent.prototype.getQuestion = function () {
+        var _this = this;
+        console.log(this.question_id);
+        this._questionService.getOneQuestion(this.question_id).subscribe(function (res) {
+            _this.question = res.json();
+        });
+    };
+    CreateAnswerComponent.prototype.createAnswer = function () {
+        var _this = this;
+        this._answerService.createAnswer(this.question_id, this.newAnswer).subscribe(function (res) {
+            console.log(res.json());
+            _this._router.navigateByUrl('/dashboard');
+        });
     };
     CreateAnswerComponent = __decorate([
         core_1.Component({
@@ -333,7 +363,10 @@ var CreateAnswerComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.html"),
             styles: [__webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router,
+            router_2.ActivatedRoute,
+            answer_service_1.AnswerService,
+            question_service_1.QuestionService])
     ], CreateAnswerComponent);
     return CreateAnswerComponent;
 }());
@@ -547,10 +580,10 @@ var question_service_1 = __webpack_require__("../../../../../src/app/server/cont
 var router_2 = __webpack_require__("../../../router/esm5/router.js");
 var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
 var ShowQuestionComponent = /** @class */ (function () {
-    function ShowQuestionComponent(_router, _route, _quetionService, _answerService) {
+    function ShowQuestionComponent(_router, _route, _questionService, _answerService) {
         this._router = _router;
         this._route = _route;
-        this._quetionService = _quetionService;
+        this._questionService = _questionService;
         this._answerService = _answerService;
         this.question = new question_1.Question;
     }
@@ -562,15 +595,15 @@ var ShowQuestionComponent = /** @class */ (function () {
     ShowQuestionComponent.prototype.getQuestion = function () {
         var _this = this;
         console.log(this.question_id);
-        this._quetionService.getOneQuestion(this.question_id).subscribe(function (res) {
+        this._questionService.getOneQuestion(this.question_id).subscribe(function (res) {
             console.log(res);
             _this.question = res.json();
         });
     };
     ShowQuestionComponent.prototype.likeAnswer = function (id) {
         var _this = this;
-        console.log(id);
         this._answerService.likeAnswer(id).subscribe(function (res) {
+            console.log("you should see this");
             _this.getQuestion();
         });
     };
@@ -938,6 +971,22 @@ var UserService = /** @class */ (function () {
     return UserService;
 }());
 exports.UserService = UserService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/models/answer.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Answer = /** @class */ (function () {
+    function Answer() {
+    }
+    return Answer;
+}());
+exports.Answer = Answer;
 
 
 /***/ }),

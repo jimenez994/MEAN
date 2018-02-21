@@ -18,7 +18,7 @@ export class ShowQuestionComponent implements OnInit {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
-    private _quetionService: QuestionService,
+    private _questionService: QuestionService,
     private _answerService: AnswerService
   ) { }
 
@@ -28,7 +28,7 @@ export class ShowQuestionComponent implements OnInit {
   }
   getQuestion(){
     console.log(this.question_id);
-    this._quetionService.getOneQuestion(this.question_id).subscribe(
+    this._questionService.getOneQuestion(this.question_id).subscribe(
       (res) => {
         console.log(res)
         this.question = res.json();
@@ -36,9 +36,9 @@ export class ShowQuestionComponent implements OnInit {
     )
   }
   likeAnswer(id){
-    console.log(id);
     this._answerService.likeAnswer(id).subscribe(
       (res) => {
+        console.log("you should see this");
         this.getQuestion();
       }
     )
