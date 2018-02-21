@@ -14,6 +14,8 @@ import { BodyComponent } from './body/body.component';
 import { DashboardComponent } from './body/dashboard/dashboard.component';
 import { QuestionService } from './server/controllers/question.service';
 import { AnswerService } from './server/controllers/answer.service';
+import { CreateQuestionComponent } from './body/create-question/create-question.component';
+import { ShowQuestionComponent } from './body/show-question/show-question.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { AnswerService } from './server/controllers/answer.service';
     LoginComponent,
     RegistrationComponent,
     BodyComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateQuestionComponent,
+    ShowQuestionComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ export class QuestionService {
     return this._http.post("/question/create", question);
   }
   getOneQuestion(id){
-    return this._http.get("/question/answer/:id", id);
+    return this._http.get(`/question/answer/${id}`);
   }
 
 }

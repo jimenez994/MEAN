@@ -35,11 +35,15 @@ var body_component_1 = __webpack_require__("../../../../../src/app/body/body.com
 var dashboard_component_1 = __webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.ts");
 var login_body_component_1 = __webpack_require__("../../../../../src/app/login-body/login-body.component.ts");
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
+var create_question_component_1 = __webpack_require__("../../../../../src/app/body/create-question/create-question.component.ts");
+var show_question_component_1 = __webpack_require__("../../../../../src/app/body/show-question/show-question.component.ts");
 var routes = [
     {
         // localhost:8000/dashboard/
         path: 'dashboard', component: body_component_1.BodyComponent, children: [
-            { path: '', component: dashboard_component_1.DashboardComponent }
+            { path: '', component: dashboard_component_1.DashboardComponent },
+            { path: 'new/Question', component: create_question_component_1.CreateQuestionComponent },
+            { path: 'question/:id', component: show_question_component_1.ShowQuestionComponent },
         ]
     },
     {
@@ -147,6 +151,8 @@ var body_component_1 = __webpack_require__("../../../../../src/app/body/body.com
 var dashboard_component_1 = __webpack_require__("../../../../../src/app/body/dashboard/dashboard.component.ts");
 var question_service_1 = __webpack_require__("../../../../../src/app/server/controllers/question.service.ts");
 var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
+var create_question_component_1 = __webpack_require__("../../../../../src/app/body/create-question/create-question.component.ts");
+var show_question_component_1 = __webpack_require__("../../../../../src/app/body/show-question/show-question.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -158,7 +164,9 @@ var AppModule = /** @class */ (function () {
                 login_component_1.LoginComponent,
                 registration_component_1.RegistrationComponent,
                 body_component_1.BodyComponent,
-                dashboard_component_1.DashboardComponent
+                dashboard_component_1.DashboardComponent,
+                create_question_component_1.CreateQuestionComponent,
+                show_question_component_1.ShowQuestionComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -202,7 +210,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4 *ngIf=\"currentUser != null \">Welcome {{ currentUser.first_name}}</h4>\n<a href (click)=\"logout()\">Logout</a>\n<a href=\"\">Home</a> |\n<a href=\"\">Add a Question</a>\n\n\n<router-outlet></router-outlet>"
+module.exports = "<h4 *ngIf=\"currentUser != null \">Welcome {{ currentUser.first_name}}</h4>\n<a href (click)=\"logout()\">Logout</a><br>\n<a [routerLink]=\"['/dashboard']\">Home</a> |\n<a [routerLink]=\"['new/Question']\">Add a Question</a>\n\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -269,6 +277,81 @@ exports.BodyComponent = BodyComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/body/create-question/create-question.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/create-question/create-question.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<fieldset>\n  <legend>New Question</legend>\n  <form (submit)=\"createQuestion()\">\n    <label>Question</label>\n    <input type=\"text\" name=\"question\" [(ngModel)]=\"newQuestion.question\">\n    <br>\n    \n    <label>Description(opt)</label>\n    <input type=\"text\" name=\"description\" [(ngModel)]=\"newQuestion.description\">\n    <br>\n    \n    <input type=\"submit\" value=\"Post Question\">\n  </form>\n</fieldset>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/create-question/create-question.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var question_1 = __webpack_require__("../../../../../src/app/server/models/question.ts");
+var question_service_1 = __webpack_require__("../../../../../src/app/server/controllers/question.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var CreateQuestionComponent = /** @class */ (function () {
+    function CreateQuestionComponent(_router, _quetionService) {
+        this._router = _router;
+        this._quetionService = _quetionService;
+        this.newQuestion = new question_1.Question;
+    }
+    CreateQuestionComponent.prototype.ngOnInit = function () {
+    };
+    CreateQuestionComponent.prototype.createQuestion = function () {
+        var _this = this;
+        this._quetionService.createQuestion(this.newQuestion).subscribe(function (res) {
+            console.log(res.json());
+            _this._router.navigateByUrl('/dashboard');
+        });
+    };
+    CreateQuestionComponent = __decorate([
+        core_1.Component({
+            selector: 'app-create-question',
+            template: __webpack_require__("../../../../../src/app/body/create-question/create-question.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/body/create-question/create-question.component.css")]
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            question_service_1.QuestionService])
+    ], CreateQuestionComponent);
+    return CreateQuestionComponent;
+}());
+exports.CreateQuestionComponent = CreateQuestionComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -290,7 +373,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "{{ questions | json }}"
+module.exports = "<!-- {{ questions | json }} -->\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href=\"\">Answer</a></td>\n    </tr>\n\n</table>"
 
 /***/ }),
 
@@ -324,13 +407,8 @@ var DashboardComponent = /** @class */ (function () {
         this._answerService = _answerService;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        console.log(this._userService);
-        console.log(this._answerService);
         this.allQuestions();
     };
-    // getAnswers(){
-    //   this._answerService
-    // }
     DashboardComponent.prototype.allQuestions = function () {
         var _this = this;
         console.log(this._userService);
@@ -353,6 +431,98 @@ var DashboardComponent = /** @class */ (function () {
     return DashboardComponent;
 }());
 exports.DashboardComponent = DashboardComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/show-question/show-question.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/show-question/show-question.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- {{question | json}} -->\n\n<h2>{{question.question}}</h2>\n{{question._answer}}\n<table>\n  <tr>\n    <th></th>\n    <th></th>\n    <th></th>\n  </tr>\n  <tr *ngFor=\"let answer of question._answer\">\n    <td>\n        <p>{{ answer._user.first_name }}</p>\n        <h3>{{answer.answer}}</h3>\n    </td>\n    <td> {{ answer.likes }} </td>\n    <td> <button (click)='likeAnswer(answer._id)'>Like {{answer._id}}</button> </td>\n  </tr>\n</table>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/body/show-question/show-question.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var question_1 = __webpack_require__("../../../../../src/app/server/models/question.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var question_service_1 = __webpack_require__("../../../../../src/app/server/controllers/question.service.ts");
+var router_2 = __webpack_require__("../../../router/esm5/router.js");
+var answer_service_1 = __webpack_require__("../../../../../src/app/server/controllers/answer.service.ts");
+var ShowQuestionComponent = /** @class */ (function () {
+    function ShowQuestionComponent(_router, _route, _quetionService, _answerService) {
+        this._router = _router;
+        this._route = _route;
+        this._quetionService = _quetionService;
+        this._answerService = _answerService;
+        this.question = new question_1.Question;
+    }
+    ShowQuestionComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._route.params.subscribe(function (params) { return _this.question_id = params.id; });
+        this.getQuestion();
+    };
+    ShowQuestionComponent.prototype.getQuestion = function () {
+        var _this = this;
+        console.log(this.question_id);
+        this._quetionService.getOneQuestion(this.question_id).subscribe(function (res) {
+            console.log(res);
+            _this.question = res.json();
+        });
+    };
+    ShowQuestionComponent.prototype.likeAnswer = function (id) {
+        var _this = this;
+        console.log(id);
+        this._answerService.likeAnswer(id).subscribe(function (res) {
+            _this.getQuestion();
+        });
+    };
+    ShowQuestionComponent = __decorate([
+        core_1.Component({
+            selector: 'app-show-question',
+            template: __webpack_require__("../../../../../src/app/body/show-question/show-question.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/body/show-question/show-question.component.css")]
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            router_2.ActivatedRoute,
+            question_service_1.QuestionService,
+            answer_service_1.AnswerService])
+    ], ShowQuestionComponent);
+    return ShowQuestionComponent;
+}());
+exports.ShowQuestionComponent = ShowQuestionComponent;
 
 
 /***/ }),
@@ -602,7 +772,7 @@ var AnswerService = /** @class */ (function () {
         return this._http.post("/answer/create/:id", id);
     };
     AnswerService.prototype.likeAnswer = function (id) {
-        return this._http.post("//answer/like/:id", id);
+        return this._http.post("/answer/like/" + id, id);
     };
     AnswerService = __decorate([
         core_1.Injectable(),
@@ -643,7 +813,7 @@ var QuestionService = /** @class */ (function () {
         return this._http.post("/question/create", question);
     };
     QuestionService.prototype.getOneQuestion = function (id) {
-        return this._http.get("/question/answer/:id", id);
+        return this._http.get("/question/answer/" + id);
     };
     QuestionService = __decorate([
         core_1.Injectable(),
@@ -703,6 +873,22 @@ var UserService = /** @class */ (function () {
     return UserService;
 }());
 exports.UserService = UserService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/models/question.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Question = /** @class */ (function () {
+    function Question() {
+    }
+    return Question;
+}());
+exports.Question = Question;
 
 
 /***/ }),

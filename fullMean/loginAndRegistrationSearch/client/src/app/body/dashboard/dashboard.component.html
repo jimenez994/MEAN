@@ -1,1 +1,15 @@
-{{ questions | json }}
+<!-- {{ questions | json }} -->
+
+<table>
+    <tr>
+        <th>Question</th>
+        <th>Answers</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let question of questions">
+        <td>{{question.question}}</td>
+        <td>{{question._answer.length}}</td>
+        <td><a href [routerLink]="['/dashboard/question', question._id]">Show</a>  <a href="">Answer</a></td>
+    </tr>
+
+</table>

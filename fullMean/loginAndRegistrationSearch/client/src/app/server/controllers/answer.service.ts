@@ -12,7 +12,7 @@ export class AnswerService {
     return this._http.post("/answer/create/:id", id);
   }
   likeAnswer(id){
-    return this._http.post("//answer/like/:id", id)
+    return this._http.post(`/answer/like/${id}`,id)
   }
 
 }

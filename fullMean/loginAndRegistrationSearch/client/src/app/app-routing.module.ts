@@ -5,12 +5,17 @@ import { DashboardComponent } from './body/dashboard/dashboard.component';
 import { LoginBodyComponent } from './login-body/login-body.component';
 import { LoginComponent } from './login-body/login/login.component';
 import { RegistrationComponent } from './login-body/registration/registration.component';
+import { CreateQuestionComponent } from './body/create-question/create-question.component';
+import { ShowQuestionComponent } from './body/show-question/show-question.component';
 
 const routes: Routes = [
   {
     // localhost:8000/dashboard/
     path:'dashboard', component: BodyComponent, children: [
-      { path:'', component: DashboardComponent }
+      { path:'', component: DashboardComponent },
+      { path: 'new/Question', component: CreateQuestionComponent },
+      { path: 'question/:id', component: ShowQuestionComponent },
+      
     ]
   },
   {

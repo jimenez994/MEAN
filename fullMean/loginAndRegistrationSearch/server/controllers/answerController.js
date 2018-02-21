@@ -30,7 +30,9 @@ module.exports = {
     },
     like: (req, res) => {
         Answer.like(req.params.id, req.session.user_id, (err) =>{
-            return res.json(err);
+            if(err){
+                console.log(err);
+            }
         })
         return res.json({like: "you just like this answer"})
     }

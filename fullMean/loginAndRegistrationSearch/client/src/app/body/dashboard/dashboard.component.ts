@@ -15,7 +15,7 @@ import { AnswerService } from '../../server/controllers/answer.service';
 
 export class DashboardComponent implements OnInit {
   questions: Question[];
-
+ 
   constructor(
     private _http: Http,
     private _router: Router,
@@ -28,13 +28,8 @@ export class DashboardComponent implements OnInit {
   
   ngOnInit() {
 
-    console.log(this._userService);
-    console.log(this._answerService)
     this.allQuestions()
   }
-  // getAnswers(){
-  //   this._answerService
-  // }
 
   allQuestions() {
     console.log(this._userService);

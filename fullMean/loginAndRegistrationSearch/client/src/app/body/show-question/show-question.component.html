@@ -1,0 +1,19 @@
+<!-- {{question | json}} -->
+
+<h2>{{question.question}}</h2>
+{{question._answer}}
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let answer of question._answer">
+    <td>
+        <p>{{ answer._user.first_name }}</p>
+        <h3>{{answer.answer}}</h3>
+    </td>
+    <td> {{ answer.likes }} </td>
+    <td> <button (click)='likeAnswer(answer._id)'>Like {{answer._id}}</button> </td>
+  </tr>
+</table>
