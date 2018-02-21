@@ -17,6 +17,7 @@ import { AnswerService } from './server/controllers/answer.service';
 import { CreateQuestionComponent } from './body/create-question/create-question.component';
 import { ShowQuestionComponent } from './body/show-question/show-question.component';
 import { CreateAnswerComponent } from './body/create-answer/create-answer.component';
+import { SearchQPipe } from './server/controllers/search-q.pipe';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CreateAnswerComponent } from './body/create-answer/create-answer.compon
     DashboardComponent,
     CreateQuestionComponent,
     ShowQuestionComponent,
-    CreateAnswerComponent
+    CreateAnswerComponent,
+    SearchQPipe
   ],
   imports: [
     BrowserModule,

@@ -156,6 +156,7 @@ var answer_service_1 = __webpack_require__("../../../../../src/app/server/contro
 var create_question_component_1 = __webpack_require__("../../../../../src/app/body/create-question/create-question.component.ts");
 var show_question_component_1 = __webpack_require__("../../../../../src/app/body/show-question/show-question.component.ts");
 var create_answer_component_1 = __webpack_require__("../../../../../src/app/body/create-answer/create-answer.component.ts");
+var search_q_pipe_1 = __webpack_require__("../../../../../src/app/server/controllers/search-q.pipe.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -170,7 +171,8 @@ var AppModule = /** @class */ (function () {
                 dashboard_component_1.DashboardComponent,
                 create_question_component_1.CreateQuestionComponent,
                 show_question_component_1.ShowQuestionComponent,
-                create_answer_component_1.CreateAnswerComponent
+                create_answer_component_1.CreateAnswerComponent,
+                search_q_pipe_1.SearchQPipe
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -471,7 +473,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- {{ questions | json }} -->\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href [routerLink]=\"['/dashboard/new/Answer', question._id]\">Answer</a></td>\n    </tr>\n\n</table>"
+module.exports = "<!-- {{ questions | json }} -->\n<div>\n    <label for=\"\">Search by Name:</label>\n    <input [(ngModel)]=\"searchText\" placeholder=\"search names here\">\n</div>\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions | filter : searchText\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href [routerLink]=\"['/dashboard/new/Answer', question._id]\">Answer</a></td>\n    </tr>\n\n</table>"
 
 /***/ }),
 
@@ -920,6 +922,45 @@ var QuestionService = /** @class */ (function () {
     return QuestionService;
 }());
 exports.QuestionService = QuestionService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/controllers/search-q.pipe.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var SearchQPipe = /** @class */ (function () {
+    function SearchQPipe() {
+    }
+    SearchQPipe.prototype.transform = function (items, searchText) {
+        if (!items)
+            return [];
+        if (!searchText)
+            return items;
+        searchText = searchText.toLowerCase();
+        return items.filter(function (list) {
+            console.log(list);
+            return list.question.toLowerCase().includes(searchText);
+        });
+    };
+    SearchQPipe = __decorate([
+        core_1.Pipe({
+            name: 'filter'
+        })
+    ], SearchQPipe);
+    return SearchQPipe;
+}());
+exports.SearchQPipe = SearchQPipe;
 
 
 /***/ }),
