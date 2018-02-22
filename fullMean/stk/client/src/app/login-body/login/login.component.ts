@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
   userLogin(){
     this._userService.login(this.user, (res) => {
-      if(res.json().error){
+      if(res.json().errors){
         console.log(res.json())
       }else{
         this._router.navigateByUrl('/dashboard')

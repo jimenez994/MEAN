@@ -216,7 +216,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4 *ngIf=\"currentUser != null \">Welcome {{ currentUser.first_name}}</h4>\n<a href (click)=\"logout()\">Logout</a><br>\n<a [routerLink]=\"['/dashboard']\">Home</a> |\n<a [routerLink]=\"['new/Question']\">Add a Question</a>\n\n\n<router-outlet></router-outlet>"
+module.exports = "<a href (click)=\"logout()\">Logout</a>\n<br>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -252,11 +252,9 @@ var BodyComponent = /** @class */ (function () {
     BodyComponent.prototype.getUserSession = function () {
         var _this = this;
         this._userService.getCurrentUser().subscribe(function (res) {
-            console.log(res.json());
             _this.currentUser = res.json();
-            console.log(_this.currentUser);
             if (_this.currentUser == null) {
-                // this._router.navigateByUrl('/');
+                _this._router.navigateByUrl('/');
             }
         });
     };
@@ -304,7 +302,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/create-answer/create-answer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>{{question.question}}</h2>\n<p>{{question.description}}</p>\n<fieldset>\n  <legend>New Answer</legend>\n  <form (submit)=\"createAnswer()\">\n    <label>Answer</label>\n    <input type=\"text\" name=\"answer\" [(ngModel)]=\"newAnswer.answer\">\n    <br>\n\n    <label>Detail(opt)</label>\n    <input type=\"text\" name=\"detail\" [(ngModel)]=\"newAnswer.detail\">\n    <br>\n    <button href [routerLink]=\"['/dashboard']\">cancel</button>\n    <input type=\"submit\" value=\"Submit\">\n  </form>\n</fieldset>"
+module.exports = "<a [routerLink]=\"['/dashboard']\">Home</a> |\n<a [routerLink]=\"['/dashboard/question', question._id]\">Back to Question</a>\n\n<h2>{{question.question}}</h2>\n<p>{{question.description}}</p>\n<fieldset>\n  <legend>New Answer</legend>\n  <form (submit)=\"createAnswer()\">\n\n    <label>Answer:</label><br>\n    <div *ngIf=\"answer.invalid && (answer.dirty || answer.touched)\">\n      <p *ngIf=\"answer.errors.required\" style=\"color: red;\">Answer is required</p>\n      <p *ngIf=\"answer.errors.minlength && !answer.errors.required\" style=\"color: red;\">Answers must me at least 5 characters</p>\n    </div>\n    <textarea name=\"answer\" required minlength=\"5\" [(ngModel)]=\"newAnswer.answer\" #answer=\"ngModel\" cols=\"30\" rows=\"3\"></textarea><br>\n  \n    <label>Supporting details for your answer:<small>(optional)</small></label><br>\n    <textarea name=\"detail\" cols=\"30\" rows=\"3\" [(ngModel)]=\"newAnswer.detail\"></textarea>\n    <br>\n    <button href [routerLink]=\"['/dashboard']\">cancel</button>\n    <input type=\"submit\" value=\"Submit\">\n  </form>\n</fieldset>"
 
 /***/ }),
 
@@ -398,7 +396,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/create-question/create-question.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<fieldset>\n  <legend>New Question</legend>\n  <form (submit)=\"createQuestion()\">\n    <label>Question</label>\n    <input type=\"text\" name=\"question\" [(ngModel)]=\"newQuestion.question\">\n    <br>\n    \n    <label>Description(opt)</label>\n    <input type=\"text\" name=\"description\" [(ngModel)]=\"newQuestion.description\">\n    <br>\n    \n    <input type=\"submit\" value=\"Post Question\">\n  </form>\n</fieldset>"
+module.exports = "<a [routerLink]=\"['/dashboard']\">Home</a> \n\n<fieldset>\n  <legend>New Question</legend>\n  <form (submit)=\"createQuestion()\">\n\n    <label>Question:</label><br>\n    <div *ngIf=\"question.invalid && (question.dirty || question.touched)\">\n      <p *ngIf=\"question.errors.required\" style=\"color: red;\">Question is required</p>\n      <p *ngIf=\"question.errors.minlength && !question.errors.required\" style=\"color: red;\">question must me at least 10 characters</p>\n    </div>\n    <textarea name=\"question\" required minlength=\"10\" cols=\"30\" rows=\"3\" [(ngModel)]=\"newQuestion.question\" #question=\"ngModel\"></textarea><br>\n    \n    <label>Description:<small>(optional)</small></label><br>\n    <textarea name=\"description\" cols=\"30\" rows=\"3\" [(ngModel)]=\"newQuestion.description\"></textarea><br>\n    <br>\n    <button href [routerLink]=\"['/dashboard']\">cancel</button>\n\n    <input type=\"submit\" value=\"Post Question\">\n    \n  </form>\n</fieldset>"
 
 /***/ }),
 
@@ -473,7 +471,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- {{ questions | json }} -->\n<div>\n    <label for=\"\">Search by Name:</label>\n    <input [(ngModel)]=\"searchText\" placeholder=\"search names here\">\n</div>\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions | filter : searchText\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href [routerLink]=\"['/dashboard/new/Answer', question._id]\">Answer</a></td>\n    </tr>\n\n</table>"
+module.exports = "\n<a [routerLink]=\"['new/Question']\">Add a Question</a>\n\n<div>\n    <br>\n    <label>Search:</label>\n    <input [(ngModel)]=\"searchText\">\n</div><br>\n\n<table>\n    <tr>\n        <th>Question</th>\n        <th>Answers</th>\n        <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let question of questions | filter : searchText\">\n        <td>{{question.question}}</td>\n        <td>{{question._answer.length}}</td>\n        <td><a href [routerLink]=\"['/dashboard/question', question._id]\">Show</a>  <a href [routerLink]=\"['/dashboard/new/Answer', question._id]\">Answer</a></td>\n    </tr>\n\n</table>"
 
 /***/ }),
 
@@ -543,7 +541,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "/* *{\n    outline: solid black 1px;\n} */\n.card{\n    border: 1px solid rgb(158, 155, 155);\n    margin-bottom: 5px;\n}\n.name{\n    margin-top: 5px;\n    margin-bottom: -4px;\n}\n.answer{\n    margin-left: 10px;\n    margin-top: 2;\n    display: inline-block;\n    width: 85%;\n}\n.answer h4 {\n    margin-top: -4px;\n    margin-bottom: -5px;\n}\n.answer p {\n    margin-top: -3px;\n}\n.like{\n    width: 10%;\n    display: inline-block;\n    text-align: center;\n    vertical-align: top;\n}", ""]);
 
 // exports
 
@@ -556,7 +554,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/body/show-question/show-question.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- {{question | json}} -->\n\n<h2>{{question.question}}</h2>\n{{question._answer}}\n<table>\n  <tr>\n    <th></th>\n    <th></th>\n    <th></th>\n  </tr>\n  <tr *ngFor=\"let answer of question._answer\">\n    <td>\n        <p>{{ answer._user.first_name }}</p>\n        <h3>{{answer.answer}}</h3>\n    </td>\n    <td> {{ answer.likes }} </td>\n    <td> <button (click)='likeAnswer(answer._id)'>Like {{answer._id}}</button> </td>\n  </tr>\n</table>"
+module.exports = "<a [routerLink]=\"['/dashboard']\">Home</a> |\n<a [routerLink]=\"['/dashboard/new/Answer', question._id]\">Answer this Question</a>\n\n\n<h2>{{question.question}}</h2>\n<p>{{question.description}}</p>\n<hr>\n\n  <div class=\"card\" *ngFor=\"let answer of answers\">\n    <div class=\"answer\">\n        <small class=\"name\">{{ answer._user.first_name }}:</small><br>\n        <h4>{{answer.answer}}</h4>\n        <p><small>{{ answer.detail }}</small> </p>\n    </div>\n    <div class=\"like\">\n      <p>{{ answer.likes }} likes <button (click)='likeAnswer(answer._id)'>Like!</button></p>\n      \n    </div>\n    \n  </div>\n"
 
 /***/ }),
 
@@ -598,7 +596,12 @@ var ShowQuestionComponent = /** @class */ (function () {
         var _this = this;
         console.log(this.question_id);
         this._questionService.getOneQuestion(this.question_id).subscribe(function (res) {
-            console.log(res);
+            console.log(res.json()._answer.sort(function (obj1, obj2) {
+                return obj2.likes - obj1.likes;
+            }));
+            _this.answers = res.json()._answer.sort(function (obj1, obj2) {
+                return obj2.likes - obj1.likes;
+            });
             _this.question = res.json();
         });
     };
@@ -648,7 +651,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/login-body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  login-body works!\n</p>\n<app-login></app-login>\n<router-outlet></router-outlet>\n"
+module.exports = "<h1>Q&A</h1>\n<app-login></app-login>\n<router-outlet></router-outlet>\n\n"
 
 /***/ }),
 
@@ -709,7 +712,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"userLogin()\">\n    <label>Email:</label>\n    <input type=\"email\" required minlength=\"7\" name=\"email\" [(ngModel)]=\"user.email\">\n    <br>\n\n    <label>Password</label>\n    <input type=\"password\" name=\"password\" required minlength=\"5\" [(ngModel)]=\"user.password\">\n    <br>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>"
+module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"userLogin()\">\n    <label for=\"email\">Email: </label><br>\n    <div *ngIf=\"email.invalid && (email.dirty || email.touched)\" class=\"alert alert-danger\">\n      <p *ngIf=\"email.errors.required\" style=\"color: red;\">Email is required</p>\n      <p *ngIf=\"email.errors.email && !email.errors.required\" style=\"color: red;\">Invalid Email format</p>\n    </div>\n    <input type=\"text\" name=\"email\" class=\"form-control\" required email [(ngModel)]=\"user.email\" #email=\"ngModel\"><br>\n   \n    <label for=\"password\">Password: </label><br>\n    <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" required [(ngModel)]=\"user.password\" #password=\"ngModel\"><br>\n    <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"alert alert-danger\">\n      <div *ngIf=\"password.errors.required\">\n        <p style=\"color: red;\">Password is required</p>\n      </div>\n    </div>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>"
 
 /***/ }),
 
@@ -744,7 +747,7 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.userLogin = function () {
         var _this = this;
         this._userService.login(this.user, function (res) {
-            if (res.json().error) {
+            if (res.json().errors) {
                 console.log(res.json());
             }
             else {
@@ -789,7 +792,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-body/registration/registration.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"createUser()\">\n    <label>Email:</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"newUser.email\"><br>\n\n    <label>First Name:</label>\n    <input type=\"text\" name=\"first_name\" [(ngModel)]=\"newUser.first_name\"><br>\n\n    <label>Last Name:</label>\n    <input type=\"text\" name=\"last_name\" [(ngModel)]=\"newUser.last_name\"><br>\n\n    <label>Password</label>\n    <input type=\"text\" name=\"password\" [(ngModel)]=\"newUser.password\"><br>\n\n    <label>Comfirmation</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"newUser.password_confirm\"><br>\n\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>\n"
+module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"createUser()\">\n  \n    <label>Email:</label><br>\n    <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n        <p *ngIf=\"email.errors.required\" style=\"color: red;\">Email is required</p>      \n        <p *ngIf=\"email.errors.email && !email.errors.required\" style=\"color: red;\">Invalid Email format</p>\n    </div>\n    <input type=\"email\" name=\"email\" required email [(ngModel)]=\"newUser.email\" #email=\"ngModel\"><br>\n\n    <label>First Name:</label><br>\n    <div *ngIf=\"firstName.invalid && (firstName.dirty || firstName.touched)\">\n      <p *ngIf=\"firstName.errors.required\" style=\"color: red;\">First name is required</p>\n      <p *ngIf=\"firstName.errors.minlength\" style=\"color: red;\">First name must be at least 2 characters</p> \n    </div>\n    <input type=\"text\" name=\"first_name\" required minlength=\"2\" [(ngModel)]=\"newUser.first_name\" #firstName=\"ngModel\"><br>\n   \n    <label>Last Name:</label><br>\n    <div *ngIf=\"lastName.invalid && (lastName.dirty || lastName.touched)\">\n      <p *ngIf=\"lastName.errors.required\" style=\"color: red;\">Last name is required</p>\n      <p *ngIf=\"lastName.errors.minlength\" style=\"color: red;\">Last name must be at least 2 characters</p>\n    </div>\n    <input type=\"text\" name=\"last_name\" required minlength=\"2\" [(ngModel)]=\"newUser.last_name\" #lastName=\"ngModel\"><br>\n    \n    <label>Password:</label>\n    <small>(Password requires at least 1 capital letter, 1 number, and 1 special character )</small><br>\n    <input type=\"password\" name=\"password\" required minlength=\"8\" [(ngModel)]=\"newUser.password\" #password=\"ngModel\"><br>\n    <div *ngIf=\"password.invalid && (password.dirty || password.touched)\">\n      <p *ngIf=\"password.errors.required\" style=\"color: red;\">Password is required</p>\n      <p *ngIf=\"password.errors.minlength\">Password must be at least 8 characters</p>\n    </div>\n\n    <label>Comfirmation:</label><br>\n    <input type=\"password\" name=\"pwConfirm\" required [(ngModel)]=\"newUser.password_confirm\" #pwConfirm=\"ngModel\"><br>\n    <div *ngIf=\"pwConfirm.invalid && (pwConfirm.dirty || pwConfirm.touched)\">\n      <p *ngIf=\"pwConfirm.errors.required\" style=\"color: red;\">Comfirmation Password is required</p>\n    </div>\n    <input type=\"submit\" value=\"Register\">\n  </form>\n</fieldset>\n"
 
 /***/ }),
 
@@ -823,10 +826,9 @@ var RegistrationComponent = /** @class */ (function () {
     RegistrationComponent.prototype.createUser = function () {
         var _this = this;
         this._userService.create(this.newUser).subscribe(function (res) {
-            if (res.json().errors) {
-                console.log(res.json());
-            }
-            else {
+            console.log(res.json().errors);
+            if (res.json().errors == null) {
+                console.log("im getting here ;D");
                 _this._router.navigateByUrl('/dashboard');
             }
         });

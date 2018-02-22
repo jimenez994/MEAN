@@ -1,19 +1,20 @@
-<!-- {{question | json}} -->
+<a [routerLink]="['/dashboard']">Home</a> |
+<a [routerLink]="['/dashboard/new/Answer', question._id]">Answer this Question</a>
+
 
 <h2>{{question.question}}</h2>
-{{question._answer}}
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let answer of question._answer">
-    <td>
-        <p>{{ answer._user.first_name }}</p>
-        <h3>{{answer.answer}}</h3>
-    </td>
-    <td> {{ answer.likes }} </td>
-    <td> <button (click)='likeAnswer(answer._id)'>Like {{answer._id}}</button> </td>
-  </tr>
-</table>
+<p>{{question.description}}</p>
+<hr>
+
+  <div class="card" *ngFor="let answer of answers">
+    <div class="answer">
+        <small class="name">{{ answer._user.first_name }}:</small><br>
+        <h4>{{answer.answer}}</h4>
+        <p><small>{{ answer.detail }}</small> </p>
+    </div>
+    <div class="like">
+      <p>{{ answer.likes }} likes <button (click)='likeAnswer(answer._id)'>Like!</button></p>
+      
+    </div>
+    
+  </div>

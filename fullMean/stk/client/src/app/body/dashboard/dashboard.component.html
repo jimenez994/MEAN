@@ -1,8 +1,11 @@
-<!-- {{ questions | json }} -->
+
+<a [routerLink]="['new/Question']">Add a Question</a>
+
 <div>
-    <label for="">Search by Name:</label>
-    <input [(ngModel)]="searchText" placeholder="search names here">
-</div>
+    <br>
+    <label>Search:</label>
+    <input [(ngModel)]="searchText">
+</div><br>
 
 <table>
     <tr>

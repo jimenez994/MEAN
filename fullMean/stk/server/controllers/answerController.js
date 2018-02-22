@@ -17,14 +17,18 @@ module.exports = {
         req.body._question = req.params.id;
         var newAnswer = new Answer(req.body);
         Question.findById(req.params.id, (err, question) => {
-            question._answer.push(newAnswer);
             Answer.create(newAnswer, (err, answer) => {
-                question.save((err, answer) => {
-                    if (err) {
-                        return res.json(err);
-                    }
-                })
-                return (res.json(answer))
+                if(err){
+                    return res.json(err);
+                }else{
+                    question._answer.push(newAnswer);
+                    question.save((err, answer) => {
+                        if (err) {
+                            return res.json(err);
+                        }
+                    })
+                    return (res.json(answer))
+                }
             })
         })
     },

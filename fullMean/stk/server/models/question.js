@@ -4,8 +4,8 @@ const autopopulate = require('mongoose-autopopulate');
 const QuestionSchema = new mongoose.Schema({
     question: {
         type: String,
-        required: [true, "Question myst be at leart 10 characters"],
-        minlength: [1, "Question myst be at leart 10 characters"]
+        required: [true, "Question must be at least 10 characters"],
+        minlength: [10, "Question must be at least 10 characters"]
     },
     description: {
         type: String

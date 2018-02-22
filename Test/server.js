@@ -1,0 +1,19 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const port = 8001;
+const app = express();
+const fileUpload = require('express-fileupload');
+
+app.use(bodyParser.json());
+app.use(session({ secret: "realMadrid"}));
+app.use(express.static(__dirname + '/client/dist'));
+app.use(fileUpload());
+
+require("./server/config/mongoose");
+require("./server/config/routes")(app);
+
+app.listen(port, function (){
+    console.log(`hey, you are in port ${port}`)
+});

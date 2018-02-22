@@ -13,6 +13,7 @@ import { AnswerService } from '../../server/controllers/answer.service';
 export class ShowQuestionComponent implements OnInit {
 
   question: Question = new Question;
+  answers;
   question_id;
 
   constructor(
@@ -30,7 +31,12 @@ export class ShowQuestionComponent implements OnInit {
     console.log(this.question_id);
     this._questionService.getOneQuestion(this.question_id).subscribe(
       (res) => {
-        console.log(res)
+        console.log(res.json()._answer.sort((obj1, obj2)=> {
+          return obj2.likes - obj1.likes;
+        }))
+        this.answers = res.json()._answer.sort((obj1, obj2) => {
+          return obj2.likes - obj1.likes;
+        })
         this.question = res.json();
       }
     )

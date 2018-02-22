@@ -1,0 +1,14 @@
+<fieldset>
+  <legend>New Question</legend>
+  <form (submit)="createQuestion()">
+    <label>Question</label>
+    <input type="text" name="question" [(ngModel)]="newQuestion.question">
+    <br>
+    
+    <label>Description(opt)</label>
+    <input type="text" name="description" [(ngModel)]="newQuestion.description">
+    <br>
+    
+    <input type="submit" value="Post Question">
+  </form>
+</fieldset>

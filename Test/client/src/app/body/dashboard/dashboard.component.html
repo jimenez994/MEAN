@@ -1,0 +1,19 @@
+<!-- {{ questions | json }} -->
+<div>
+    <label for="">Search by Name:</label>
+    <input [(ngModel)]="searchText" placeholder="search names here">
+</div>
+
+<table>
+    <tr>
+        <th>Question</th>
+        <th>Answers</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let question of questions | filter : searchText">
+        <td>{{question.question}}</td>
+        <td>{{question._answer.length}}</td>
+        <td><a href [routerLink]="['/dashboard/question', question._id]">Show</a>  <a href [routerLink]="['/dashboard/new/Answer', question._id]">Answer</a></td>
+    </tr>
+
+</table>

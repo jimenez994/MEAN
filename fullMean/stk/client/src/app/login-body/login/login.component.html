@@ -1,13 +1,20 @@
 <fieldset>
   <legend>Register</legend>
   <form (submit)="userLogin()">
-    <label>Email:</label>
-    <input type="email" required minlength="7" name="email" [(ngModel)]="user.email">
-    <br>
-
-    <label>Password</label>
-    <input type="password" name="password" required minlength="5" [(ngModel)]="user.password">
-    <br>
+    <label for="email">Email: </label><br>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+      <p *ngIf="email.errors.required" style="color: red;">Email is required</p>
+      <p *ngIf="email.errors.email && !email.errors.required" style="color: red;">Invalid Email format</p>
+    </div>
+    <input type="text" name="email" class="form-control" required email [(ngModel)]="user.email" #email="ngModel"><br>
+   
+    <label for="password">Password: </label><br>
+    <input type="password" name="password" id="password" class="form-control" required [(ngModel)]="user.password" #password="ngModel"><br>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+      <div *ngIf="password.errors.required">
+        <p style="color: red;">Password is required</p>
+      </div>
+    </div>
 
     <input type="submit" value="Register">
   </form>

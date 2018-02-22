@@ -1,0 +1,16 @@
+<h2>{{question.question}}</h2>
+<p>{{question.description}}</p>
+<fieldset>
+  <legend>New Answer</legend>
+  <form (submit)="createAnswer()">
+    <label>Answer</label>
+    <input type="text" name="answer" [(ngModel)]="newAnswer.answer">
+    <br>
+
+    <label>Detail(opt)</label>
+    <input type="text" name="detail" [(ngModel)]="newAnswer.detail">
+    <br>
+    <button href [routerLink]="['/dashboard']">cancel</button>
+    <input type="submit" value="Submit">
+  </form>
+</fieldset>

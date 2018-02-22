@@ -20,9 +20,9 @@ export class RegistrationComponent implements OnInit {
   createUser(){
     this._userService.create(this.newUser).subscribe(
       (res) => {
-        if(res.json().errors){
-          console.log(res.json())
-        }else{
+        console.log(res.json().errors);
+        if(res.json().errors == null ){
+          console.log("im getting here ;D")
           this._router.navigateByUrl('/dashboard')
         }
       }
