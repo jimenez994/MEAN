@@ -60,6 +60,6 @@ module.exports = {
     },
     logout: (req, res) => {
         delete req.session.user_id;
-        return res.json(err)
+        return res.json({"message": "you have logout"})
     },
 }

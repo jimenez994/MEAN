@@ -21,7 +21,8 @@ module.exports = (app) => {
     app.post("/answer/create/:id", Answer.create);
     app.get("/answers", Answer.showAll);
     app.post("/answer/like/:id", Answer.like);
-    
+
+    // talk to the front end
     app.all("*", (req, res, next) => {
         res.sendFile(path.resolve("./client/dist/index.html"));
     })

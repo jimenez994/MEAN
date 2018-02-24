@@ -31,9 +31,6 @@ export class ShowQuestionComponent implements OnInit {
     console.log(this.question_id);
     this._questionService.getOneQuestion(this.question_id).subscribe(
       (res) => {
-        console.log(res.json()._answer.sort((obj1, obj2)=> {
-          return obj2.likes - obj1.likes;
-        }))
         this.answers = res.json()._answer.sort((obj1, obj2) => {
           return obj2.likes - obj1.likes;
         })

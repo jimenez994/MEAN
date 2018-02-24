@@ -12,6 +12,6 @@ app.use(express.static(__dirname + '/client/dist'));
 require("./server/config/mongoose");
 require("./server/config/routes")(app);
 
-app.listen(port, function (){
+app.listen(port, () => {
     console.log(`hey, you are in port ${port}`)
 });
