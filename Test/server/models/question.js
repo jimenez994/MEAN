@@ -20,6 +20,7 @@ const QuestionSchema = new mongoose.Schema({
         ref: "User",
         autopopulate: true
     }
+    // 
     
 }, { timestamps: true });
 
