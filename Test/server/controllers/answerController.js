@@ -12,22 +12,22 @@ module.exports = {
             return res.json(answers);
         })
     },
-    create: (req, res) => {
-        req.body._user = req.session.user_id;
-        req.body._question = req.params.id;
-        var newAnswer = new Answer(req.body);
-        Question.findById(req.params.id, (err, question) => {
-            question._answer.push(newAnswer);
-            Answer.create(newAnswer, (err, answer) => {
-                question.save((err, answer) => {
-                    if (err) {
-                        return res.json(err);
-                    }
-                })
-                return (res.json(answer))
-            })
-        })
-    },
+    // create: (req, res) => {
+    //     req.body._user = req.session.user_id;
+    //     req.body._question = req.params.id;
+    //     var newAnswer = new Answer(req.body);
+    //     Question.findById(req.params.id, (err, question) => {
+    //         question._answer.push(newAnswer);
+    //         Answer.create(newAnswer, (err, answer) => {
+    //             question.save((err, answer) => {
+    //                 if (err) {
+    //                     return res.json(err);
+    //                 }
+    //             })
+    //             return (res.json(answer))
+    //         })
+    //     })
+    // },
     like: (req, res) => {
         Answer.like(req.params.id, req.session.user_id, (err) =>{
             if(err){

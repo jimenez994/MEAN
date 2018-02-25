@@ -45,33 +45,20 @@ module.exports = {
             return res.json(user);
         })
     },
-    show: (req, res) => {
-        User.find({}, (err, users) => {
-            if (err) {
-                return res.json(err)
-            }
-            return res.json(users);
-        })
-    },
-    logout: (req, res) => {
-        delete req.session.user_id;
-        return res.json(err)
-    },
-    upload: (req, res) => {
-        console.log(req.files.foo);
-        // if (!req.files)
-        //     return res.status(400).send('No files were uploaded.');
-
-        // // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-        // let sampleFile = req.files.sampleFile;
-
-        // // Use the mv() method to place the file somewhere on your server
-        // sampleFile.mv('/somewhere/on/your/server/filename.jpg', (err) => {
-        //     if (err)
-        //         return res.status(500).send(err);
-
-        //     res.send('File uploaded!');
-        // });
-    }
+    // show: (req, res) => {
+    //     User.find({}, (err, users) => {
+    //         if (err) {
+    //             return res.json(err)
+    //         }
+    //         return res.json(users);
+    //     })
+    // },
+    // logout: (req, res) => {
+    //     delete req.session.user_id;
+    //     return res.json(err)
+    // },
+    // upload: (req, res) => {
+    //     console.log(req.files.foo);
+    // }
    
 }
