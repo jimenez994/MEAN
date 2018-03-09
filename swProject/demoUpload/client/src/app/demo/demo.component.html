@@ -1,0 +1,10 @@
+<h3>Upload</h3>
+<form #ngForm='ngForm' (submit)="uploadImg(image)">
+  <image-upload buttonCaption="Add a Image" dropBoxMessage="10Mb Limit" [max]="1" [maxFileSize]="1000000000" (uploadFinished)="onUploadStatus($event)"></image-upload>
+  <input type="submit" value="upload">
+</form>
+
+<div *ngFor = "let image of imgList">
+  <img src="{{image.src}}" alt="some image">
+  <button (click)='deleteImg(image._id)'>Delete</button>
+</div>
