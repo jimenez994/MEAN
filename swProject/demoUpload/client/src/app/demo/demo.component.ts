@@ -11,7 +11,6 @@ import { ImgModel } from '../server/models/img-model';
 export class DemoComponent implements OnInit {
 
   image: ImgModel =  new ImgModel
-  img: any
 
   imgList: any
   constructor(
@@ -24,13 +23,11 @@ export class DemoComponent implements OnInit {
   }
 
   onUploadStatus($event){
-    this.img = $event
+    this.image = $event
   }
 
-  uploadImg(data){
-    this.img['type']=data.type
-    console.log(this.img)
-    this._imgService.createImg(this.img).subscribe(
+  uploadImg(){
+    this._imgService.createImg(this.image).subscribe(
       (res) => {
         console.log(res.json())
       }

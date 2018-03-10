@@ -180,7 +180,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/demo/demo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Upload</h3>\n<form #ngForm='ngForm' (submit)=\"uploadImg(image)\">\n  <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n  <input type=\"submit\" value=\"upload\">\n</form>\n\n<div *ngFor = \"let image of imgList\">\n  <img src=\"{{image.src}}\" alt=\"some image\">\n  <button (click)='deleteImg(image._id)'>Delete</button>\n</div>"
+module.exports = "<h3>Upload</h3>\n<form (submit)=\"uploadImg()\">\n  <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n  <input type=\"submit\" value=\"upload\">\n</form>\n\n<div *ngFor = \"let image of imgList\">\n  <img src=\"{{image.src}}\" alt=\"some image\">\n  <button (click)='deleteImg(image._id)'>Delete</button>\n</div>"
 
 /***/ }),
 
@@ -213,12 +213,10 @@ var DemoComponent = /** @class */ (function () {
         this.showImgs();
     };
     DemoComponent.prototype.onUploadStatus = function ($event) {
-        this.img = $event;
+        this.image = $event;
     };
-    DemoComponent.prototype.uploadImg = function (data) {
-        this.img['type'] = data.type;
-        console.log(this.img);
-        this._imgService.createImg(this.img).subscribe(function (res) {
+    DemoComponent.prototype.uploadImg = function () {
+        this._imgService.createImg(this.image).subscribe(function (res) {
             console.log(res.json());
         });
         this.image = new img_model_1.ImgModel;
