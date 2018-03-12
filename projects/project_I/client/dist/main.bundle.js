@@ -77,7 +77,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<h1>Welcome</h1>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
