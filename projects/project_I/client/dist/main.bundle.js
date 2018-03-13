@@ -56,7 +56,14 @@ exports.AppRoutingModule = AppRoutingModule;
 
 /***/ }),
 
-/***/ "../../../../../src/app/app.component.css":
+/***/ "../../../../../src/app/app.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Welcome</h1>\n<router-outlet></router-outlet>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/app.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -71,13 +78,6 @@ exports.push([module.i, "", ""]);
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/app.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h1>Welcome</h1>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -102,7 +102,7 @@ var AppComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
         })
     ], AppComponent);
     return AppComponent;
@@ -126,6 +126,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var ng_bootstrap_1 = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
 var login_body_component_1 = __webpack_require__("../../../../../src/app/login-body/login-body.component.ts");
@@ -143,6 +144,7 @@ var AppModule = /** @class */ (function () {
                 login_component_1.LoginComponent
             ],
             imports: [
+                ng_bootstrap_1.NgbModule.forRoot(),
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule
             ],
@@ -157,7 +159,14 @@ exports.AppModule = AppModule;
 
 /***/ }),
 
-/***/ "../../../../../src/app/login-body/login-body.component.css":
+/***/ "../../../../../src/app/login-body/login-body.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  login-body works!\n</p>\n<app-login></app-login>\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-body/login-body.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -172,13 +181,6 @@ exports.push([module.i, "", ""]);
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/login-body/login-body.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  login-body works!\n</p>\n<app-login></app-login>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -207,7 +209,7 @@ var LoginBodyComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-login-body',
             template: __webpack_require__("../../../../../src/app/login-body/login-body.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/login-body/login-body.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/login-body/login-body.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], LoginBodyComponent);
@@ -218,7 +220,14 @@ exports.LoginBodyComponent = LoginBodyComponent;
 
 /***/ }),
 
-/***/ "../../../../../src/app/login-body/login/login.component.css":
+/***/ "../../../../../src/app/login-body/login/login.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<ngb-accordion #acc=\"ngbAccordion\" activeIds=\"ngb-panel-0\">\n  <ngb-panel title=\"Simple\">\n    <ng-template ngbPanelContent>\n      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,\n      non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt\n      aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft\n      beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n      craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n      VHS.\n    </ng-template>\n  </ngb-panel>\n  <ngb-panel>\n    <ng-template ngbPanelTitle>\n      <span>&#9733;\n        <b>Fancy</b> title &#9733;</span>\n    </ng-template>\n    <ng-template ngbPanelContent>\n      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,\n      non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt\n      aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft\n      beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n      craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n      VHS.\n    </ng-template>\n  </ngb-panel>\n  <ngb-panel title=\"Disabled\" [disabled]=\"true\">\n    <ng-template ngbPanelContent>\n      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,\n      non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt\n      aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft\n      beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat\n      craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n      VHS.\n    </ng-template>\n  </ngb-panel>\n</ngb-accordion>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-body/login/login.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -233,13 +242,6 @@ exports.push([module.i, "", ""]);
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/login-body/login/login.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  login works!\n</p>\n"
 
 /***/ }),
 
@@ -268,7 +270,7 @@ var LoginComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-login',
             template: __webpack_require__("../../../../../src/app/login-body/login/login.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/login-body/login/login.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/login-body/login/login.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], LoginComponent);
@@ -279,7 +281,14 @@ exports.LoginComponent = LoginComponent;
 
 /***/ }),
 
-/***/ "../../../../../src/app/login-body/registration/registration.component.css":
+/***/ "../../../../../src/app/login-body/registration/registration.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  registration works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-body/registration/registration.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -294,13 +303,6 @@ exports.push([module.i, "", ""]);
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/login-body/registration/registration.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  registration works!\n</p>\n"
 
 /***/ }),
 
@@ -329,7 +331,7 @@ var RegistrationComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-registration',
             template: __webpack_require__("../../../../../src/app/login-body/registration/registration.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/login-body/registration/registration.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/login-body/registration/registration.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], RegistrationComponent);
