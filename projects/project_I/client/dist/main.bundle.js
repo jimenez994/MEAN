@@ -33,10 +33,17 @@ var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var login_body_component_1 = __webpack_require__("../../../../../src/app/login-body/login-body.component.ts");
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
+var porfolio_body_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/porfolio-body.component.ts");
+var navbar_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.ts");
 var routes = [
     {
         path: 'admin', component: login_body_component_1.LoginBodyComponent, children: [
             { path: '', component: registration_component_1.RegistrationComponent }
+        ]
+    },
+    {
+        path: '', component: porfolio_body_component_1.PorfolioBodyComponent, children: [
+            { path: '', component: navbar_component_1.NavbarComponent }
         ]
     }
 ];
@@ -59,7 +66,7 @@ exports.AppRoutingModule = AppRoutingModule;
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor02\" aria-controls=\"navbarColor02\"\n    aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor02\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Home\n          <span class=\"sr-only\">(current)</span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Features</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Pricing</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">About</a>\n      </li>\n    </ul>\n    <form class=\"form-inline my-2 my-lg-0\">\n      <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n      <button id=\"btn\" class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>\n    </form>\n  </div>\n</nav>\n\n<h1>this is a test</h1>\n<router-outlet></router-outlet>\n"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -132,6 +139,8 @@ var app_component_1 = __webpack_require__("../../../../../src/app/app.component.
 var login_body_component_1 = __webpack_require__("../../../../../src/app/login-body/login-body.component.ts");
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
 var login_component_1 = __webpack_require__("../../../../../src/app/login-body/login/login.component.ts");
+var porfolio_body_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/porfolio-body.component.ts");
+var navbar_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -141,12 +150,14 @@ var AppModule = /** @class */ (function () {
                 app_component_1.AppComponent,
                 login_body_component_1.LoginBodyComponent,
                 registration_component_1.RegistrationComponent,
-                login_component_1.LoginComponent
+                login_component_1.LoginComponent,
+                porfolio_body_component_1.PorfolioBodyComponent,
+                navbar_component_1.NavbarComponent,
             ],
             imports: [
                 ng_bootstrap_1.NgbModule.forRoot(),
                 platform_browser_1.BrowserModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
@@ -338,6 +349,132 @@ var RegistrationComponent = /** @class */ (function () {
     return RegistrationComponent;
 }());
 exports.RegistrationComponent = RegistrationComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/porfolio-body/navbar/navbar.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor02\" aria-controls=\"navbarColor02\"\n    aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor02\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Home\n          <span class=\"sr-only\">(current)</span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Features</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Pricing</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">About</a>\n      </li>\n    </ul>\n    <form class=\"form-inline my-2 my-lg-0\">\n      <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n      <button id=\"btn\" class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>\n    </form>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/porfolio-body/navbar/navbar.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/porfolio-body/navbar/navbar.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var NavbarComponent = /** @class */ (function () {
+    function NavbarComponent() {
+    }
+    NavbarComponent.prototype.ngOnInit = function () {
+    };
+    NavbarComponent = __decorate([
+        core_1.Component({
+            selector: 'app-navbar',
+            template: __webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], NavbarComponent);
+    return NavbarComponent;
+}());
+exports.NavbarComponent = NavbarComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/porfolio-body/porfolio-body.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<link rel=\"stylesheet\" href=\"angular-video-background.min.css\">\n<script type=\"text/javascript\" src=\"angular-video-background.min.js\"></script>\n\n<router-outlet></router-outlet>\n<section class=\"section-stories\">\n  <video autoplay loop id=\"video-background\" muted plays-inline>\n    <source src=\"https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761\"\n      type=\"video/mp4\">\n  </video>\n  <video autoplay loop id=\"video-background\" muted plays-inline>\n    <source src=\"./video.webm\"\n      type=\"video/webm\">\n  </video>\n\n</section>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/porfolio-body/porfolio-body.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".section-stories {\n  position: relative;\n  padding: 15rem 0; }\n  @media only screen and (max-width: 56.25em) {\n    .section-stories {\n      padding: 10rem 0; } }\n  .bg-video {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: -1;\n  opacity: .15;\n  overflow: hidden; }\n  .bg-video__content {\n    height: 100%;\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/porfolio-body/porfolio-body.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var PorfolioBodyComponent = /** @class */ (function () {
+    function PorfolioBodyComponent() {
+    }
+    PorfolioBodyComponent.prototype.ngOnInit = function () {
+        this.onload();
+    };
+    PorfolioBodyComponent.prototype.onload = function () {
+        console.log("will");
+    };
+    PorfolioBodyComponent = __decorate([
+        core_1.Component({
+            selector: 'app-porfolio-body',
+            template: __webpack_require__("../../../../../src/app/porfolio-body/porfolio-body.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/porfolio-body/porfolio-body.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PorfolioBodyComponent);
+    return PorfolioBodyComponent;
+}());
+exports.PorfolioBodyComponent = PorfolioBodyComponent;
 
 
 /***/ }),
