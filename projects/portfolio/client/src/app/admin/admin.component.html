@@ -1,2 +1,3 @@
 
 <router-outlet></router-outlet>
+<app-img-upload [images]="images" (destroyImageEvent)="destroyImg($event)" (createNewImageEvent)="uploadImg($event)"></app-img-upload>

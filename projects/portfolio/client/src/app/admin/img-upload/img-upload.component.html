@@ -1,5 +1,16 @@
 <h3>Upload</h3>
-<form (submit)="uploadImg()">
-  <image-upload buttonCaption="Add a Image" dropBoxMessage="10Mb Limit" [max]="1" [maxFileSize]="1000000000" (uploadFinished)="onUploadStatus($event)"></image-upload>
-  <input type="submit" value="upload">
-</form>
+<div class="upload">
+  <form (submit)="uploadImg()">
+    <image-upload buttonCaption="Add a Image" dropBoxMessage="10Mb Limit" [max]="1" [maxFileSize]="1000000000" (uploadFinished)="onUploadStatus($event)"></image-upload>
+    <input type="submit" value="upload">
+  </form>
+
+  <div id="wrapper">
+    <div class="cardM card text-white bg-danger mb-3" *ngFor="let img of images">
+      <img id="img" src="{{img.src}}" alt="{{img.name}}">
+      <button (click)='deleteImg(img._id)'>Delete</button>
+    </div>
+  </div>
+
+</div>
+

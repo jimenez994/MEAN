@@ -1,3 +1,5 @@
 export class Image {
-    src: St
+    _id: string;
+    src: String;
+    name: String;
 }

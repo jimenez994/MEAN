@@ -16,6 +16,7 @@ import { NavbarComponent } from './porfolio-body/navbar/navbar.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserService } from './server/controllers/user.service';
 import { ImgUploadComponent } from './admin/img-upload/img-upload.component';
+import { ImageService } from './server/controllers/image.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ImgUploadComponent } from './admin/img-upload/img-upload.component';
     NavbarComponent,
     AdminComponent,
     ImgUploadComponent,
+    
   ],
   imports: [
     NgbModule.forRoot(),
@@ -38,7 +40,8 @@ import { ImgUploadComponent } from './admin/img-upload/img-upload.component';
 
   ],
   providers: [
-    UserService
+    UserService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })

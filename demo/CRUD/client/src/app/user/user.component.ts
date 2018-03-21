@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
     this.users.push(user);
   }
 
-  destroy(user: User){;
+  destroy(user: User){
     this._userService.destroy(user)    
     .then(status => this.getUsers())
     .catch(err => console.log(err))

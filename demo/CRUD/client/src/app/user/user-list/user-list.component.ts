@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../user';
 
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',

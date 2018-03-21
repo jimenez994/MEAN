@@ -19,8 +19,7 @@ const routes: Routes = [
     ]
   },
   {
-    path:'superAdmin', component: AdminComponent, children: [
-      { path: '', component: ImgUploadComponent }
+    path:'superAdmin', component: AdminComponent, children: [ 
     ]
   }
 

@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<router-outlet></router-outlet>"
+module.exports = "\n<router-outlet></router-outlet>\n<app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n"
 
 /***/ }),
 
@@ -32,7 +32,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".imgUploadComponent {\n  width: 300px; }\n", ""]);
 
 // exports
 
@@ -58,10 +58,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
 var AdminComponent = /** @class */ (function () {
-    function AdminComponent() {
+    function AdminComponent(_userService, _imageService) {
+        this._userService = _userService;
+        this._imageService = _imageService;
+        this.images = [];
     }
     AdminComponent.prototype.ngOnInit = function () {
+        this.getImages();
+    };
+    AdminComponent.prototype.getImages = function () {
+        var _this = this;
+        this._imageService.getImages()
+            .then(function (images) { return _this.images = images; })
+            .catch(function (err) { return console.log(err); });
+    };
+    AdminComponent.prototype.uploadImg = function (image) {
+        var _this = this;
+        this._imageService.createImage(image)
+            .then(function (status) { return _this.getImages(); })
+            .catch(function (err) { return console.log(err); });
+    };
+    AdminComponent.prototype.destroyImg = function (id) {
+        var _this = this;
+        this._imageService.deleteImg(id)
+            .then(function (status) { return _this.getImages(); })
+            .catch(function (err) { return console.log(err); });
     };
     AdminComponent = __decorate([
         core_1.Component({
@@ -69,7 +93,8 @@ var AdminComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/admin/admin.component.html"),
             styles: [__webpack_require__("../../../../../src/app/admin/admin.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [user_service_1.UserService,
+            image_service_1.ImageService])
     ], AdminComponent);
     return AdminComponent;
 }());
@@ -81,7 +106,7 @@ exports.AdminComponent = AdminComponent;
 /***/ "../../../../../src/app/admin/img-upload/img-upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Upload</h3>\n<form (submit)=\"uploadImg()\">\n  <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n  <input type=\"submit\" value=\"upload\">\n</form>"
+module.exports = "<h3>Upload</h3>\n<div class=\"upload\">\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input type=\"submit\" value=\"upload\">\n  </form>\n\n  <div id=\"wrapper\">\n    <div class=\"cardM card text-white bg-danger mb-3\" *ngFor=\"let img of images\">\n      <img id=\"img\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n      <button (click)='deleteImg(img._id)'>Delete</button>\n    </div>\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
@@ -119,25 +144,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var image_1 = __webpack_require__("../../../../../src/app/server/models/image.ts");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var ImgUploadComponent = /** @class */ (function () {
-    function ImgUploadComponent() {
+    function ImgUploadComponent(_userService, _router) {
+        this._userService = _userService;
+        this._router = _router;
+        this.image = new image_1.Image;
+        this.currentUser = null;
+        this.destroyImageEvent = new core_1.EventEmitter();
+        this.createNewImageEvent = new core_1.EventEmitter();
     }
     ImgUploadComponent.prototype.ngOnInit = function () {
     };
     ImgUploadComponent.prototype.onUploadStatus = function ($event) {
-        this.image = $event;
+        this.img = $event;
     };
     ImgUploadComponent.prototype.uploadImg = function () {
-        console.log(this.image);
-        console.log(this.image['file'].name);
+        this.image.name = this.img['file'].name;
+        this.image.src = this.img.src;
+        this.createNewImageEvent.emit(this.image);
+        this.image = new image_1.Image();
+        this.img = "";
     };
+    ImgUploadComponent.prototype.deleteImg = function (id) {
+        this.destroyImageEvent.emit(id);
+    };
+    ImgUploadComponent.prototype.getUserSession = function () {
+        var _this = this;
+        this._userService.getCurrentUser().subscribe(function (res) {
+            _this.currentUser = res.json();
+            if (_this.currentUser == null) {
+                _this._router.navigateByUrl('/');
+            }
+        });
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], ImgUploadComponent.prototype, "images", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], ImgUploadComponent.prototype, "destroyImageEvent", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], ImgUploadComponent.prototype, "createNewImageEvent", void 0);
     ImgUploadComponent = __decorate([
         core_1.Component({
             selector: 'app-img-upload',
             template: __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.html"),
             styles: [__webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [user_service_1.UserService,
+            router_1.Router])
     ], ImgUploadComponent);
     return ImgUploadComponent;
 }());
@@ -165,7 +227,6 @@ var porfolio_body_component_1 = __webpack_require__("../../../../../src/app/porf
 var navbar_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.ts");
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
 var admin_component_1 = __webpack_require__("../../../../../src/app/admin/admin.component.ts");
-var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.ts");
 var routes = [
     {
         path: 'admin', component: login_body_component_1.LoginBodyComponent, children: [
@@ -178,9 +239,7 @@ var routes = [
         ]
     },
     {
-        path: 'superAdmin', component: admin_component_1.AdminComponent, children: [
-            { path: '', component: img_upload_component_1.ImgUploadComponent }
-        ]
+        path: 'superAdmin', component: admin_component_1.AdminComponent, children: []
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -283,6 +342,7 @@ var navbar_component_1 = __webpack_require__("../../../../../src/app/porfolio-bo
 var admin_component_1 = __webpack_require__("../../../../../src/app/admin/admin.component.ts");
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.ts");
+var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -307,7 +367,8 @@ var AppModule = /** @class */ (function () {
                 angular2_image_upload_1.ImageUploadModule.forRoot(),
             ],
             providers: [
-                user_service_1.UserService
+                user_service_1.UserService,
+                image_service_1.ImageService
             ],
             bootstrap: [app_component_1.AppComponent]
         })
@@ -664,6 +725,49 @@ exports.PorfolioBodyComponent = PorfolioBodyComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/server/controllers/image.service.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+__webpack_require__("../../../../rxjs/Rx.js");
+__webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+var ImageService = /** @class */ (function () {
+    function ImageService(_http) {
+        this._http = _http;
+    }
+    ImageService.prototype.createImage = function (newImg) {
+        return this._http.post("/upload", newImg).map(function (data) { return data.json(); }).toPromise();
+    };
+    ImageService.prototype.getImages = function () {
+        return this._http.get('/images').map(function (data) { return data.json(); }).toPromise();
+    };
+    ImageService.prototype.deleteImg = function (id) {
+        return this._http.delete("/image/" + id).map(function (data) { return data.json(); }).toPromise();
+    };
+    ImageService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], ImageService);
+    return ImageService;
+}());
+exports.ImageService = ImageService;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/server/controllers/user.service.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -708,6 +812,22 @@ var UserService = /** @class */ (function () {
     return UserService;
 }());
 exports.UserService = UserService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/models/image.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Image = /** @class */ (function () {
+    function Image() {
+    }
+    return Image;
+}());
+exports.Image = Image;
 
 
 /***/ }),

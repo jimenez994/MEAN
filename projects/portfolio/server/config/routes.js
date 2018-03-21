@@ -13,7 +13,7 @@ module.exports = (app) => {
     // Image
     app.post("/upload", Image.createImage);
     app.get("/images", Image.getImages);
-    app.delete("/image/:is", Image.deleteImage);
+    app.delete("/image/:id", Image.deleteImage);
 
     // talk to the front end
     app.all("*", (req, res, next) => {
