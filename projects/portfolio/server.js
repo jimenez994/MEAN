@@ -5,6 +5,9 @@ const session = require('express-session');
 const port = 8000;
 const app = express();
 
+// for the file upload
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json());
 app.use(session({ secret: "realMadrid" }));
 app.use(express.static(__dirname + '/client/dist'));

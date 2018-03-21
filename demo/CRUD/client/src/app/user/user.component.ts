@@ -8,11 +8,7 @@ import { UserService } from './user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  users: Array<User> =[
-    // new User(1,"Jonathan", "Jimenez","test@test"),
-    // new User(2, "Jenny", "Jimenez", "test@test"),
-    // new User(3, "richard", "fveds", "test@test"),    
-  ];
+  users: Array<User> =[];
 
   constructor(
     private _userService: UserService

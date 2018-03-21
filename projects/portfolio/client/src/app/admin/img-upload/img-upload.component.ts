@@ -18,7 +18,6 @@ export class ImgUploadComponent implements OnInit {
   uploadImg(){
     console.log(this.image)
     console.log(this.image['file'].name)
-    
   }
 
 }
