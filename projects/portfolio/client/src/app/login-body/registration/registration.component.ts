@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
         console.log(res.json().errors);
         if (res.json().errors == null) {
           console.log("im getting here ;D")
-          this._router.navigateByUrl('/')
+          this._router.navigateByUrl('/superAdmin')
         }
       }
     )

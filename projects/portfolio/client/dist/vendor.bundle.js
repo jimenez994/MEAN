@@ -235,7 +235,7 @@ var NgbAccordionModule = (function () {
     }
     NgbAccordionModule.forRoot = function () { return { ngModule: NgbAccordionModule, providers: [__WEBPACK_IMPORTED_MODULE_3__accordion_config__["a" /* NgbAccordionConfig */]] }; };
     NgbAccordionModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: NGB_ACCORDION_DIRECTIVES, exports: NGB_ACCORDION_DIRECTIVES, imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: NGB_ACCORDION_DIRECTIVES, exports: NGB_ACCORDION_DIRECTIVES, imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbAccordionModule.ctorParameters = function () { return []; };
@@ -342,7 +342,7 @@ var NgbAlertModule = (function () {
     }
     NgbAlertModule.forRoot = function () { return { ngModule: NgbAlertModule, providers: [__WEBPACK_IMPORTED_MODULE_3__alert_config__["a" /* NgbAlertConfig */]] }; };
     NgbAlertModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__alert__["a" /* NgbAlert */]], exports: [__WEBPACK_IMPORTED_MODULE_2__alert__["a" /* NgbAlert */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]], entryComponents: [__WEBPACK_IMPORTED_MODULE_2__alert__["a" /* NgbAlert */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__alert__["a" /* NgbAlert */]], exports: [__WEBPACK_IMPORTED_MODULE_2__alert__["a" /* NgbAlert */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]], entryComponents: [__WEBPACK_IMPORTED_MODULE_2__alert__["a" /* NgbAlert */]] },] },
     ];
     /** @nocollapse */
     NgbAlertModule.ctorParameters = function () { return []; };
@@ -964,7 +964,7 @@ var NgbCarouselModule = (function () {
     }
     NgbCarouselModule.forRoot = function () { return { ngModule: NgbCarouselModule, providers: [__WEBPACK_IMPORTED_MODULE_3__carousel_config__["a" /* NgbCarouselConfig */]] }; };
     NgbCarouselModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: __WEBPACK_IMPORTED_MODULE_2__carousel__["a" /* NGB_CAROUSEL_DIRECTIVES */], exports: __WEBPACK_IMPORTED_MODULE_2__carousel__["a" /* NGB_CAROUSEL_DIRECTIVES */], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: __WEBPACK_IMPORTED_MODULE_2__carousel__["a" /* NGB_CAROUSEL_DIRECTIVES */], exports: __WEBPACK_IMPORTED_MODULE_2__carousel__["a" /* NGB_CAROUSEL_DIRECTIVES */], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbCarouselModule.ctorParameters = function () { return []; };
@@ -2474,7 +2474,7 @@ var NgbDatepickerModule = (function () {
                         __WEBPACK_IMPORTED_MODULE_5__datepicker_input__["a" /* NgbInputDatepicker */]
                     ],
                     exports: [__WEBPACK_IMPORTED_MODULE_2__datepicker__["a" /* NgbDatepicker */], __WEBPACK_IMPORTED_MODULE_5__datepicker_input__["a" /* NgbInputDatepicker */]],
-                    imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_6__angular_forms__["FormsModule"]],
+                    imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_6__angular_forms__["FormsModule"]],
                     entryComponents: [__WEBPACK_IMPORTED_MODULE_2__datepicker__["a" /* NgbDatepicker */]]
                 },] },
     ];
@@ -4099,7 +4099,7 @@ var NgbModalStack = (function () {
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationRef"], },
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"], },
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ComponentFactoryResolver"], },
-        { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["c" /* DOCUMENT */],] },] },
+        { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["DOCUMENT"],] },] },
     ]; };
     return NgbModalStack;
 }());
@@ -4178,7 +4178,7 @@ var NgbModalWindow = (function () {
     ];
     /** @nocollapse */
     NgbModalWindow.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["c" /* DOCUMENT */],] },] },
+        { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["DOCUMENT"],] },] },
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     ]; };
@@ -4546,7 +4546,7 @@ var NgbPaginationModule = (function () {
     }
     NgbPaginationModule.forRoot = function () { return { ngModule: NgbPaginationModule, providers: [__WEBPACK_IMPORTED_MODULE_3__pagination_config__["a" /* NgbPaginationConfig */]] }; };
     NgbPaginationModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__pagination__["a" /* NgbPagination */]], exports: [__WEBPACK_IMPORTED_MODULE_2__pagination__["a" /* NgbPagination */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__pagination__["a" /* NgbPagination */]], exports: [__WEBPACK_IMPORTED_MODULE_2__pagination__["a" /* NgbPagination */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbPaginationModule.ctorParameters = function () { return []; };
@@ -4922,7 +4922,7 @@ var NgbProgressbarModule = (function () {
     }
     NgbProgressbarModule.forRoot = function () { return { ngModule: NgbProgressbarModule, providers: [__WEBPACK_IMPORTED_MODULE_3__progressbar_config__["a" /* NgbProgressbarConfig */]] }; };
     NgbProgressbarModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__progressbar__["a" /* NgbProgressbar */]], exports: [__WEBPACK_IMPORTED_MODULE_2__progressbar__["a" /* NgbProgressbar */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__progressbar__["a" /* NgbProgressbar */]], exports: [__WEBPACK_IMPORTED_MODULE_2__progressbar__["a" /* NgbProgressbar */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbProgressbarModule.ctorParameters = function () { return []; };
@@ -5161,7 +5161,7 @@ var NgbRatingModule = (function () {
     }
     NgbRatingModule.forRoot = function () { return { ngModule: NgbRatingModule, providers: [__WEBPACK_IMPORTED_MODULE_2__rating_config__["a" /* NgbRatingConfig */]] }; };
     NgbRatingModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_3__rating__["a" /* NgbRating */]], exports: [__WEBPACK_IMPORTED_MODULE_3__rating__["a" /* NgbRating */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_3__rating__["a" /* NgbRating */]], exports: [__WEBPACK_IMPORTED_MODULE_3__rating__["a" /* NgbRating */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbRatingModule.ctorParameters = function () { return []; };
@@ -5396,7 +5396,7 @@ var NgbTabsetModule = (function () {
     }
     NgbTabsetModule.forRoot = function () { return { ngModule: NgbTabsetModule, providers: [__WEBPACK_IMPORTED_MODULE_3__tabset_config__["a" /* NgbTabsetConfig */]] }; };
     NgbTabsetModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: NGB_TABSET_DIRECTIVES, exports: NGB_TABSET_DIRECTIVES, imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: NGB_TABSET_DIRECTIVES, exports: NGB_TABSET_DIRECTIVES, imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbTabsetModule.ctorParameters = function () { return []; };
@@ -5673,7 +5673,7 @@ var NgbTimepickerModule = (function () {
     }
     NgbTimepickerModule.forRoot = function () { return { ngModule: NgbTimepickerModule, providers: [__WEBPACK_IMPORTED_MODULE_3__timepicker_config__["a" /* NgbTimepickerConfig */]] }; };
     NgbTimepickerModule.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__timepicker__["a" /* NgbTimepicker */]], exports: [__WEBPACK_IMPORTED_MODULE_2__timepicker__["a" /* NgbTimepicker */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: [__WEBPACK_IMPORTED_MODULE_2__timepicker__["a" /* NgbTimepicker */]], exports: [__WEBPACK_IMPORTED_MODULE_2__timepicker__["a" /* NgbTimepicker */]], imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]] },] },
     ];
     /** @nocollapse */
     NgbTimepickerModule.ctorParameters = function () { return []; };
@@ -6474,7 +6474,7 @@ var NgbTypeaheadModule = (function () {
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
                     declarations: [__WEBPACK_IMPORTED_MODULE_4__typeahead__["a" /* NgbTypeahead */], __WEBPACK_IMPORTED_MODULE_2__highlight__["a" /* NgbHighlight */], __WEBPACK_IMPORTED_MODULE_3__typeahead_window__["a" /* NgbTypeaheadWindow */]],
                     exports: [__WEBPACK_IMPORTED_MODULE_4__typeahead__["a" /* NgbTypeahead */], __WEBPACK_IMPORTED_MODULE_2__highlight__["a" /* NgbHighlight */]],
-                    imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]],
+                    imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]],
                     entryComponents: [__WEBPACK_IMPORTED_MODULE_3__typeahead_window__["a" /* NgbTypeaheadWindow */]]
                 },] },
     ];
@@ -6945,6 +6945,438 @@ function regExpEscape(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 //# sourceMappingURL=util.js.map
+
+/***/ }),
+
+/***/ "../../../../angular2-image-upload/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_image_upload_module__ = __webpack_require__("../../../../angular2-image-upload/lib/image-upload.module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_image_upload_module___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__lib_image_upload_module__);
+/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__lib_image_upload_module__, "ImageUploadModule")) __webpack_require__.d(__webpack_exports__, "ImageUploadModule", function() { return __WEBPACK_IMPORTED_MODULE_0__lib_image_upload_module__["ImageUploadModule"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component__ = __webpack_require__("../../../../angular2-image-upload/lib/image-upload/image-upload.component.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component__);
+/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component__, "ImageUploadComponent")) __webpack_require__.d(__webpack_exports__, "ImageUploadComponent", function() { return __WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component__["ImageUploadComponent"]; });
+/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component__, "FileHolder")) __webpack_require__.d(__webpack_exports__, "FileHolder", function() { return __WEBPACK_IMPORTED_MODULE_1__lib_image_upload_image_upload_component__["FileHolder"]; });
+
+
+
+
+/***/ }),
+
+/***/ "../../../../angular2-image-upload/lib/file-drop.directive.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var FileDropDirective = (function () {
+    function FileDropDirective() {
+        this.fileOver = new core_1.EventEmitter();
+        this.fileDrop = new core_1.EventEmitter();
+    }
+    FileDropDirective.prototype.onDrop = function (event) {
+        var dataTransfer = FileDropDirective.getDataTransfer(event);
+        if (!FileDropDirective.hasFiles(dataTransfer.types)) {
+            return;
+        }
+        event.preventDefault();
+        var files = this.filterFiles(dataTransfer.files);
+        event.preventDefault();
+        this.fileOver.emit(false);
+        this.fileDrop.emit(files);
+    };
+    FileDropDirective.prototype.onDragLeave = function (event) {
+        this.fileOver.emit(false);
+    };
+    FileDropDirective.prototype.onDragOver = function (event) {
+        var dataTransfer = FileDropDirective.getDataTransfer(event);
+        if (!FileDropDirective.hasFiles(dataTransfer.types)) {
+            return;
+        }
+        dataTransfer.dropEffect = 'copy';
+        event.preventDefault();
+        this.fileOver.emit(true);
+    };
+    FileDropDirective.prototype.filterFiles = function (files) {
+        if (!this.accept || this.accept.length === 0) {
+            return files;
+        }
+        var acceptedFiles = [];
+        for (var i = 0; i < files.length; i++) {
+            for (var j = 0; j < this.accept.length; j++) {
+                if (FileDropDirective.matchRule(this.accept[j], files[i].type)) {
+                    acceptedFiles.push(files[i]);
+                    break;
+                }
+            }
+        }
+        return acceptedFiles;
+    };
+    FileDropDirective.getDataTransfer = function (event) {
+        return event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer;
+    };
+    FileDropDirective.hasFiles = function (types) {
+        if (!types) {
+            return false;
+        }
+        if (types.indexOf) {
+            return types.indexOf('Files') !== -1;
+        }
+        if (types.contains) {
+            return types.contains('Files');
+        }
+        return false;
+    };
+    FileDropDirective.matchRule = function (rule, candidate) {
+        return new RegExp("^" + rule.split("*").join(".*") + "$").test(candidate);
+    };
+    return FileDropDirective;
+}());
+FileDropDirective.decorators = [
+    { type: core_1.Directive, args: [{
+                selector: '[fileDrop]'
+            },] },
+];
+FileDropDirective.ctorParameters = function () { return []; };
+FileDropDirective.propDecorators = {
+    'accept': [{ type: core_1.Input },],
+    'fileOver': [{ type: core_1.Output },],
+    'fileDrop': [{ type: core_1.Output },],
+    'onDrop': [{ type: core_1.HostListener, args: ['drop', ['$event'],] },],
+    'onDragLeave': [{ type: core_1.HostListener, args: ['dragleave', ['$event'],] },],
+    'onDragOver': [{ type: core_1.HostListener, args: ['dragover', ['$event'],] },],
+};
+exports.FileDropDirective = FileDropDirective;
+
+
+/***/ }),
+
+/***/ "../../../../angular2-image-upload/lib/image-upload.module.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var common_1 = __webpack_require__("../../../common/esm5/common.js");
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+var file_drop_directive_1 = __webpack_require__("../../../../angular2-image-upload/lib/file-drop.directive.js");
+var image_upload_component_1 = __webpack_require__("../../../../angular2-image-upload/lib/image-upload/image-upload.component.js");
+var image_service_1 = __webpack_require__("../../../../angular2-image-upload/lib/image-upload/image.service.js");
+var ImageUploadModule = (function () {
+    function ImageUploadModule() {
+    }
+    ImageUploadModule.forRoot = function () {
+        return {
+            ngModule: ImageUploadModule,
+            providers: [image_service_1.ImageService]
+        };
+    };
+    return ImageUploadModule;
+}());
+ImageUploadModule.decorators = [
+    { type: core_1.NgModule, args: [{
+                imports: [common_1.CommonModule, http_1.HttpModule],
+                declarations: [image_upload_component_1.ImageUploadComponent, file_drop_directive_1.FileDropDirective],
+                exports: [image_upload_component_1.ImageUploadComponent]
+            },] },
+];
+ImageUploadModule.ctorParameters = function () { return []; };
+exports.ImageUploadModule = ImageUploadModule;
+
+
+/***/ }),
+
+/***/ "../../../../angular2-image-upload/lib/image-upload/image-upload.component.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
+    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var image_service_1 = __webpack_require__("../../../../angular2-image-upload/lib/image-upload/image.service.js");
+var FileHolder = (function () {
+    function FileHolder(src, file) {
+        this.src = src;
+        this.file = file;
+        this.pending = false;
+    }
+    return FileHolder;
+}());
+exports.FileHolder = FileHolder;
+var ImageUploadComponent = (function () {
+    function ImageUploadComponent(imageService) {
+        var _this = this;
+        this.imageService = imageService;
+        this.files = [];
+        this.fileCounter = 0;
+        this.fileOver = false;
+        this.showFileTooLargeMessage = false;
+        this.beforeUpload = function (data) { return data; };
+        this.buttonCaption = 'Select Images';
+        this.cssClass = 'img-ul';
+        this.clearButtonCaption = 'Clear';
+        this.dropBoxMessage = 'Drop your images here!';
+        this.max = 100;
+        this.preview = true;
+        this.withCredentials = false;
+        this.uploadedFiles = [];
+        this.removed = new core_1.EventEmitter();
+        this.uploadStateChanged = new core_1.EventEmitter();
+        this.uploadFinished = new core_1.EventEmitter();
+        this.pendingFilesCounter = 0;
+        this.onFileOver = function (isOver) { return _this.fileOver = isOver; };
+        this.countRemainingSlots = function () { return _this.max - _this.fileCounter; };
+    }
+    ImageUploadComponent.prototype.ngOnInit = function () {
+        if (!this.fileTooLargeMessage) {
+            this.fileTooLargeMessage = 'An image was too large and was not uploaded.' + (this.maxFileSize ? (' The maximum file size is ' + this.maxFileSize / 1024) + 'KiB.' : '');
+        }
+        this.supportedExtensions = this.supportedExtensions ? this.supportedExtensions.map(function (ext) { return 'image/' + ext; }) : ['image/*'];
+    };
+    ImageUploadComponent.prototype.deleteAll = function () {
+        var _this = this;
+        this.files.forEach(function (f) { return _this.removed.emit(f); });
+        this.files = [];
+        this.fileCounter = 0;
+        this.inputElement.nativeElement.value = '';
+    };
+    ImageUploadComponent.prototype.deleteFile = function (file) {
+        var index = this.files.indexOf(file);
+        this.files.splice(index, 1);
+        this.fileCounter--;
+        this.inputElement.nativeElement.value = '';
+        this.removed.emit(file);
+    };
+    ImageUploadComponent.prototype.ngOnChanges = function (changes) {
+        if (changes.uploadedFiles && changes.uploadedFiles.currentValue.length > 0) {
+            this.processUploadedFiles();
+        }
+    };
+    ImageUploadComponent.prototype.onFileChange = function (files) {
+        var remainingSlots = this.countRemainingSlots();
+        var filesToUploadNum = files.length > remainingSlots ? remainingSlots : files.length;
+        if (this.url && filesToUploadNum != 0) {
+            this.uploadStateChanged.emit(true);
+        }
+        this.fileCounter += filesToUploadNum;
+        this.showFileTooLargeMessage = false;
+        this.uploadFiles(files, filesToUploadNum);
+    };
+    ImageUploadComponent.prototype.onResponse = function (response, fileHolder) {
+        fileHolder.serverResponse = response;
+        fileHolder.pending = false;
+        this.uploadFinished.emit(fileHolder);
+        if (--this.pendingFilesCounter == 0) {
+            this.uploadStateChanged.emit(false);
+        }
+    };
+    ImageUploadComponent.prototype.processUploadedFiles = function () {
+        for (var i = 0; i < this.uploadedFiles.length; i++) {
+            var data = this.uploadedFiles[i];
+            var fileBlob = void 0, file = void 0, fileUrl = void 0;
+            if (data instanceof Object) {
+                fileUrl = data.url;
+                fileBlob = (data.blob) ? data.blob : new Blob([data]);
+                file = new File([fileBlob], data.fileName);
+            }
+            else {
+                fileUrl = data;
+                fileBlob = new Blob([fileUrl]);
+                file = new File([fileBlob], fileUrl);
+            }
+            this.files.push(new FileHolder(fileUrl, file));
+        }
+    };
+    ImageUploadComponent.prototype.uploadFiles = function (files, filesToUploadNum) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var _loop_1, this_1, i;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _loop_1 = function (i) {
+                            var file, beforeUploadResult, img, reader;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        file = files[i];
+                                        if (this_1.maxFileSize && file.size > this_1.maxFileSize) {
+                                            this_1.fileCounter--;
+                                            this_1.inputElement.nativeElement.value = '';
+                                            this_1.showFileTooLargeMessage = true;
+                                            return [2 /*return*/, "continue"];
+                                        }
+                                        return [4 /*yield*/, this_1.beforeUpload({ file: file, url: this_1.url, abort: false })];
+                                    case 1:
+                                        beforeUploadResult = _a.sent();
+                                        if (beforeUploadResult.abort) {
+                                            this_1.fileCounter--;
+                                            this_1.inputElement.nativeElement.value = '';
+                                            return [2 /*return*/, "continue"];
+                                        }
+                                        img = document.createElement('img');
+                                        img.src = window.URL.createObjectURL(beforeUploadResult.file);
+                                        reader = new FileReader();
+                                        reader.addEventListener('load', function (event) {
+                                            var fileHolder = new FileHolder(event.target.result, beforeUploadResult.file);
+                                            _this.uploadSingleFile(fileHolder, beforeUploadResult.url, beforeUploadResult.formData);
+                                            _this.files.push(fileHolder);
+                                        }, false);
+                                        reader.readAsDataURL(beforeUploadResult.file);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        };
+                        this_1 = this;
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < filesToUploadNum)) return [3 /*break*/, 4];
+                        return [5 /*yield**/, _loop_1(i)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ImageUploadComponent.prototype.uploadSingleFile = function (fileHolder, url, customForm) {
+        var _this = this;
+        if (url === void 0) { url = this.url; }
+        if (url) {
+            this.pendingFilesCounter++;
+            fileHolder.pending = true;
+            this.imageService
+                .postImage(this.url, fileHolder.file, this.headers, this.partName, customForm, this.withCredentials)
+                .subscribe(function (response) { return _this.onResponse(response, fileHolder); }, function (error) {
+                _this.onResponse(error, fileHolder);
+                _this.deleteFile(fileHolder);
+            });
+        }
+        else {
+            this.uploadFinished.emit(fileHolder);
+        }
+    };
+    return ImageUploadComponent;
+}());
+ImageUploadComponent.decorators = [
+    { type: core_1.Component, args: [{
+                selector: 'image-upload',
+                template: "\n    <div\n         fileDrop\n         [accept]=\"supportedExtensions\"\n         (fileOver)=\"onFileOver($event)\"\n         (fileDrop)=\"onFileChange($event)\"\n         [ngClass]=\"cssClass\"\n         [ngClass]=\"{'img-ul-file-is-over': fileOver}\"     \n         [ngStyle]=\"style?.layout\"\n    >\n      <div class=\"img-ul-file-upload img-ul-hr-inline-group\">    \n        <label class=\"img-ul-upload img-ul-button\" [ngStyle]=\"style?.selectButton\">\n          <span [innerText]=\"buttonCaption\"></span>\n          <input\n            type=\"file\"\n            [accept]=\"supportedExtensions\"\n            multiple (change)=\"onFileChange(input.files)\"\n            #input>\n        </label>\n        <label *ngIf=\"fileCounter > 0\" class=\"img-ul-clear img-ul-button\" (click)=\"deleteAll()\" [ngStyle]=\"style?.clearButton\">\n          <span [innerText]=\"clearButtonCaption\"></span>\n        </label>\n        <div class=\"img-ul-drag-box-msg\" [innerText]=\"dropBoxMessage\"></div>\n      </div>\n\n      <p class=\"img-ul-file-too-large\" *ngIf=\"showFileTooLargeMessage\" [innerText]=\"fileTooLargeMessage\"></p>\n\n      <div *ngIf=\"preview\" class=\"img-ul-container img-ul-hr-inline-group\" [ngStyle]=\"style?.previewPanel\">\n        <div\n          class=\"img-ul-image\"\n          *ngFor=\"let file of files\"\n          [ngStyle]=\"{'background-image': 'url('+ file.src +')'}\"\n        >\n          <div *ngIf=\"file.pending\" class=\"img-ul-loading-overlay\">\n            <div class=\"img-ul-spinning-circle\"></div>\n          </div>\n          <div *ngIf=\"!file.pending\" class=\"img-ul-x-mark\" (click)=\"deleteFile(file)\">\n            <span class=\"img-ul-close\"></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+                styles: ["\n    .img-ul {\n        --active-color: #3C9;\n        --common-radius: 3px;\n        background-color: #f8f8f8;\n        border-radius: var(--common-radius);\n        border: #d0d0d0 dashed 1px;\n        font-family: sans-serif;\n        position: relative;\n        color: #9b9b9b;\n    }\n\n    .img-ul-file-is-over {\n        border: var(--active-color) solid;\n    }\n\n    .img-ul-hr-inline-group:after {\n        clear: both;\n        content: \"\";\n        display: table;\n    }\n\n    .img-ul-file-upload {    \n        padding: 16px;\n    }\n\n    .img-ul-drag-box-msg {    \n        display: inline-block;\n        font-weight: 600;\n        margin-left: 12px;\n        padding-top: 14px;\n    }\n\n    label.img-ul-button input[type=file] {\n        display: none;\n        position: fixed;\n        top: -99999px;\n    }\n\n    .img-ul-clear {\n        background-color: #FF0000;\n    }\n\n    .img-ul-upload {\n        background-color: var(--active-color);\n    }\n\n    .img-ul-button {\n        -moz-box-shadow: 2px 2px 4px 0 rgba(148, 148, 148, 0.6);\n        -webkit-box-shadow: 2px 2px 4px 0 rgba(148, 148, 148, 0.6);\n        box-shadow: 2px 2px 4px 0 rgba(148, 148, 148, 0.6);\n        color: #FFF;\n        cursor: pointer;\n        display: inline-block;\n        float: left;\n        font-size: 1.25em;\n        font-weight: 500;\n        padding: 10px;\n        text-transform: uppercase;\n    }\n\n    .img-ul-button:active span {\n        display: block;\n        position: relative;\n        top: 1px;\n    }\n\n    .img-ul-container {\n        background-color: #fdfdfd;\n        padding: 0 10px;\n    }\n\n    .img-ul-image {    \n        background: center center no-repeat;\n        background-size: contain;\n        display: inline-block;\n        float: left;\n        height: 86px;\n        margin: 6px;\n        position: relative;\n        width: 86px;\n    }\n\n    .img-ul-x-mark {\n        background-color: #000;\n        border-radius: 2px;\n        color: #FFF;\n        cursor: pointer;\n        float: right;\n        height: 20px;\n        margin: 2px;\n        opacity: .7;\n        text-align: center;\n        width: 20px;\n    }\n\n    .img-ul-close {\n        height: 20px;\n        opacity: .7;\n        padding-right: 3px;\n        position: relative;\n        width: 20px;\n    }\n\n    .img-ul-x-mark:hover .img-ul-close {\n        opacity: 1;\n    }\n\n    .img-ul-close:before, .img-ul-close:after {\n        background-color: #FFF;\n        border-radius: 2px;\n        content: '';\n        height: 15px;\n        position: absolute;\n        top: 0;\n        width: 2px;\n    }\n\n    .img-ul-close:before {\n        transform: rotate(45deg);\n    }\n\n    .img-ul-close:after {\n        transform: rotate(-45deg);\n    }\n\n    .img-ul-loading-overlay {\n        background-color: #000;\n        bottom: 0;\n        left: 0;\n        opacity: .7;\n        position: absolute;\n        right: 0;\n        top: 0;\n    }\n\n    .img-ul-spinning-circle {\n        height: 30px;\n        width: 30px;\n        margin: auto;\n        position: absolute;\n        top: 0;\n        left: 0;\n        bottom: 0;\n        right: 0;\n        border-radius: 50%;\n        border: 3px solid rgba(255, 255, 255, 0);\n        border-top: 3px solid #FFF;\n        border-right: 3px solid #FFF;\n        -webkit-animation: spinner 2s infinite cubic-bezier(0.085, 0.625, 0.855, 0.360);\n        animation: spinner 2s infinite cubic-bezier(0.085, 0.625, 0.855, 0.360);\n    }\n\n    .img-ul-file-too-large {\n        color: red;\n        padding: 0 15px;\n    }\n\n    @-webkit-keyframes spinner {\n      0% {\n        -webkit-transform: rotate(0deg);\n        transform: rotate(0deg);\n      }\n\n      100% {\n        -webkit-transform: rotate(360deg);\n        transform: rotate(360deg);\n      }\n    }\n\n    @keyframes spinner {\n      0% {\n        -webkit-transform: rotate(0deg);\n        transform: rotate(0deg);\n      }\n\n      100% {\n        -webkit-transform: rotate(360deg);\n        transform: rotate(360deg);\n      }\n    }\n  "]
+            },] },
+];
+ImageUploadComponent.ctorParameters = function () { return [
+    { type: image_service_1.ImageService, },
+]; };
+ImageUploadComponent.propDecorators = {
+    'beforeUpload': [{ type: core_1.Input },],
+    'buttonCaption': [{ type: core_1.Input },],
+    'cssClass': [{ type: core_1.Input, args: ['class',] },],
+    'clearButtonCaption': [{ type: core_1.Input },],
+    'dropBoxMessage': [{ type: core_1.Input },],
+    'fileTooLargeMessage': [{ type: core_1.Input },],
+    'headers': [{ type: core_1.Input },],
+    'max': [{ type: core_1.Input },],
+    'maxFileSize': [{ type: core_1.Input },],
+    'preview': [{ type: core_1.Input },],
+    'partName': [{ type: core_1.Input },],
+    'style': [{ type: core_1.Input },],
+    'supportedExtensions': [{ type: core_1.Input, args: ['extensions',] },],
+    'url': [{ type: core_1.Input },],
+    'withCredentials': [{ type: core_1.Input },],
+    'uploadedFiles': [{ type: core_1.Input },],
+    'removed': [{ type: core_1.Output },],
+    'uploadStateChanged': [{ type: core_1.Output },],
+    'uploadFinished': [{ type: core_1.Output },],
+    'inputElement': [{ type: core_1.ViewChild, args: ['input',] },],
+};
+exports.ImageUploadComponent = ImageUploadComponent;
+
+
+/***/ }),
+
+/***/ "../../../../angular2-image-upload/lib/image-upload/image.service.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+var ImageService = (function () {
+    function ImageService(http) {
+        this.http = http;
+    }
+    ImageService.prototype.postImage = function (url, image, headers, partName, customFormData, withCredentials) {
+        if (partName === void 0) { partName = 'image'; }
+        if (!url || url === '') {
+            throw new Error('Url is not set! Please set it before doing queries');
+        }
+        var options = new http_1.RequestOptions();
+        if (withCredentials) {
+            options.withCredentials = withCredentials;
+        }
+        if (headers) {
+            options.headers = new http_1.Headers(headers);
+        }
+        var formData = new FormData();
+        for (var key in customFormData) {
+            formData.append(key, customFormData[key]);
+        }
+        formData.append(partName, image);
+        return this.http.post(url, formData, options);
+    };
+    return ImageService;
+}());
+ImageService.decorators = [
+    { type: core_1.Injectable },
+];
+ImageService.ctorParameters = function () { return [
+    { type: http_1.Http, },
+]; };
+exports.ImageService = ImageService;
+
 
 /***/ }),
 
@@ -13830,90 +14262,91 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export ɵregisterLocaleData */
-/* unused harmony export NgLocaleLocalization */
-/* unused harmony export NgLocalization */
-/* unused harmony export registerLocaleData */
-/* unused harmony export Plural */
-/* unused harmony export NumberFormatStyle */
-/* unused harmony export FormStyle */
-/* unused harmony export TranslationWidth */
-/* unused harmony export FormatWidth */
-/* unused harmony export NumberSymbol */
-/* unused harmony export WeekDay */
-/* unused harmony export getCurrencySymbol */
-/* unused harmony export getLocaleDayPeriods */
-/* unused harmony export getLocaleDayNames */
-/* unused harmony export getLocaleMonthNames */
-/* unused harmony export getLocaleId */
-/* unused harmony export getLocaleEraNames */
-/* unused harmony export getLocaleWeekEndRange */
-/* unused harmony export getLocaleFirstDayOfWeek */
-/* unused harmony export getLocaleDateFormat */
-/* unused harmony export getLocaleDateTimeFormat */
-/* unused harmony export getLocaleExtraDayPeriodRules */
-/* unused harmony export getLocaleExtraDayPeriods */
-/* unused harmony export getLocalePluralCase */
-/* unused harmony export getLocaleTimeFormat */
-/* unused harmony export getLocaleNumberSymbol */
-/* unused harmony export getLocaleNumberFormat */
-/* unused harmony export getLocaleCurrencyName */
-/* unused harmony export getLocaleCurrencySymbol */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return parseCookieValue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CommonModule; });
-/* unused harmony export DeprecatedI18NPipesModule */
-/* unused harmony export NgClass */
-/* unused harmony export NgForOf */
-/* unused harmony export NgForOfContext */
-/* unused harmony export NgIf */
-/* unused harmony export NgIfContext */
-/* unused harmony export NgPlural */
-/* unused harmony export NgPluralCase */
-/* unused harmony export NgStyle */
-/* unused harmony export NgSwitch */
-/* unused harmony export NgSwitchCase */
-/* unused harmony export NgSwitchDefault */
-/* unused harmony export NgTemplateOutlet */
-/* unused harmony export NgComponentOutlet */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DOCUMENT; });
-/* unused harmony export AsyncPipe */
-/* unused harmony export DatePipe */
-/* unused harmony export I18nPluralPipe */
-/* unused harmony export I18nSelectPipe */
-/* unused harmony export JsonPipe */
-/* unused harmony export LowerCasePipe */
-/* unused harmony export CurrencyPipe */
-/* unused harmony export DecimalPipe */
-/* unused harmony export PercentPipe */
-/* unused harmony export SlicePipe */
-/* unused harmony export UpperCasePipe */
-/* unused harmony export TitleCasePipe */
-/* unused harmony export DeprecatedDatePipe */
-/* unused harmony export DeprecatedCurrencyPipe */
-/* unused harmony export DeprecatedDecimalPipe */
-/* unused harmony export DeprecatedPercentPipe */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return PLATFORM_BROWSER_ID; });
-/* unused harmony export ɵPLATFORM_SERVER_ID */
-/* unused harmony export ɵPLATFORM_WORKER_APP_ID */
-/* unused harmony export ɵPLATFORM_WORKER_UI_ID */
-/* unused harmony export isPlatformBrowser */
-/* unused harmony export isPlatformServer */
-/* unused harmony export isPlatformWorkerApp */
-/* unused harmony export isPlatformWorkerUi */
-/* unused harmony export VERSION */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return PlatformLocation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return LOCATION_INITIALIZED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return LocationStrategy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return APP_BASE_HREF; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return HashLocationStrategy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return PathLocationStrategy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return Location; });
-/* unused harmony export ɵe */
-/* unused harmony export ɵd */
-/* unused harmony export ɵa */
-/* unused harmony export ɵb */
-/* unused harmony export ɵg */
-/* unused harmony export ɵf */
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵregisterLocaleData", function() { return registerLocaleData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocaleLocalization", function() { return NgLocaleLocalization; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocalization", function() { return NgLocalization; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerLocaleData", function() { return registerLocaleData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plural", function() { return Plural; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NumberFormatStyle", function() { return NumberFormatStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormStyle", function() { return FormStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TranslationWidth", function() { return TranslationWidth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormatWidth", function() { return FormatWidth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NumberSymbol", function() { return NumberSymbol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WeekDay", function() { return WeekDay; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrencySymbol", function() { return getCurrencySymbol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleDayPeriods", function() { return getLocaleDayPeriods; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleDayNames", function() { return getLocaleDayNames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleMonthNames", function() { return getLocaleMonthNames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleId", function() { return getLocaleId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleEraNames", function() { return getLocaleEraNames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleWeekEndRange", function() { return getLocaleWeekEndRange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleFirstDayOfWeek", function() { return getLocaleFirstDayOfWeek; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleDateFormat", function() { return getLocaleDateFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleDateTimeFormat", function() { return getLocaleDateTimeFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleExtraDayPeriodRules", function() { return getLocaleExtraDayPeriodRules; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleExtraDayPeriods", function() { return getLocaleExtraDayPeriods; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocalePluralCase", function() { return getLocalePluralCase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleTimeFormat", function() { return getLocaleTimeFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleNumberSymbol", function() { return getLocaleNumberSymbol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleNumberFormat", function() { return getLocaleNumberFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleCurrencyName", function() { return getLocaleCurrencyName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleCurrencySymbol", function() { return getLocaleCurrencySymbol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵparseCookieValue", function() { return parseCookieValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonModule", function() { return CommonModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeprecatedI18NPipesModule", function() { return DeprecatedI18NPipesModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgClass", function() { return NgClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgForOf", function() { return NgForOf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgForOfContext", function() { return NgForOfContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgIf", function() { return NgIf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgIfContext", function() { return NgIfContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgPlural", function() { return NgPlural; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgPluralCase", function() { return NgPluralCase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgStyle", function() { return NgStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSwitch", function() { return NgSwitch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSwitchCase", function() { return NgSwitchCase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSwitchDefault", function() { return NgSwitchDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgTemplateOutlet", function() { return NgTemplateOutlet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgComponentOutlet", function() { return NgComponentOutlet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOCUMENT", function() { return DOCUMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AsyncPipe", function() { return AsyncPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatePipe", function() { return DatePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nPluralPipe", function() { return I18nPluralPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nSelectPipe", function() { return I18nSelectPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonPipe", function() { return JsonPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LowerCasePipe", function() { return LowerCasePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CurrencyPipe", function() { return CurrencyPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DecimalPipe", function() { return DecimalPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PercentPipe", function() { return PercentPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlicePipe", function() { return SlicePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpperCasePipe", function() { return UpperCasePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TitleCasePipe", function() { return TitleCasePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeprecatedDatePipe", function() { return DeprecatedDatePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeprecatedCurrencyPipe", function() { return DeprecatedCurrencyPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeprecatedDecimalPipe", function() { return DeprecatedDecimalPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeprecatedPercentPipe", function() { return DeprecatedPercentPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_BROWSER_ID", function() { return PLATFORM_BROWSER_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_SERVER_ID", function() { return PLATFORM_SERVER_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_WORKER_APP_ID", function() { return PLATFORM_WORKER_APP_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_WORKER_UI_ID", function() { return PLATFORM_WORKER_UI_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformBrowser", function() { return isPlatformBrowser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformServer", function() { return isPlatformServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformWorkerApp", function() { return isPlatformWorkerApp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformWorkerUi", function() { return isPlatformWorkerUi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return VERSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlatformLocation", function() { return PlatformLocation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCATION_INITIALIZED", function() { return LOCATION_INITIALIZED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationStrategy", function() { return LocationStrategy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_BASE_HREF", function() { return APP_BASE_HREF; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HashLocationStrategy", function() { return HashLocationStrategy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PathLocationStrategy", function() { return PathLocationStrategy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return Location; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return COMMON_DIRECTIVES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵd", function() { return findLocaleData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return DEPRECATED_PLURAL_FN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return getPluralCase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵg", function() { return COMMON_DEPRECATED_I18N_PIPES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵf", function() { return COMMON_PIPES; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_tslib__ = __webpack_require__("../../../../tslib/tslib.es6.js");
 /**
@@ -87157,7 +87590,7 @@ var INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS = [
         useValue: { providers: [{ provide: __WEBPACK_IMPORTED_MODULE_0__angular_compiler__["s" /* ResourceLoader */], useClass: ResourceLoaderImpl, deps: [] }] },
         multi: true
     },
-    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_2__angular_common__["j" /* ɵPLATFORM_BROWSER_ID */] },
+    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_2__angular_common__["ɵPLATFORM_BROWSER_ID"] },
 ];
 
 /**
@@ -88898,7 +89331,7 @@ var BrowserDomAdapter = /** @class */ (function (_super) {
      * @param {?} name
      * @return {?}
      */
-    function (name) { return Object(__WEBPACK_IMPORTED_MODULE_0__angular_common__["k" /* ɵparseCookieValue */])(document.cookie, name); };
+    function (name) { return Object(__WEBPACK_IMPORTED_MODULE_0__angular_common__["ɵparseCookieValue"])(document.cookie, name); };
     /**
      * @param {?} name
      * @param {?} value
@@ -88963,7 +89396,7 @@ function relativePath(url) {
  *
  * @deprecated import from `\@angular/common` instead.
  */
-var DOCUMENT$1 = __WEBPACK_IMPORTED_MODULE_0__angular_common__["c" /* DOCUMENT */];
+var DOCUMENT$1 = __WEBPACK_IMPORTED_MODULE_0__angular_common__["DOCUMENT"];
 
 /**
  * @fileoverview added by tsickle
@@ -89141,7 +89574,7 @@ var BrowserPlatformLocation = /** @class */ (function (_super) {
         { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [DOCUMENT$1,] },] },
     ]; };
     return BrowserPlatformLocation;
-}(__WEBPACK_IMPORTED_MODULE_0__angular_common__["i" /* PlatformLocation */]));
+}(__WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"]));
 
 /**
  * @fileoverview added by tsickle
@@ -92029,9 +92462,9 @@ var SafeResourceUrlImpl = /** @class */ (function (_super) {
  * found in the LICENSE file at https://angular.io/license
  */
 var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [
-    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_0__angular_common__["j" /* ɵPLATFORM_BROWSER_ID */] },
+    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_0__angular_common__["ɵPLATFORM_BROWSER_ID"] },
     { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_INITIALIZER"], useValue: initDomAdapter, multi: true },
-    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["i" /* PlatformLocation */], useClass: BrowserPlatformLocation, deps: [DOCUMENT$1] },
+    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"], useClass: BrowserPlatformLocation, deps: [DOCUMENT$1] },
     { provide: DOCUMENT$1, useFactory: _document, deps: [] },
 ];
 /**
@@ -92132,7 +92565,7 @@ var BrowserModule = /** @class */ (function () {
                         Meta,
                         Title,
                     ],
-                    exports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["b" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationModule"]]
+                    exports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationModule"]]
                 },] },
     ];
     /** @nocollapse */
@@ -99026,7 +99459,7 @@ var RouterLinkWithHref = /** @class */ (function () {
     RouterLinkWithHref.ctorParameters = function () { return [
         { type: Router, },
         { type: ActivatedRoute, },
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_common__["g" /* LocationStrategy */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_common__["LocationStrategy"], },
     ]; };
     RouterLinkWithHref.propDecorators = {
         "target": [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["HostBinding"], args: ['attr.target',] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
@@ -99853,13 +100286,13 @@ var ROUTER_CONFIGURATION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inje
  */
 var ROUTER_FORROOT_GUARD = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["InjectionToken"]('ROUTER_FORROOT_GUARD');
 var ROUTER_PROVIDERS = [
-    __WEBPACK_IMPORTED_MODULE_0__angular_common__["f" /* Location */],
+    __WEBPACK_IMPORTED_MODULE_0__angular_common__["Location"],
     { provide: UrlSerializer, useClass: DefaultUrlSerializer },
     {
         provide: Router,
         useFactory: setupRouter,
         deps: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationRef"], UrlSerializer, ChildrenOutletContexts, __WEBPACK_IMPORTED_MODULE_0__angular_common__["f" /* Location */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"],
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationRef"], UrlSerializer, ChildrenOutletContexts, __WEBPACK_IMPORTED_MODULE_0__angular_common__["Location"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"],
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModuleFactoryLoader"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["Compiler"], ROUTES, ROUTER_CONFIGURATION,
             [UrlHandlingStrategy, new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()], [RouteReuseStrategy, new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()]
         ]
@@ -99994,10 +100427,10 @@ var RouterModule = /** @class */ (function () {
                 },
                 { provide: ROUTER_CONFIGURATION, useValue: config ? config : {} },
                 {
-                    provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["g" /* LocationStrategy */],
+                    provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["LocationStrategy"],
                     useFactory: provideLocationStrategy,
                     deps: [
-                        __WEBPACK_IMPORTED_MODULE_0__angular_common__["i" /* PlatformLocation */], [new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"](__WEBPACK_IMPORTED_MODULE_0__angular_common__["a" /* APP_BASE_HREF */]), new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()], ROUTER_CONFIGURATION
+                        __WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"], [new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"](__WEBPACK_IMPORTED_MODULE_0__angular_common__["APP_BASE_HREF"]), new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()], ROUTER_CONFIGURATION
                     ]
                 },
                 {
@@ -100044,8 +100477,8 @@ var RouterModule = /** @class */ (function () {
  */
 function provideLocationStrategy(platformLocationStrategy, baseHref, options) {
     if (options === void 0) { options = {}; }
-    return options.useHash ? new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* HashLocationStrategy */](platformLocationStrategy, baseHref) :
-        new __WEBPACK_IMPORTED_MODULE_0__angular_common__["h" /* PathLocationStrategy */](platformLocationStrategy, baseHref);
+    return options.useHash ? new __WEBPACK_IMPORTED_MODULE_0__angular_common__["HashLocationStrategy"](platformLocationStrategy, baseHref) :
+        new __WEBPACK_IMPORTED_MODULE_0__angular_common__["PathLocationStrategy"](platformLocationStrategy, baseHref);
 }
 /**
  * @param {?} router
@@ -100162,7 +100595,7 @@ var RouterInitializer = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        var /** @type {?} */ p = this.injector.get(__WEBPACK_IMPORTED_MODULE_0__angular_common__["e" /* LOCATION_INITIALIZED */], Promise.resolve(null));
+        var /** @type {?} */ p = this.injector.get(__WEBPACK_IMPORTED_MODULE_0__angular_common__["LOCATION_INITIALIZED"], Promise.resolve(null));
         return p.then(function () {
             var /** @type {?} */ resolve = /** @type {?} */ ((null));
             var /** @type {?} */ res = new Promise(function (r) { return resolve = r; });

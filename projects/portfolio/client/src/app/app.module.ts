@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from "@angular/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ImageUploadModule } from "angular2-image-upload";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,6 +15,7 @@ import { PorfolioBodyComponent } from './porfolio-body/porfolio-body.component';
 import { NavbarComponent } from './porfolio-body/navbar/navbar.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserService } from './server/controllers/user.service';
+import { ImgUploadComponent } from './admin/img-upload/img-upload.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import { UserService } from './server/controllers/user.service';
     PorfolioBodyComponent,
     NavbarComponent,
     AdminComponent,
+    ImgUploadComponent,
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ImageUploadModule.forRoot(),
+
   ],
   providers: [
     UserService

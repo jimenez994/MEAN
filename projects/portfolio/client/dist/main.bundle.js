@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  admin works!\n</p>\n"
+module.exports = "\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -78,6 +78,74 @@ exports.AdminComponent = AdminComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/admin/img-upload/img-upload.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Upload</h3>\n<form (submit)=\"uploadImg()\">\n  <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n  <input type=\"submit\" value=\"upload\">\n</form>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/img-upload/img-upload.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/img-upload/img-upload.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var ImgUploadComponent = /** @class */ (function () {
+    function ImgUploadComponent() {
+    }
+    ImgUploadComponent.prototype.ngOnInit = function () {
+    };
+    ImgUploadComponent.prototype.onUploadStatus = function ($event) {
+        this.image = $event;
+    };
+    ImgUploadComponent.prototype.uploadImg = function () {
+        console.log(this.image);
+        console.log(this.image['file'].name);
+    };
+    ImgUploadComponent = __decorate([
+        core_1.Component({
+            selector: 'app-img-upload',
+            template: __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ImgUploadComponent);
+    return ImgUploadComponent;
+}());
+exports.ImgUploadComponent = ImgUploadComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/app-routing.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -96,6 +164,8 @@ var login_body_component_1 = __webpack_require__("../../../../../src/app/login-b
 var porfolio_body_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/porfolio-body.component.ts");
 var navbar_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.ts");
 var registration_component_1 = __webpack_require__("../../../../../src/app/login-body/registration/registration.component.ts");
+var admin_component_1 = __webpack_require__("../../../../../src/app/admin/admin.component.ts");
+var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.ts");
 var routes = [
     {
         path: 'admin', component: login_body_component_1.LoginBodyComponent, children: [
@@ -107,6 +177,11 @@ var routes = [
             { path: '', component: navbar_component_1.NavbarComponent }
         ]
     },
+    {
+        path: 'superAdmin', component: admin_component_1.AdminComponent, children: [
+            { path: '', component: img_upload_component_1.ImgUploadComponent }
+        ]
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -197,6 +272,7 @@ var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var forms_1 = __webpack_require__("../../../forms/esm5/forms.js");
 var http_1 = __webpack_require__("../../../http/esm5/http.js");
 var ng_bootstrap_1 = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+var angular2_image_upload_1 = __webpack_require__("../../../../angular2-image-upload/index.js");
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
 var login_body_component_1 = __webpack_require__("../../../../../src/app/login-body/login-body.component.ts");
@@ -206,6 +282,7 @@ var porfolio_body_component_1 = __webpack_require__("../../../../../src/app/porf
 var navbar_component_1 = __webpack_require__("../../../../../src/app/porfolio-body/navbar/navbar.component.ts");
 var admin_component_1 = __webpack_require__("../../../../../src/app/admin/admin.component.ts");
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -219,13 +296,15 @@ var AppModule = /** @class */ (function () {
                 porfolio_body_component_1.PorfolioBodyComponent,
                 navbar_component_1.NavbarComponent,
                 admin_component_1.AdminComponent,
+                img_upload_component_1.ImgUploadComponent,
             ],
             imports: [
                 ng_bootstrap_1.NgbModule.forRoot(),
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule,
                 forms_1.FormsModule,
-                http_1.HttpModule
+                http_1.HttpModule,
+                angular2_image_upload_1.ImageUploadModule.forRoot(),
             ],
             providers: [
                 user_service_1.UserService
@@ -304,7 +383,7 @@ exports.LoginBodyComponent = LoginBodyComponent;
 /***/ "../../../../../src/app/login-body/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<fieldset>\n  <legend>Register</legend>\n  <form (submit)=\"userLogin()\">\n    <label for=\"email\">Email: </label>\n    <br>\n    <div *ngIf=\"email.invalid && (email.dirty || email.touched)\" class=\"alert alert-danger\">\n      <p *ngIf=\"email.errors.required\" style=\"color: red;\">Email is required</p>\n      <p *ngIf=\"email.errors.email && !email.errors.required\" style=\"color: red;\">Invalid Email format</p>\n    </div>\n    <input type=\"text\" name=\"email\" class=\"form-control\" required email [(ngModel)]=\"user.email\" #email=\"ngModel\">\n    <br>\n\n    <label for=\"password\">Password: </label>\n    <br>\n    <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" required [(ngModel)]=\"user.password\" #password=\"ngModel\">\n    <br>\n    <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"alert alert-danger\">\n      <div *ngIf=\"password.errors.required\">\n        <p style=\"color: red;\">Password is required</p>\n      </div>\n    </div>\n\n    <input type=\"submit\" value=\"Login\">\n  </form>\n</fieldset>"
 
 /***/ }),
 
@@ -342,10 +421,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var user_1 = __webpack_require__("../../../../../src/app/server/models/user.ts");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
+    function LoginComponent(_router, _userService) {
+        this._router = _router;
+        this._userService = _userService;
+        this.user = new user_1.User();
+        this.errors = [];
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.userLogin = function () {
+        var _this = this;
+        this._userService.login(this.user, function (res) {
+            if (res.json().errors) {
+                console.log(res.json());
+            }
+            else {
+                _this._router.navigateByUrl('/superAdmin');
+            }
+        });
     };
     LoginComponent = __decorate([
         core_1.Component({
@@ -353,7 +450,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/login-body/login/login.component.html"),
             styles: [__webpack_require__("../../../../../src/app/login-body/login/login.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router,
+            user_service_1.UserService])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -420,7 +518,7 @@ var RegistrationComponent = /** @class */ (function () {
             console.log(res.json().errors);
             if (res.json().errors == null) {
                 console.log("im getting here ;D");
-                _this._router.navigateByUrl('/');
+                _this._router.navigateByUrl('/superAdmin');
             }
         });
     };

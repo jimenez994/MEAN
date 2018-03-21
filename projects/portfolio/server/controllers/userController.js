@@ -27,12 +27,19 @@ module.exports = {
     },
     login: (req, res) => {
         if(req.body.email != null && req.body.password != null){
-            User.findOne({  email: req.body.email}, (err, user) => {
+            User.findOne({ email: req.body.email }, (err, user) => {
+                if(err){
+                    return res.json();
+                }
                 if(user == null){
+                    console.log(user)
                     return res.json({'errors':'Email was not found'})
                 }else{
+                    console.log("THERE IS A USER")
                     if(User.schema.methods.match(req.body.password, user.password)){
-                        req.session.user_id = user_id;
+                        console.log("LOGIN SUCCESS")                        
+                        req.session.user_id = user._id;
+                        console.log("LOGIN SUCCESS")
                         return res.json(user);
                     }else {
                         return res.json({'errors':'Invalid password'});
