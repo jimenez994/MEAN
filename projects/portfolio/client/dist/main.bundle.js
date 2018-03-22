@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<router-outlet></router-outlet>\n<app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n"
+module.exports = "<div class=\"row\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header></app-header>\n    </div>\n   \n\n</div>\n"
 
 /***/ }),
 
@@ -103,10 +103,71 @@ exports.AdminComponent = AdminComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/admin/header/header.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n    <h1>header</h1>\n \n\n\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/header/header.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/header/header.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var HeaderComponent = /** @class */ (function () {
+    function HeaderComponent() {
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent = __decorate([
+        core_1.Component({
+            selector: 'app-header',
+            template: __webpack_require__("../../../../../src/app/admin/header/header.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/header/header.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+exports.HeaderComponent = HeaderComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/admin/img-upload/img-upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Upload</h3>\n<div class=\"upload\">\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input type=\"submit\" value=\"upload\">\n  </form>\n\n  <div id=\"wrapper\">\n    <div class=\"cardM card text-white bg-danger mb-3\" *ngFor=\"let img of images\">\n      <img id=\"img\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n      <button (click)='deleteImg(img._id)'>Delete</button>\n    </div>\n  </div>\n\n</div>\n\n"
+module.exports = "\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input class=\"btn btn-info btn-block\" type=\"submit\" value=\"upload\">\n  </form>\n\n \n  <div class=\"card\"  *ngFor=\"let img of images\">\n    <img class=\"card-img-top img-fluid\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n    <div class=\"card-body\">\n      <button class=\"btn btn-danger btn-block\" (click)='deleteImg(img._id)'>Delete</button>\n    </div>\n  </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -343,6 +404,7 @@ var admin_component_1 = __webpack_require__("../../../../../src/app/admin/admin.
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.ts");
 var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
+var header_component_1 = __webpack_require__("../../../../../src/app/admin/header/header.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -357,6 +419,7 @@ var AppModule = /** @class */ (function () {
                 navbar_component_1.NavbarComponent,
                 admin_component_1.AdminComponent,
                 img_upload_component_1.ImgUploadComponent,
+                header_component_1.HeaderComponent,
             ],
             imports: [
                 ng_bootstrap_1.NgbModule.forRoot(),
