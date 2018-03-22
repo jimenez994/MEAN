@@ -54,6 +54,43 @@ const UserSchema = new mongoose.Schema({
             message: "Password and Password Confirmation must match"
         }
     },
+    title: {
+        type: String,
+        default: "Some Title"
+    },
+    subTitle: {
+        type: String,
+        default: "Some sub title"
+    },
+    summary: {
+        type: String,
+        default: "Some description"
+    },
+    aboutMe: {
+        type: String,
+        default: "about me"
+    },
+    experience: {
+        type: String,
+        default: "Some experience"
+    },
+    headerImg: {
+        type: String,
+        default: "some image"
+    },
+    imgName: {
+        type: String,
+        default: "some name"
+    },
+    otherImg: {
+        type: String,
+        default: "some image"
+    },
+    other:{
+        type: String,
+        default: "some other stuff"
+    }
+
 
 }, { timestamps: true });
 

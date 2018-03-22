@@ -9,11 +9,14 @@ module.exports = (app) => {
     app.get("/users", User.show);
     app.get("/user", User.session);
     app.delete("/user/logout", User.logout);
+    app.put("/user/update", User.edit);
 
     // Image
     app.post("/upload", Image.createImage);
     app.get("/images", Image.getImages);
     app.delete("/image/:id", Image.deleteImage);
+
+  
 
     // talk to the front end
     app.all("*", (req, res, next) => {

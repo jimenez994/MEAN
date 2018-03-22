@@ -18,6 +18,7 @@ import { UserService } from './server/controllers/user.service';
 import { ImgUploadComponent } from './admin/img-upload/img-upload.component';
 import { ImageService } from './server/controllers/image.service';
 import { HeaderComponent } from './admin/header/header.component';
+import { HeaderEditComponent } from './admin/header-edit/header-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HeaderComponent } from './admin/header/header.component';
     AdminComponent,
     ImgUploadComponent,
     HeaderComponent,
+    HeaderEditComponent,
     
   ],
   imports: [

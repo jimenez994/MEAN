@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
 module.exports = {
-    show: (rewq, res) => {
+    show(rewq, res) {
         User.find({}, (err, users) => {
             if(err){
                 return res.json(err)
@@ -10,7 +10,7 @@ module.exports = {
             return res.json(users);
         })
     },
-    create: (req, res) => {
+    create(req, res) {
         User.find({  email: req.body.email} , (err, users) => {
             if(users.length > 0){
                 return res.json({'errors':'that user already exists'});
@@ -25,7 +25,7 @@ module.exports = {
             }
         })
     },
-    login: (req, res) => {
+    login(req, res) {
         if(req.body.email != null && req.body.password != null){
             User.findOne({ email: req.body.email }, (err, user) => {
                 if(err){
@@ -50,7 +50,13 @@ module.exports = {
             return res.json({'errors': 'No login information was entered'})
         }
     }, 
-    session: (req, res) => {
+    edit(req, res){
+        User.update({_id: req.session.user_id}, req.body, (err, rawData) =>{
+            if(err) return res.json(err)
+            else return res.json(true)
+        })
+    },
+    session(req, res){
         User.findById(req.session.user_id, (err, user) => {
             if(err){
                 return res.json(err);
@@ -58,7 +64,7 @@ module.exports = {
             return res.json(user);
         })
     },
-    logout: (req, res) => {
+    logout(req, res) {
         delete req.session.user_id;
         return res.json({"messafe":"you have logout"})
     },

@@ -1,0 +1,11 @@
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+// #cardM{
+//     height: 95vh;
+//     clip-path: polygon( 0 0, 100% 0, 100% 75vh, 0 100%);
+// }
+#header-over{
+    background: linear-gradient(to right bottom,
+     rgba($color-primary-light, 0.6), 
+     rgba($color-primary-dark, 0.6)) ;
+}

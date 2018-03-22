@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header></app-header>\n    </div>\n   \n\n</div>\n"
+module.exports = "<div class=\"row\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\"></app-header>\n    </div>\n   \n\n</div>\n"
 
 /***/ }),
 
@@ -103,10 +103,71 @@ exports.AdminComponent = AdminComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/admin/header-edit/header-edit.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<form >\n  <input type=\"text\" name=\"header\">\n  <input type=\"text\" name=\"sub-header\">\n  <input type=\"submit\" value=\"update\">\n</form>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/header-edit/header-edit.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/header-edit/header-edit.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var HeaderEditComponent = /** @class */ (function () {
+    function HeaderEditComponent() {
+    }
+    HeaderEditComponent.prototype.ngOnInit = function () {
+    };
+    HeaderEditComponent = __decorate([
+        core_1.Component({
+            selector: 'app-header-edit',
+            template: __webpack_require__("../../../../../src/app/admin/header-edit/header-edit.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/header-edit/header-edit.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderEditComponent);
+    return HeaderEditComponent;
+}());
+exports.HeaderEditComponent = HeaderEditComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/admin/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n    <h1>header</h1>\n \n\n\n"
+module.exports = "<div class=\"card text-center\">\n    <img class=\"card-img\" src=\"{{images[3].src}}\" alt=\"\">\n    <div id=\"header-over\" class=\"card-img-overlay\">\n      <h1 class=\"card-title text-white\">Welcome</h1>\n      <h3 class=\"card-body text-white\">Lorem, ipsum dolor sit</h3>\n      <button class=\"btn btn-info\">Edit</button>\n    </div>\n</div>\n<app-header-edit></app-header-edit>\n"
 
 /***/ }),
 
@@ -118,7 +179,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#header-over {\n  background: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.6)), to(rgba(40, 180, 133, 0.6)));\n  background: linear-gradient(to right bottom, rgba(126, 213, 111, 0.6), rgba(40, 180, 133, 0.6)); }\n", ""]);
 
 // exports
 
@@ -149,6 +210,10 @@ var HeaderComponent = /** @class */ (function () {
     }
     HeaderComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], HeaderComponent.prototype, "images", void 0);
     HeaderComponent = __decorate([
         core_1.Component({
             selector: 'app-header',
@@ -405,6 +470,7 @@ var user_service_1 = __webpack_require__("../../../../../src/app/server/controll
 var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/img-upload/img-upload.component.ts");
 var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
 var header_component_1 = __webpack_require__("../../../../../src/app/admin/header/header.component.ts");
+var header_edit_component_1 = __webpack_require__("../../../../../src/app/admin/header-edit/header-edit.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -420,6 +486,7 @@ var AppModule = /** @class */ (function () {
                 admin_component_1.AdminComponent,
                 img_upload_component_1.ImgUploadComponent,
                 header_component_1.HeaderComponent,
+                header_edit_component_1.HeaderEditComponent,
             ],
             imports: [
                 ng_bootstrap_1.NgbModule.forRoot(),
