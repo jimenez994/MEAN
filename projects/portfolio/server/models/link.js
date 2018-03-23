@@ -18,4 +18,4 @@ const LinkSchema = new mongoose.Schema({
         default: "other"
     }
 }, { timestamps: true })
-const Link = mongoose.model("Link", TechSchema);
+const Link = mongoose.model("Link", LinkSchema);
