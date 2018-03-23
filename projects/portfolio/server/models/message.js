@@ -27,5 +27,11 @@ const MessageSchema = new mongoose.Schema({
         minlength: [1, "Last Name must be between 1-255 characters"],
         maxlength: [255, "Last Name must be between 1-255 characters"],
     },
+    _user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+        autopopulate: true
+    }
 }, { timestamps: true })
 const Message = mongoose.model("Message", MessageSchema);

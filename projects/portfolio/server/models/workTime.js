@@ -28,6 +28,12 @@ const WorkSchema = new mongoose.Schema({
     other: {
         type: String,
         default: "other"
+    },
+    _user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+        autopopulate: true
     }
 }, { timestamps: true })
 const Work = mongoose.model("Work", WorkSchema);

@@ -8,5 +8,11 @@ const ImgSchema = new mongoose.Schema({
         type: String,
         required: [true, 'sir you are missing the image']
     },
+    _user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+        autopopulate: true
+    }
 }, {timestamps: true});
 const Image = mongoose.model('Image', ImgSchema);
