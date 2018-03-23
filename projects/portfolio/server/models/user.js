@@ -54,6 +54,10 @@ const UserSchema = new mongoose.Schema({
             message: "Password and Password Confirmation must match"
         }
     },
+    myImg:{
+        type: String,
+        default: "some image"
+    },
     title: {
         type: String,
         default: "Some Title"
@@ -86,10 +90,59 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "some image"
     },
+    status:{
+        type: String,
+        default:"some status"
+    },
     other:{
         type: String,
         default: "some other stuff"
-    }
+    },
+    _skill: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:"Skill"
+    }],
+    _work: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:"Work"
+    }],
+    _recommendation: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Recommendation"
+    }],
+    _project: [{
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: "Project"
+    }],
+    _message: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true, 
+        ref: "Message"
+    }],
+    _img: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Image"
+    }],
+    _accomplishment: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true, 
+        ref: "Accomplishment"
+    }],
+    _link: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Link"
+    }],
+    _tech: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Tech"
+    }]
 
 
 }, { timestamps: true });
