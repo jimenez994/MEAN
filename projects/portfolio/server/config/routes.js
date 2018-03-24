@@ -20,6 +20,7 @@ module.exports = (app) => {
     // 
     app.post("/create/project", Project.create);
     app.get("/projects", Project.show);
+    app.delete("/project/delete/:id", Project.deleteProject);
     
 
     // talk to the front end

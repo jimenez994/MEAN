@@ -100,47 +100,38 @@ const UserSchema = new mongoose.Schema({
     },
     _skill: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref:"Skill"
     }],
     _work: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref:"Work"
     }],
     _recommendation: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: "Recommendation"
     }],
     _project: [{
         type: mongoose.Schema.Types.ObjectId,
-        require: true,
         ref: "Project"
     }],
     _message: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true, 
         ref: "Message"
     }],
     _img: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: "Image"
     }],
     _accomplishment: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true, 
         ref: "Accomplishment"
     }],
     _link: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: "Link"
     }],
     _tech: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: "Tech"
     }]
 

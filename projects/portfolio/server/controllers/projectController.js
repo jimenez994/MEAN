@@ -13,11 +13,21 @@ module.exports = {
     },
     create(req, res){
         req.body._user = req.session.user_id
-        Project.create(req.body, (err, project) => {
-            if(err){
-                return res.josn(err);
-            }
-            return res.json(project);
+        var newProject = new Project(req.body);
+        User.findById(req.session.user_id, (err, currentUser)=> {
+            Project.create(newProject, (err, project) =>{
+                if (err){
+                    return res.json(err);
+                }else{
+                    currentUser._project.push(newProject);
+                    User.findByIdAndUpdate(req.session.user_id, (currentUser), (err, res) => {
+                        if(err){
+                            return read.json(err);
+                        }
+                    })
+                    return (res.json(project))
+                }
+            })
         })
     },
     deleteProject(req, res) {
