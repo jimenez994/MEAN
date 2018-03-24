@@ -4,6 +4,10 @@ const Project = require("../controllers/projectController");
 const Accomplishment = require("../controllers/accomplishmentController");
 const Work = require("../controllers/workController");
 const Tech = require("../controllers/techController");
+const Skill = require("../controllers/skillController");
+const Recommendation = require("../controllers/recommendationController");
+const Message = require("../controllers/messageController");
+const Link = require("../controllers/linkController");
 const path = require("path");
 
 module.exports = (app) => {
@@ -19,6 +23,12 @@ module.exports = (app) => {
     app.post("/upload", Image.createImage);
     app.get("/images", Image.getImages);
     app.delete("/image/:id", Image.deleteImage);
+
+    // Message CRUD
+    app.post("/message/create", Message.create);
+    app.get("/messages", Message.show);
+    app.get("/message/:id", Message.showOne);
+    app.delete("/message/delete/:id", Message.delete);
 
     // Project CRUD
     app.post("/project/create", Project.create);
@@ -42,6 +52,25 @@ module.exports = (app) => {
     app.delete("/work/delete/:id", Work.delete);
 
     // Tech CRUD
+    app.post("/skill/create", Skill.create);
+    app.get("/skills", Skill.show);
+    app.get("/skill/:id", Skill.showOne);
+    app.put("/skill/update/:id", Skill.update);
+    app.delete("/skill/delete/:id", Skill.delete);
+
+    // Recommendation CRUD
+    app.post("/recommendation/create", Recommendation.create);
+    app.get("/recommendations", Recommendation.show);
+    app.get("/recommendation", Recommendation.showOne);
+    app.put("/recommendation/update/:id", Recommendation.update);
+    app.delete("/recommendation/delete/:id", Recommendation.delete);
+
+    // Link CRUD
+    app.post("/link/create", Link.create);
+    app.get("/links", Link.show);
+    app.get("/link", Link.showOne);
+    app.put("/link/update/:id", Link.update);
+    app.delete("/link/delete/:id", Link.delete);
 
 
     // talk to the front end

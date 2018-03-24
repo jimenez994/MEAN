@@ -6,15 +6,18 @@ module.exports = {
     show(req, res) {
         Project.find({}, (err, projects) => {
             if (err){
-                return res.json(err)
+                return res.json(err);
             }
             return res.json(projects);
-        })
+        });
     },
     create(req, res){
-        req.body._user = req.session.user_id
+        req.body._user = req.session.user_id;
         var newProject = new Project(req.body);
         User.findById(req.session.user_id, (err, currentUser)=> {
+            if (err){
+                return res.json(err);
+            }
             Project.create(newProject, (err, project) =>{
                 if (err){
                     return res.json(err);
@@ -52,7 +55,7 @@ module.exports = {
                 return res.json(err);
             }
             User.findByIdAndUpdate(req.session.user_id, {$pull:{ _project: req.params.id}},(err, res)=> {
-                (err)=> {
+                if (err){
                     return res.json(err);
                 }
             })
