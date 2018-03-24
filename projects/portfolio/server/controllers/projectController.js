@@ -35,6 +35,11 @@ module.exports = {
             if (err) {
                 return res.json(err);
             }
+            User.findByIdAndUpdate(req.session.user_id, {$pull:{ _project: req.params.id}},(err, res)=> {
+                (err)=> {
+                    return res.json(err);
+                }
+            })
             return res.json({ result: 'you successfully daleted the project' })
         })
     }
