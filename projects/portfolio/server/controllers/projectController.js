@@ -6,7 +6,7 @@ module.exports = {
     show(req, res) {
         Project.find({}, (err, projects) => {
             if (err){
-                return read.json(err)
+                return res.json(err)
             }
             return res.json(projects);
         })
@@ -22,16 +22,32 @@ module.exports = {
                     currentUser._project.push(newProject);
                     User.findByIdAndUpdate(req.session.user_id, (currentUser), (err, res) => {
                         if(err){
-                            return read.json(err);
+                            return res.json(err);
                         }
                     })
-                    return (res.json(project))
+                    return res.json(project);
                 }
             })
         })
     },
-    deleteProject(req, res) {
-        Project.findByIdAndRemove({ _id: req.params.id }, (err, project) => {
+    showOne(req, res){
+        Project.findById(req.params.id, (err, project) => {
+            if(err){
+                return res.json(err);
+            }
+            return res.json(project);
+        })
+    },
+    update(req, res){
+        Project.findByIdAndUpdate(req.params.id, req.body, (err, project) =>{
+            if(err) {
+                return res.json(err)
+            }
+            return res.json({ result: 'You successfully updated the project' })
+        })
+    },
+    delete(req, res) {
+        Project.findByIdAndRemove(req.params.id , (err, project) => {
             if (err) {
                 return res.json(err);
             }
@@ -40,7 +56,7 @@ module.exports = {
                     return res.json(err);
                 }
             })
-            return res.json({ result: 'you successfully daleted the project' })
+            return res.json({ result: 'You successfully deleted the project' });
         })
     }
 }
