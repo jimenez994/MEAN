@@ -14,7 +14,7 @@ module.exports = {
     create(req, res){
         req.body._user = req.session.user_id;
         var newLink = new Link(req.body);
-        User.findById(req,session.user_id, (err, currentUser) => {
+        User.findById(req.session.user_id, (err, currentUser) => {
             if (err){
                 return res.json(err);
             }
@@ -46,7 +46,7 @@ module.exports = {
             if(err){
                 return res.json(err);
             }
-            return read.json({result: "You successfully updated the link"});
+            return res.json({result: "You successfully updated the link"});
         });
     },
     delete(req, res){
@@ -54,7 +54,7 @@ module.exports = {
             if (err){
                 return res.json(err);
             }
-            User.findByIdAndUpdate(res.session.user_id, {$pull: { _link: req.params.id}}, (err, res) => {
+            User.findByIdAndUpdate(req.session.user_id, {$pull: { _link: req.params.id}}, (err, res) => {
                 if (err){
                     return res.json(err);
                 }

@@ -25,7 +25,7 @@ module.exports = (app) => {
     app.delete("/image/:id", Image.deleteImage);
 
     // Message CRUD
-    app.post("/message/create", Message.create);
+    app.post("/message/create/:id", Message.create);
     app.get("/messages", Message.show);
     app.get("/message/:id", Message.showOne);
     app.delete("/message/delete/:id", Message.delete);
@@ -38,7 +38,7 @@ module.exports = (app) => {
     app.delete("/project/delete/:id", Project.delete);
     
     // Accomplishment CRUD
-    app.post("/create/accomplishment", Accomplishment.create);
+    app.post("/accomplishment/create", Accomplishment.create);
     app.get("/accomplishments", Accomplishment.show);
     app.get("/accomplishment/:id", Accomplishment.showOne);
     app.put("/accomplishment/update/:id", Accomplishment.update);
@@ -52,6 +52,13 @@ module.exports = (app) => {
     app.delete("/work/delete/:id", Work.delete);
 
     // Tech CRUD
+    app.post("/tech/create", Tech.create);
+    app.get("/techs", Tech.show);
+    app.get("/tech/:id", Tech.showOne);
+    app.put("/tech/update/:id", Tech.update);
+    app.delete("/tech/delete/:id", Tech.delete);
+
+    // Skill CRUD
     app.post("/skill/create", Skill.create);
     app.get("/skills", Skill.show);
     app.get("/skill/:id", Skill.showOne);
@@ -61,14 +68,14 @@ module.exports = (app) => {
     // Recommendation CRUD
     app.post("/recommendation/create", Recommendation.create);
     app.get("/recommendations", Recommendation.show);
-    app.get("/recommendation", Recommendation.showOne);
+    app.get("/recommendation/:id", Recommendation.showOne);
     app.put("/recommendation/update/:id", Recommendation.update);
     app.delete("/recommendation/delete/:id", Recommendation.delete);
 
     // Link CRUD
     app.post("/link/create", Link.create);
     app.get("/links", Link.show);
-    app.get("/link", Link.showOne);
+    app.get("/link/:id", Link.showOne);
     app.put("/link/update/:id", Link.update);
     app.delete("/link/delete/:id", Link.delete);
 

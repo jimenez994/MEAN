@@ -22,7 +22,7 @@ module.exports = {
                 if (err){
                     return res.json(err);
                 }else{
-                    currentUser._recommentation.push(newRecommendation);
+                    currentUser._recommendation.push(newRecommendation);
                     User.findByIdAndUpdate(req.session.user_id, (currentUser), (err, res) => {
                         if(err){
                             return res.json(err);
@@ -54,7 +54,7 @@ module.exports = {
             if (err) {
                 return res.json(err);
             }
-            User.findByIdAndUpdate(req.session.user_id, {$pull: {  _recommentation: req.prams.id }}, (err, result) => {
+            User.findByIdAndUpdate(req.session.user_id, {$pull: {  _recommendation: req.params.id }}, (err, res) => {
                 if (err) {
                     return res.json(err);
                 }

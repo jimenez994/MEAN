@@ -19,7 +19,7 @@ module.exports = {
                 if (err){
                     return res.json(err);
                 }else{
-                    currentUser._project.push(newTech);
+                    currentUser._tech.push(newTech);
                     User.findByIdAndUpdate(req.session.user_id, (currentUser), (err, res) =>{ 
                         if (err){
                             return res.json(err);
@@ -35,11 +35,11 @@ module.exports = {
             if (err){
                 return res.json(err);
             }
-            return res.json(thech);
+            return res.json(tech);
         });
     },
-    updaqte(req, res){
-        Tech.findByIdAndUpdate(req.params.id, (err, tech) => {
+    update(req, res){
+        Tech.findByIdAndUpdate(req.params.id, req.body, (err, tech) => {
             if (err){
                 return res.json(err);
             }
@@ -56,7 +56,7 @@ module.exports = {
                     return res.json(err);
                 }
             });
-            return read.json({result: "You successfully deleted this tech"});
+            return res.json({result: "You successfully deleted this tech"});
         });
     }
 }

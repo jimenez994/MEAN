@@ -39,7 +39,7 @@ module.exports = {
         });
     },
     update( req, res){
-        work.findByIdAndUpdate(req.params.id, req.body, (err, work) => {
+        Work.findByIdAndUpdate(req.params.id, req.body, (err, work) => {
             if (err){
                 return res.json(err);
             }

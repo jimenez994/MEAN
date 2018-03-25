@@ -20,7 +20,7 @@ module.exports = {
                     return res.json(err);
                 }else{
                     currentUser._skill.push(newSkill);
-                    Skill.findByIdAndUpdate(req.session.user_id, (currentUser), (err, res) =>{
+                    User.findByIdAndUpdate(req.session.user_id, (currentUser), (err, res) =>{
                         if(err){
                             return res.json(err);
                         }
@@ -43,7 +43,7 @@ module.exports = {
             if (err){
                 return res.json(err);
             }
-            return read.json({result:"You successfully updeted the skill"});
+            return res.json({result:"You successfully updeted the skill"});
         });
     },
     delete(req, res){
