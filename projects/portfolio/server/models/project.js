@@ -25,6 +25,10 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         default: "other"
     },
+    editable: {
+        type: Boolean,
+        required: false
+    },
     _user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

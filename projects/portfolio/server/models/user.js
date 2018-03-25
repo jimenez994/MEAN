@@ -98,6 +98,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "some other stuff"
     },
+    editable: {
+        type: Boolean,
+        required: false
+    },
     _skill: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Skill"
@@ -118,7 +122,7 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Message"
     }],
-    _img: [{
+    _image: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Image"
     }],

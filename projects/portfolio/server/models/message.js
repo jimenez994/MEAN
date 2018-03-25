@@ -27,6 +27,10 @@ const MessageSchema = new mongoose.Schema({
         minlength: [1, "Last Name must be between 1-255 characters"],
         maxlength: [255, "Last Name must be between 1-255 characters"],
     },
+    editable: {
+        type: Boolean,
+        required: false
+    },
     _user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

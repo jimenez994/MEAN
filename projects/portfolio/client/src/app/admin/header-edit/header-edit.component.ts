@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { User } from '../../server/models/user';
 
 @Component({
   selector: 'app-header-edit',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-edit.component.scss']
 })
 export class HeaderEditComponent implements OnInit {
-
+  @Input() currentUser: User;
   constructor() { }
 
   ngOnInit() {

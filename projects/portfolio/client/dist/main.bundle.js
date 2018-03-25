@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\"></app-header>\n    </div>\n   \n\n</div>\n"
+module.exports = "<div class=\"row\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n    </div>\n   \n\n</div>\n"
 
 /***/ }),
 
@@ -60,14 +60,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var AdminComponent = /** @class */ (function () {
-    function AdminComponent(_userService, _imageService) {
+    function AdminComponent(_userService, _imageService, _router) {
         this._userService = _userService;
         this._imageService = _imageService;
+        this._router = _router;
         this.images = [];
     }
     AdminComponent.prototype.ngOnInit = function () {
         this.getImages();
+        this.getUser();
+        console.log(this.currentUser.first_name);
+    };
+    AdminComponent.prototype.updateUser = function (user) {
+        var _this = this;
+        this._userService.update(user)
+            .then(function (status) { return _this.getUser(); })
+            .catch(function (err) { return console.log(err); });
+    };
+    AdminComponent.prototype.getUser = function () {
+        var _this = this;
+        this._userService.getCurrentUser()
+            .then(function (user) {
+            return _this.currentUser = user;
+        })
+            .catch(function (err) { return _this._router.navigateByUrl('/admin'); });
     };
     AdminComponent.prototype.getImages = function () {
         var _this = this;
@@ -94,7 +112,8 @@ var AdminComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/admin/admin.component.scss")]
         }),
         __metadata("design:paramtypes", [user_service_1.UserService,
-            image_service_1.ImageService])
+            image_service_1.ImageService,
+            router_1.Router])
     ], AdminComponent);
     return AdminComponent;
 }());
@@ -144,11 +163,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_1 = __webpack_require__("../../../../../src/app/server/models/user.ts");
 var HeaderEditComponent = /** @class */ (function () {
     function HeaderEditComponent() {
     }
     HeaderEditComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", user_1.User)
+    ], HeaderEditComponent.prototype, "currentUser", void 0);
     HeaderEditComponent = __decorate([
         core_1.Component({
             selector: 'app-header-edit',
@@ -167,7 +191,7 @@ exports.HeaderEditComponent = HeaderEditComponent;
 /***/ "../../../../../src/app/admin/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card text-center\">\n    <img class=\"card-img\" src=\"{{images[3].src}}\" alt=\"\">\n    <div id=\"header-over\" class=\"card-img-overlay\">\n      <h1 class=\"card-title text-white\">Welcome</h1>\n      <h3 class=\"card-body text-white\">Lorem, ipsum dolor sit</h3>\n      <button class=\"btn btn-info\">Edit</button>\n    </div>\n</div>\n<app-header-edit></app-header-edit>\n"
+module.exports = "<div class=\"card text-center\">\n    <!-- <img class=\"card-img\" src=\"{{images[0].src}}\" alt=\"\"> -->\n    <div id=\"header-over\" class=\"card-img-overlay\">\n      <h1 class=\"card-title text-white\">{{currentUser.first_name}}</h1>\n      <h3 class=\"card-body text-white\">Lorem, ipsum dolor sit</h3>\n      <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n      <app-header-edit [currentUser]=\"currentUser\" *ngIf=\"currentUser.editable\"></app-header-edit>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -179,7 +203,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#header-over {\n  background: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.6)), to(rgba(40, 180, 133, 0.6)));\n  background: linear-gradient(to right bottom, rgba(126, 213, 111, 0.6), rgba(40, 180, 133, 0.6)); }\n", ""]);
+exports.push([module.i, "#header-over {\n  background: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.6)), to(rgba(40, 180, 133, 0.6)));\n  background: linear-gradient(to right bottom, rgba(126, 213, 111, 0.6), rgba(40, 180, 133, 0.6));\n  height: 400px; }\n", ""]);
 
 // exports
 
@@ -207,13 +231,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var HeaderComponent = /** @class */ (function () {
     function HeaderComponent() {
+        this.updateUserEvent = new core_1.EventEmitter();
     }
     HeaderComponent.prototype.ngOnInit = function () {
+        console.log(this.currentUser);
+    };
+    HeaderComponent.prototype.update = function (user) {
+        this.updateUserEvent.emit(user);
     };
     __decorate([
         core_1.Input(),
         __metadata("design:type", Object)
+    ], HeaderComponent.prototype, "currentUser", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
     ], HeaderComponent.prototype, "images", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], HeaderComponent.prototype, "updateUserEvent", void 0);
     HeaderComponent = __decorate([
         core_1.Component({
             selector: 'app-header',
@@ -232,7 +269,7 @@ exports.HeaderComponent = HeaderComponent;
 /***/ "../../../../../src/app/admin/img-upload/img-upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input class=\"btn btn-info btn-block\" type=\"submit\" value=\"upload\">\n  </form>\n\n \n  <div class=\"card\"  *ngFor=\"let img of images\">\n    <img class=\"card-img-top img-fluid\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n    <div class=\"card-body\">\n      <button class=\"btn btn-danger btn-block\" (click)='deleteImg(img._id)'>Delete</button>\n    </div>\n  </div>\n\n\n\n\n"
+module.exports = "\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input class=\"btn btn-info btn-block\" type=\"submit\" value=\"upload\">\n  </form>\n\n  <div class=\"card\"  *ngFor=\"let img of images\">\n    <img class=\"card-img-top img-fluid\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n    <div class=\"card-body\">\n      <button class=\"btn btn-danger btn-block\" (click)='deleteImg(img._id)'>Delete</button>\n    </div>\n  </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -296,15 +333,6 @@ var ImgUploadComponent = /** @class */ (function () {
     };
     ImgUploadComponent.prototype.deleteImg = function (id) {
         this.destroyImageEvent.emit(id);
-    };
-    ImgUploadComponent.prototype.getUserSession = function () {
-        var _this = this;
-        this._userService.getCurrentUser().subscribe(function (res) {
-            _this.currentUser = res.json();
-            if (_this.currentUser == null) {
-                _this._router.navigateByUrl('/');
-            }
-        });
     };
     __decorate([
         core_1.Input(),
@@ -879,6 +907,7 @@ var ImageService = /** @class */ (function () {
         this._http = _http;
     }
     ImageService.prototype.createImage = function (newImg) {
+        console.log(newImg);
         return this._http.post("/upload", newImg).map(function (data) { return data.json(); }).toPromise();
     };
     ImageService.prototype.getImages = function () {
@@ -915,16 +944,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var http_1 = __webpack_require__("../../../http/esm5/http.js");
+__webpack_require__("../../../../rxjs/Rx.js");
+__webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 var UserService = /** @class */ (function () {
     function UserService(_http) {
         this._http = _http;
     }
+    // get current user that is login
     UserService.prototype.getCurrentUser = function () {
-        return this._http.get("/user");
+        return this._http.get("/user").map(function (data) { return data.json(); }).toPromise();
     };
+    // get all users
+    UserService.prototype.getUsers = function () {
+        return this._http.get("/users");
+    };
+    // update current user 
+    UserService.prototype.update = function (user) {
+        return this._http.put("/user/update", user).map(function (data) { return data.json(); }).toPromise();
+    };
+    // create a user
     UserService.prototype.create = function (user) {
         return this._http.post("/user/create", user);
     };
+    // login
     UserService.prototype.login = function (user, callback) {
         this._http.post("/user/login", user).subscribe(function (res) {
             callback(res);
@@ -932,6 +974,7 @@ var UserService = /** @class */ (function () {
             callback(err);
         });
     };
+    // logout
     UserService.prototype.logout = function () {
         return this._http.delete("/user/logout");
     };
@@ -970,6 +1013,7 @@ exports.Image = Image;
 Object.defineProperty(exports, "__esModule", { value: true });
 var User = /** @class */ (function () {
     function User() {
+        this.editable = false;
     }
     return User;
 }());
