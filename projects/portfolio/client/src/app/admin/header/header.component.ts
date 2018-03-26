@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.currentUser._id+"********************")
   }
   update(user: User ){
     this.updateUserEvent.emit(user);

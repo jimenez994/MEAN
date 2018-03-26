@@ -1,9 +1,9 @@
 <div class="card text-center">
     <!-- <img class="card-img" src="{{images[0].src}}" alt=""> -->
     <div id="header-over" class="card-img-overlay">
-      <h1 class="card-title text-white">{{currentUser.first_name}}</h1>
-      <h3 class="card-body text-white">Lorem, ipsum dolor sit</h3>
+      <h1 class="card-title text-white">{{currentUser.title}}</h1>
+      <h3 class="card-body text-white">{{currentUser.subTitle}}</h3>
       <button class="btn btn-info" (click)="currentUser.editable = !currentUser.editable">Edit</button>
-      <app-header-edit [currentUser]="currentUser" *ngIf="currentUser.editable"></app-header-edit>
+      <app-header-edit [currentUser]="currentUser" (updateUserEvent)="update($event)" *ngIf="currentUser.editable"></app-header-edit>
     </div>
 </div>

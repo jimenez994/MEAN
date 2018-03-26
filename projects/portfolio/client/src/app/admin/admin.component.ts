@@ -38,7 +38,6 @@ export class AdminComponent implements OnInit {
   })
     .catch(err => console.log(err))
   }
-  
   getImages(){
     this._imageService.getImages()
     .then(images => this.images = images)

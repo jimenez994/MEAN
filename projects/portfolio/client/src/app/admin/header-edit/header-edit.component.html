@@ -1,5 +1,5 @@
-<form >
-  <input type="text" name="header">
-  <input type="text" name="sub-header">
+<form (submit)="update()">
+  <input type="text" name="title" [(ngModel)]="userEdit.title">
+  <input type="text" name="subTitle" [(ngModel)]="userEdit.subTitle">  
   <input type="submit" value="update">
 </form>

@@ -8,9 +8,16 @@ import { User } from '../../server/models/user';
 })
 export class HeaderEditComponent implements OnInit {
   @Input() currentUser: User;
+  @Output() updateUserEvent = new EventEmitter()
+  userEdit: User = new User();
   constructor() { }
 
   ngOnInit() {
+    Object.assign(this.userEdit, this.currentUser);
+  }
+  update(){
+    this.userEdit.editable = false;
+    this.updateUserEvent.emit(this.userEdit);
   }
 
 }
