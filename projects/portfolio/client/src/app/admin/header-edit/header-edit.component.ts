@@ -8,6 +8,7 @@ import { User } from '../../server/models/user';
 })
 export class HeaderEditComponent implements OnInit {
   @Input() currentUser: User;
+  @Input() images;
   @Output() updateUserEvent = new EventEmitter()
   userEdit: User = new User();
   constructor() { }

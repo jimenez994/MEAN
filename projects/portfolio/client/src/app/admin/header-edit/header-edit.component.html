@@ -1,5 +1,9 @@
 <form (submit)="update()">
   <input type="text" name="title" [(ngModel)]="userEdit.title">
-  <input type="text" name="subTitle" [(ngModel)]="userEdit.subTitle">  
+  <input type="text" name="subTitle" [(ngModel)]="userEdit.subTitle">
+  <select name="backgroud" [(ngModel)]="userEdit.headerImg">
+    <option *ngFor="let image of images" value="{{image.src}}">{{image.name}}</option>
+  </select>
+  <input type="color" name="favcolor" value="#ff0000" [(ngModel)]="userEdit.other">
   <input type="submit" value="update">
 </form>

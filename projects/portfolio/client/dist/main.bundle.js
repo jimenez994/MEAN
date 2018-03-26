@@ -130,7 +130,7 @@ exports.AdminComponent = AdminComponent;
 /***/ "../../../../../src/app/admin/header-edit/header-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"update()\">\n  <input type=\"text\" name=\"title\" [(ngModel)]=\"userEdit.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"userEdit.subTitle\">  \n  <input type=\"submit\" value=\"update\">\n</form>"
+module.exports = "<form (submit)=\"update()\">\n  <input type=\"text\" name=\"title\" [(ngModel)]=\"userEdit.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"userEdit.subTitle\">\n  <select name=\"backgroud\" [(ngModel)]=\"userEdit.headerImg\">\n    <option *ngFor=\"let image of images\" value=\"{{image.src}}\">{{image.name}}</option>\n  </select>\n  <input type=\"color\" name=\"favcolor\" value=\"#ff0000\" [(ngModel)]=\"userEdit.other\">\n  <input type=\"submit\" value=\"update\">\n</form>"
 
 /***/ }),
 
@@ -186,6 +186,10 @@ var HeaderEditComponent = /** @class */ (function () {
         __metadata("design:type", user_1.User)
     ], HeaderEditComponent.prototype, "currentUser", void 0);
     __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], HeaderEditComponent.prototype, "images", void 0);
+    __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
     ], HeaderEditComponent.prototype, "updateUserEvent", void 0);
@@ -207,7 +211,7 @@ exports.HeaderEditComponent = HeaderEditComponent;
 /***/ "../../../../../src/app/admin/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card text-center\">\n    <!-- <img class=\"card-img\" src=\"{{images[0].src}}\" alt=\"\"> -->\n    <div id=\"header-over\" class=\"card-img-overlay\">\n      <h1 class=\"card-title text-white\">{{currentUser.title}}</h1>\n      <h3 class=\"card-body text-white\">{{currentUser.subTitle}}</h3>\n      <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n      <app-header-edit [currentUser]=\"currentUser\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n    </div>\n</div>\n"
+module.exports = "<div class=\"card text-center\">\n    <img class=\"card-img header-size\" src=\"{{currentUser.headerImg}}\" alt=\"header Image\">\n    <div class=\"header-size card-img-overlay\" [ngStyle]=\"{'background': 'linear-gradient(to right bottom,rgba('currentUser.other', 0.6)'}\">\n      <h1 class=\"card-title text-white\">{{currentUser.title}}</h1>\n      <h3 class=\"card-body text-white\">{{currentUser.subTitle}}</h3>\n      <p></p>\n      <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n      <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -219,7 +223,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#header-over {\n  background: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.6)), to(rgba(40, 180, 133, 0.6)));\n  background: linear-gradient(to right bottom, rgba(126, 213, 111, 0.6), rgba(40, 180, 133, 0.6));\n  height: 400px; }\n", ""]);
+exports.push([module.i, ".header-size {\n  height: 350px; }\n", ""]);
 
 // exports
 

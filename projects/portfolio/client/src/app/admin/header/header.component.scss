@@ -1,12 +1,17 @@
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
+:root{
+    
+}
+$color-primary-light: #b4c3b3;
+$color-primary-dark: #dbd6bb;
 // #cardM{
 //     height: 95vh;
 //     clip-path: polygon( 0 0, 100% 0, 100% 75vh, 0 100%);
 // }
-#header-over{
-    background: linear-gradient(to right bottom,
-     rgba($color-primary-light, 0.6), 
-     rgba($color-primary-dark, 0.6)) ;
-     height: 400px;
+.header-size{
+    height: 350px;
 }
+// #header-over{
+//     background: linear-gradient(to right bottom,
+//      rgba($color-primary-light, 0.6), 
+//      rgba($color-primary-dark, 0.6)) ;
+// }
