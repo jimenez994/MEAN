@@ -67,11 +67,11 @@ var AdminComponent = /** @class */ (function () {
         this._imageService = _imageService;
         this._router = _router;
         this.images = [];
+        this.currentUser = null;
     }
     AdminComponent.prototype.ngOnInit = function () {
         this.getImages();
         this.getUser();
-        console.log(this.currentUser.first_name);
     };
     AdminComponent.prototype.updateUser = function (user) {
         var _this = this;
@@ -83,9 +83,14 @@ var AdminComponent = /** @class */ (function () {
         var _this = this;
         this._userService.getCurrentUser()
             .then(function (user) {
-            return _this.currentUser = user;
+            if (user == null) {
+                _this._router.navigateByUrl("/admin");
+            }
+            else {
+                _this.currentUser = user;
+            }
         })
-            .catch(function (err) { return _this._router.navigateByUrl('/admin'); });
+            .catch(function (err) { return console.log(err); });
     };
     AdminComponent.prototype.getImages = function () {
         var _this = this;
@@ -234,7 +239,7 @@ var HeaderComponent = /** @class */ (function () {
         this.updateUserEvent = new core_1.EventEmitter();
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        console.log(this.currentUser);
+        console.log(this.currentUser._id + "********************");
     };
     HeaderComponent.prototype.update = function (user) {
         this.updateUserEvent.emit(user);
@@ -1013,6 +1018,7 @@ exports.Image = Image;
 Object.defineProperty(exports, "__esModule", { value: true });
 var User = /** @class */ (function () {
     function User() {
+        this._id = "";
         this.editable = false;
     }
     return User;

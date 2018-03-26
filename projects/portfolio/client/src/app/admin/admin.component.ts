@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   images: Array<Image> = [];
-  currentUser: any 
+  currentUser: User = null
 
   constructor(
     private _userService: UserService,
@@ -22,7 +22,6 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.getImages()
     this.getUser()
-    console.log(this.currentUser.first_name)
   }
   updateUser(user:User){
     this._userService.update(user)
@@ -31,9 +30,13 @@ export class AdminComponent implements OnInit {
   }
   getUser(){
     this._userService.getCurrentUser()
-    .then(user =>
-      this.currentUser = user)
-    .catch(err => this._router.navigateByUrl('/admin'))
+    .then(user => {if (user == null) {
+      this._router.navigateByUrl("/admin")
+    }else{
+      this.currentUser = user
+    }
+  })
+    .catch(err => console.log(err))
   }
   
   getImages(){
