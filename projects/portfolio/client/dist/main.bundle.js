@@ -211,7 +211,7 @@ exports.HeaderEditComponent = HeaderEditComponent;
 /***/ "../../../../../src/app/admin/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card text-center\">\n    <img class=\"card-img header-size\" src=\"{{currentUser.headerImg}}\" alt=\"header Image\">\n    <div class=\"header-size card-img-overlay\" [ngStyle]=\"{'background': 'linear-gradient(to right bottom,rgba('currentUser.other', 0.6)'}\">\n      <h1 class=\"card-title text-white\">{{currentUser.title}}</h1>\n      <h3 class=\"card-body text-white\">{{currentUser.subTitle}}</h3>\n      <p></p>\n      <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n      <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n    </div>\n</div>\n"
+module.exports = "<div class=\"card text-center\">\n    <img class=\"card-img header-size\" src=\"{{currentUser.headerImg}}\" alt=\"header Image\">\n    <div class=\"header-size card-img-overlay\" [ngStyle]=\"{'background': 'linear-gradient(to right bottom,rgba(' + currentUser.other + ', 0.6))'}\">\n      <h1 class=\"card-title text-white\">{{currentUser.title}}</h1>\n      <h3 class=\"card-body text-white\">{{currentUser.subTitle}}</h3>\n      <p>{{currentUser.other}}</p>\n      <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n      <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n    </div>\n</div>\n"
 
 /***/ }),
 

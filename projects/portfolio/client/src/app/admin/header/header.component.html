@@ -1,9 +1,9 @@
 <div class="card text-center">
     <img class="card-img header-size" src="{{currentUser.headerImg}}" alt="header Image">
-    <div class="header-size card-img-overlay" [ngStyle]="{'background': 'linear-gradient(to right bottom,rgba('currentUser.other', 0.6)'}">
+    <div class="header-size card-img-overlay" [ngStyle]="{'background': 'linear-gradient(to right bottom,rgba(' + currentUser.other + ', 0.6))'}">
       <h1 class="card-title text-white">{{currentUser.title}}</h1>
       <h3 class="card-body text-white">{{currentUser.subTitle}}</h3>
-      <p></p>
+      <p>{{currentUser.other}}</p>
       <button class="btn btn-info" (click)="currentUser.editable = !currentUser.editable">Edit</button>
       <app-header-edit [currentUser]="currentUser" [images]="images" (updateUserEvent)="update($event)" *ngIf="currentUser.editable"></app-header-edit>
     </div>
