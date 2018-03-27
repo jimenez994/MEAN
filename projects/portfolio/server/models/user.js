@@ -96,12 +96,21 @@ const UserSchema = new mongoose.Schema({
     },
     other:{
         type: String,
-        default: "some other stuff"
+        default: "some other"
+    },
+    leftG: {
+        type: String,
+        default: "126, 213, 111, 0.8"
+    },
+    rightG: {
+        type: String,
+        default: "40, 180, 133, 0.8"
     },
     editable: {
         type: Boolean,
         required: false
     },
+
     _skill: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Skill"

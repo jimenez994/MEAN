@@ -1,17 +1,6 @@
-:root{
-    
-}
-$color-primary-light: #b4c3b3;
-$color-primary-dark: #dbd6bb;
-// #cardM{
-//     height: 95vh;
-//     clip-path: polygon( 0 0, 100% 0, 100% 75vh, 0 100%);
-// }
-.header-size{
+#header{
     height: 350px;
+    background-size: cover;
+    background-position: top;
+    position: relative;
 }
-// #header-over{
-//     background: linear-gradient(to right bottom,
-//      rgba($color-primary-light, 0.6), 
-//      rgba($color-primary-dark, 0.6)) ;
-// }

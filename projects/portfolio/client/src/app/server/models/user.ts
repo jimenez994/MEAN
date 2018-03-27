@@ -16,6 +16,8 @@ export class User {
     otherImg: string;
     status: string;
     other: string;
+    leftG: string;
+    rightG: string;    
     editable: boolean = false;
     _skill: any[];
     _work: any[];

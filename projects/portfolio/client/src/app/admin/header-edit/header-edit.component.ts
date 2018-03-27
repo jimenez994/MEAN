@@ -18,6 +18,7 @@ export class HeaderEditComponent implements OnInit {
   }
   update(){
     this.userEdit.editable = false;
+    console.log(this.userEdit);
     this.updateUserEvent.emit(this.userEdit);
   }
 
