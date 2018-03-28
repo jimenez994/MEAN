@@ -1,4 +1,4 @@
-<div id="header" class="card text-center" [ngStyle]="{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}" >
+<div *ngIf="currentUser != null" id="header" class="card text-center" [ngStyle]="{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}" >
   <div class="card-body">
     <h1>{{currentUser.title}}</h1>
     

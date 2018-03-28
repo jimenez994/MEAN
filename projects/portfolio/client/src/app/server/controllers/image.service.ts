@@ -11,7 +11,6 @@ export class ImageService {
     private _http: Http
   ) { }
   createImage(newImg){
-    console.log(newImg);
     return this._http.post("/upload", newImg).map(data => data.json()).toPromise()
   }
   getImages(){

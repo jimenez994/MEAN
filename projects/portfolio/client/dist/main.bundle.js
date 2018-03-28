@@ -130,7 +130,7 @@ exports.AdminComponent = AdminComponent;
 /***/ "../../../../../src/app/admin/header-edit/header-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"update()\">\n  <input type=\"text\" name=\"title\" [(ngModel)]=\"userEdit.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"userEdit.subTitle\">\n  <input type=\"text\" name=\"leftG\" [(ngModel)]=\"userEdit.leftG\">\n  <input type=\"text\" name=\"rightG\" [(ngModel)]=\"userEdit.rightG\">  \n  <select name=\"backgroud\" [(ngModel)]=\"userEdit.headerImg\">\n    <option *ngFor=\"let image of images\" value=\"{{image.src}}\">{{image.name}}</option>\n  </select>\n  <input type=\"submit\" value=\"update\">\n</form>"
+module.exports = "<form (submit)=\"update()\">\n  \n  <input type=\"text\" name=\"title\" [(ngModel)]=\"userEdit.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"userEdit.subTitle\">\n  <input type=\"text\" name=\"leftG\" [(ngModel)]=\"userEdit.leftG\">\n  <input type=\"text\" name=\"rightG\" [(ngModel)]=\"userEdit.rightG\">  \n  <select name=\"backgroud\" [(ngModel)]=\"userEdit.headerImg\">\n    <option *ngFor=\"let image of images\" value=\"{{image.src}}\">{{image.name}}</option>\n  </select>\n  <input type=\"submit\" value=\"update\">\n</form>"
 
 /***/ }),
 
@@ -212,7 +212,7 @@ exports.HeaderEditComponent = HeaderEditComponent;
 /***/ "../../../../../src/app/admin/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header\" class=\"card text-center\" [ngStyle]=\"{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}\" >\n  <div class=\"card-body\">\n    <h1>{{currentUser.title}}</h1>\n    \n  </div>  \n  <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n  <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n</div>\n"
+module.exports = "<div *ngIf=\"currentUser != null\" id=\"header\" class=\"card text-center\" [ngStyle]=\"{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}\" >\n  <div class=\"card-body\">\n    <h1>{{currentUser.title}}</h1>\n    \n  </div>  \n  <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n  <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n</div>\n"
 
 /***/ }),
 
@@ -927,7 +927,6 @@ var ImageService = /** @class */ (function () {
         this._http = _http;
     }
     ImageService.prototype.createImage = function (newImg) {
-        console.log(newImg);
         return this._http.post("/upload", newImg).map(function (data) { return data.json(); }).toPromise();
     };
     ImageService.prototype.getImages = function () {
