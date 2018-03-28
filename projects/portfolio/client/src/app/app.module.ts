@@ -19,6 +19,10 @@ import { ImgUploadComponent } from './admin/img-upload/img-upload.component';
 import { ImageService } from './server/controllers/image.service';
 import { HeaderComponent } from './admin/header/header.component';
 import { HeaderEditComponent } from './admin/header-edit/header-edit.component';
+import { SummaryComponent } from './admin/summary/summary.component';
+import { SummaryEditComponent } from './admin/summary-edit/summary-edit.component';
+import { StacksComponent } from './admin/stacks/stacks.component';
+import { StackEditComponent } from './admin/stack-edit/stack-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { HeaderEditComponent } from './admin/header-edit/header-edit.component';
     ImgUploadComponent,
     HeaderComponent,
     HeaderEditComponent,
+    SummaryComponent,
+    SummaryEditComponent,
+    StacksComponent,
+    StackEditComponent,
     
   ],
   imports: [

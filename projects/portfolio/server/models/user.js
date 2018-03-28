@@ -106,11 +106,50 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "40, 180, 133, 0.8"
     },
-    editable: {
+    canEditHeader: {
         type: Boolean,
         required: false
     },
-
+    canEditSummary: {
+        type: Boolean,
+        required: false
+    },
+    canEditStack: {
+        type: Boolean,
+        required: false
+    },
+    canEditAboutMe: {
+        type: Boolean,
+        required: false
+    },
+    canEditProject: {
+        type: Boolean,
+        required: false
+    },
+    canEditSkill: {
+        type: Boolean,
+        required: false
+    },
+    canEditAccomplishment: {
+        type: Boolean,
+        required: false
+    },
+    canEditTech: {
+        type: Boolean,
+        required: false
+    },
+    canEditLink: {
+        type: Boolean,
+        required: false
+    },
+    canEditRecommendation: {
+        type: Boolean,
+        required: false
+    },
+    canEditOther: {
+        type: Boolean,
+        required: false
+    },
     _skill: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Skill"

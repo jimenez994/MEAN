@@ -1,0 +1,9 @@
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-text">{{currentUser.summary}}</h5>
+  </div>
+  <div class="card-footer">
+      <button class="btn btn-info" (click)="currentUser.canEditSummary = !currentUser.canEditSummary">Edit</button>
+  </div>
+  <app-summary-edit [currentUser]="currentUser" [images]="images" (updateUserEvent)="update($event)" *ngIf="currentUser.canEditSummary"></app-summary-edit>
+</div>

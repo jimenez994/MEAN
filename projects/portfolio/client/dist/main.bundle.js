@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n    </div>\n   \n\n</div>\n"
+module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n    </div>\n   \n\n</div>\n"
 
 /***/ }),
 
@@ -130,7 +130,7 @@ exports.AdminComponent = AdminComponent;
 /***/ "../../../../../src/app/admin/header-edit/header-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"update()\">\n  \n  <input type=\"text\" name=\"title\" [(ngModel)]=\"userEdit.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"userEdit.subTitle\">\n  <input type=\"text\" name=\"leftG\" [(ngModel)]=\"userEdit.leftG\">\n  <input type=\"text\" name=\"rightG\" [(ngModel)]=\"userEdit.rightG\">  \n  <select name=\"backgroud\" [(ngModel)]=\"userEdit.headerImg\">\n    <option *ngFor=\"let image of images\" value=\"{{image.src}}\">{{image.name}}</option>\n  </select>\n  <input type=\"submit\" value=\"update\">\n</form>"
+module.exports = "<form (submit)=\"update()\">\n  <div class=\"form-row\">\n    <div class=\"col\">\n      <label for=\"Title\">Title</label>\n      <input class=\"form-control form-control-sm\" type=\"text\" name=\"title\" [(ngModel)]=\"userEdit.title\">\n    </div>\n    <div class=\"col\"> \n      <label for=\"subTitle\">Subtitle</label> \n      <input type=\"text\" class=\"form-control form-control-sm\" name=\"subTitle\" [(ngModel)]=\"userEdit.subTitle\">\n    </div>\n  </div>\n  \n  <div class=\"form-row\">\n    <div class=\"col\">  \n      <input class=\"form-control form-control-sm\" type=\"text\" name=\"leftG\" [(ngModel)]=\"userEdit.leftG\">\n      <label ><small>rgba left</small></label>\n    </div>\n    <div class=\"col\">\n      <input class=\"form-control form-control-sm\" type=\"text\" name=\"rightG\" [(ngModel)]=\"userEdit.rightG\">\n      <label ><small>rgba right</small></label>      \n    </div>\n  </div>\n  \n  <div class=\"form-group\">\n    <select class=\"form-control form-control-sm\" name=\"backgroud\" [(ngModel)]=\"userEdit.headerImg\">\n      <option *ngFor=\"let image of images\" value=\"{{image.src}}\">{{image.name}}</option>\n    </select>\n  </div>\n\n    <input class=\"btn btn-primary\" type=\"submit\" value=\"update\">  \n  \n</form>"
 
 /***/ }),
 
@@ -178,7 +178,7 @@ var HeaderEditComponent = /** @class */ (function () {
         Object.assign(this.userEdit, this.currentUser);
     };
     HeaderEditComponent.prototype.update = function () {
-        this.userEdit.editable = false;
+        this.userEdit.canEditHeader = false;
         console.log(this.userEdit);
         this.updateUserEvent.emit(this.userEdit);
     };
@@ -212,7 +212,7 @@ exports.HeaderEditComponent = HeaderEditComponent;
 /***/ "../../../../../src/app/admin/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"currentUser != null\" id=\"header\" class=\"card text-center\" [ngStyle]=\"{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}\" >\n  <div class=\"card-body\">\n    <h1>{{currentUser.title}}</h1>\n    \n  </div>  \n  <button class=\"btn btn-info\" (click)=\"currentUser.editable = !currentUser.editable\">Edit</button>\n  <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.editable\"></app-header-edit>\n</div>\n"
+module.exports = "<div >\n  <div id=\"header\" class=\"card text-center\" [ngStyle]=\"{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}\" >\n    <div class=\"card-body\">\n      <h1 class=\"text-light\">{{currentUser.title}}</h1>\n    </div>  \n    <div class=\"card-body text-light\">\n      <h1 class=\"text-light\">{{currentUser.subTitle}}</h1>\n    </div>\n    <button class=\"btn btn-info\" (click)=\"currentUser.canEditHeader = !currentUser.canEditHeader\">Edit</button>\n  </div>\n  <app-header-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.canEditHeader\"></app-header-edit>\n</div>\n"
 
 /***/ }),
 
@@ -382,6 +382,287 @@ exports.ImgUploadComponent = ImgUploadComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/admin/stack-edit/stack-edit.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  stack-edit works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/stack-edit/stack-edit.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/stack-edit/stack-edit.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var StackEditComponent = /** @class */ (function () {
+    function StackEditComponent() {
+    }
+    StackEditComponent.prototype.ngOnInit = function () {
+    };
+    StackEditComponent = __decorate([
+        core_1.Component({
+            selector: 'app-stack-edit',
+            template: __webpack_require__("../../../../../src/app/admin/stack-edit/stack-edit.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/stack-edit/stack-edit.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], StackEditComponent);
+    return StackEditComponent;
+}());
+exports.StackEditComponent = StackEditComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/stacks/stacks.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  stacks works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/stacks/stacks.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/stacks/stacks.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var StacksComponent = /** @class */ (function () {
+    function StacksComponent() {
+    }
+    StacksComponent.prototype.ngOnInit = function () {
+    };
+    StacksComponent = __decorate([
+        core_1.Component({
+            selector: 'app-stacks',
+            template: __webpack_require__("../../../../../src/app/admin/stacks/stacks.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/stacks/stacks.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], StacksComponent);
+    return StacksComponent;
+}());
+exports.StacksComponent = StacksComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/summary-edit/summary-edit.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<form (submit)=\"update()\">\n  <div class=\"form-group\">\n    <label for=\"summary\">Summary</label>\n    <textarea class=\"form-control\"  name=\"summary\" rows=\"3\" [(ngModel)]=\"userEdit.summary\"></textarea>\n  </div>\n  <input class=\"btn btn-primary\" type=\"submit\" value=\"update\">\n</form>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/summary-edit/summary-edit.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/summary-edit/summary-edit.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_1 = __webpack_require__("../../../../../src/app/server/models/user.ts");
+var SummaryEditComponent = /** @class */ (function () {
+    function SummaryEditComponent() {
+        this.updateUserEvent = new core_1.EventEmitter();
+        this.userEdit = new user_1.User();
+    }
+    SummaryEditComponent.prototype.ngOnInit = function () {
+        Object.assign(this.userEdit, this.currentUser);
+    };
+    SummaryEditComponent.prototype.update = function () {
+        this.userEdit.canEditSummary = false;
+        console.log(this.userEdit);
+        this.updateUserEvent.emit(this.userEdit);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", user_1.User)
+    ], SummaryEditComponent.prototype, "currentUser", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], SummaryEditComponent.prototype, "images", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], SummaryEditComponent.prototype, "updateUserEvent", void 0);
+    SummaryEditComponent = __decorate([
+        core_1.Component({
+            selector: 'app-summary-edit',
+            template: __webpack_require__("../../../../../src/app/admin/summary-edit/summary-edit.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/summary-edit/summary-edit.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], SummaryEditComponent);
+    return SummaryEditComponent;
+}());
+exports.SummaryEditComponent = SummaryEditComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/summary/summary.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card text-center\">\n  <div class=\"card-body\">\n    <h5 class=\"card-text\">{{currentUser.summary}}</h5>\n  </div>\n  <div class=\"card-footer\">\n      <button class=\"btn btn-info\" (click)=\"currentUser.canEditSummary = !currentUser.canEditSummary\">Edit</button>\n  </div>\n  <app-summary-edit [currentUser]=\"currentUser\" [images]=\"images\" (updateUserEvent)=\"update($event)\" *ngIf=\"currentUser.canEditSummary\"></app-summary-edit>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/summary/summary.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/summary/summary.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var SummaryComponent = /** @class */ (function () {
+    function SummaryComponent() {
+        this.updateUserEvent = new core_1.EventEmitter();
+    }
+    SummaryComponent.prototype.ngOnInit = function () {
+    };
+    SummaryComponent.prototype.update = function (user) {
+        this.updateUserEvent.emit(user);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], SummaryComponent.prototype, "currentUser", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], SummaryComponent.prototype, "images", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], SummaryComponent.prototype, "updateUserEvent", void 0);
+    SummaryComponent = __decorate([
+        core_1.Component({
+            selector: 'app-summary',
+            template: __webpack_require__("../../../../../src/app/admin/summary/summary.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/summary/summary.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], SummaryComponent);
+    return SummaryComponent;
+}());
+exports.SummaryComponent = SummaryComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/app-routing.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -519,6 +800,10 @@ var img_upload_component_1 = __webpack_require__("../../../../../src/app/admin/i
 var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
 var header_component_1 = __webpack_require__("../../../../../src/app/admin/header/header.component.ts");
 var header_edit_component_1 = __webpack_require__("../../../../../src/app/admin/header-edit/header-edit.component.ts");
+var summary_component_1 = __webpack_require__("../../../../../src/app/admin/summary/summary.component.ts");
+var summary_edit_component_1 = __webpack_require__("../../../../../src/app/admin/summary-edit/summary-edit.component.ts");
+var stacks_component_1 = __webpack_require__("../../../../../src/app/admin/stacks/stacks.component.ts");
+var stack_edit_component_1 = __webpack_require__("../../../../../src/app/admin/stack-edit/stack-edit.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -535,6 +820,10 @@ var AppModule = /** @class */ (function () {
                 img_upload_component_1.ImgUploadComponent,
                 header_component_1.HeaderComponent,
                 header_edit_component_1.HeaderEditComponent,
+                summary_component_1.SummaryComponent,
+                summary_edit_component_1.SummaryEditComponent,
+                stacks_component_1.StacksComponent,
+                stack_edit_component_1.StackEditComponent,
             ],
             imports: [
                 ng_bootstrap_1.NgbModule.forRoot(),
@@ -1033,7 +1322,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var User = /** @class */ (function () {
     function User() {
         this._id = "";
-        this.editable = false;
+        this.canEditHeader = false;
+        this.canEditSummary = false;
+        this.canEditStack = false;
+        this.canEditAboutMe = false;
+        this.canEditProject = false;
+        this.canEditSkill = false;
+        this.canEditAccomplishment = false;
+        this.canEditTech = false;
+        this.canEditLink = false;
+        this.canEditRecommendation = false;
+        this.canEditOther = false;
     }
     return User;
 }());

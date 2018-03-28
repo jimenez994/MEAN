@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../server/models/user';
 
 @Component({
-  selector: 'app-header-edit',
-  templateUrl: './header-edit.component.html',
-  styleUrls: ['./header-edit.component.scss']
+  selector: 'app-summary-edit',
+  templateUrl: './summary-edit.component.html',
+  styleUrls: ['./summary-edit.component.scss']
 })
-export class HeaderEditComponent implements OnInit {
+export class SummaryEditComponent implements OnInit {
+
   @Input() currentUser: User;
   @Input() images;
   @Output() updateUserEvent = new EventEmitter()
@@ -16,8 +17,8 @@ export class HeaderEditComponent implements OnInit {
   ngOnInit() {
     Object.assign(this.userEdit, this.currentUser);
   }
-  update(){
-    this.userEdit.canEditHeader = false;
+  update() {
+    this.userEdit.canEditSummary = false;
     console.log(this.userEdit);
     this.updateUserEvent.emit(this.userEdit);
   }

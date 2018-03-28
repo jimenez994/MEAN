@@ -9,6 +9,10 @@ const SkillSchema = new mongoose.Schema({
         type: String,
         default: "some title"
     },
+    subTitle:{
+        type: String,
+        default: "some subtitle"
+    },
     description:{
         type: String,
         default: "some description"

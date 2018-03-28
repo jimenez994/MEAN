@@ -17,8 +17,20 @@ export class User {
     status: string;
     other: string;
     leftG: string;
-    rightG: string;    
-    editable: boolean = false;
+    rightG: string; 
+
+    canEditHeader: boolean = false;
+    canEditSummary: boolean = false;
+    canEditStack: boolean = false;
+    canEditAboutMe: boolean = false;
+    canEditProject: boolean = false;
+    canEditSkill: boolean = false;
+    canEditAccomplishment: boolean = false;
+    canEditTech: boolean = false;
+    canEditLink: boolean = false;
+    canEditRecommendation: boolean = false;    
+    canEditOther: boolean = false;    
+        
     _skill: any[];
     _work: any[];
     _recommendation: any[];

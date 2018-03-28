@@ -1,8 +1,12 @@
-<div *ngIf="currentUser != null" id="header" class="card text-center" [ngStyle]="{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}" >
-  <div class="card-body">
-    <h1>{{currentUser.title}}</h1>
-    
-  </div>  
-  <button class="btn btn-info" (click)="currentUser.editable = !currentUser.editable">Edit</button>
-  <app-header-edit [currentUser]="currentUser" [images]="images" (updateUserEvent)="update($event)" *ngIf="currentUser.editable"></app-header-edit>
+<div >
+  <div id="header" class="card text-center" [ngStyle]="{'background-image': 'linear-gradient(to right bottom, rgba(' + currentUser.leftG + '), rgba(' + currentUser.rightG + ')), url(' + currentUser.headerImg + ')'}" >
+    <div class="card-body">
+      <h1 class="text-light">{{currentUser.title}}</h1>
+    </div>  
+    <div class="card-body text-light">
+      <h1 class="text-light">{{currentUser.subTitle}}</h1>
+    </div>
+    <button class="btn btn-info" (click)="currentUser.canEditHeader = !currentUser.canEditHeader">Edit</button>
+  </div>
+  <app-header-edit [currentUser]="currentUser" [images]="images" (updateUserEvent)="update($event)" *ngIf="currentUser.canEditHeader"></app-header-edit>
 </div>
