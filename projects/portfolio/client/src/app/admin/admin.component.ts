@@ -5,6 +5,7 @@ import { ImageService } from '../server/controllers/image.service';
 import { User } from '../server/models/user';
 import { Router } from '@angular/router';
 import { SkillService } from '../server/controllers/skill.service';
+import { Skill } from '../server/models/skill';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -25,6 +26,7 @@ export class AdminComponent implements OnInit {
     this.getImages()
     this.getUser()
   }
+  // User
   updateUser(user:User){
     this._userService.update(user)
     .then(status => this.getUser())
@@ -40,6 +42,8 @@ export class AdminComponent implements OnInit {
   })
     .catch(err => console.log(err))
   }
+
+  // image CRUD
   getImages(){
     this._imageService.getImages()
     .then(images => this.images = images)
@@ -55,8 +59,21 @@ export class AdminComponent implements OnInit {
     .then(status => this.getImages())
     .catch(err => console.log(err))
   }
-  getStacks(){
-    
-  }
 
+// Stack CRUD
+  createStack(skill: Skill){
+    this._stackService.createSkill(skill)
+    .then(status => this.getUser())
+    .catch(err => console.log(err))
+  }
+  destroyStack(id){
+    this._stackService.deleteSkill(id)
+    .then(status => this.getUser())
+    .catch(err => console.log(err))
+  }
+  updateStack(id, skill){
+    this._stackService.update(id, skill)
+    .then(status => this.getUser())
+    .catch(err => console.log(err))
+  }
 }

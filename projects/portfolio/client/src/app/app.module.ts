@@ -23,6 +23,7 @@ import { SummaryComponent } from './admin/summary/summary.component';
 import { SummaryEditComponent } from './admin/summary-edit/summary-edit.component';
 import { StacksComponent } from './admin/stacks/stacks.component';
 import { StackEditComponent } from './admin/stack-edit/stack-edit.component';
+import { SkillService } from './server/controllers/skill.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { StackEditComponent } from './admin/stack-edit/stack-edit.component';
   ],
   providers: [
     UserService,
-    ImageService
+    ImageService,
+    SkillService
   ],
   bootstrap: [AppComponent]
 })

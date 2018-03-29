@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n        <app-stacks></app-stacks>\n    </div>\n   \n\n</div>\n"
+module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n        <app-stacks (destroySkillEvent)=\"destroyStack$(event)\" (createStackEvent)=\"createStack($event)\"></app-stacks>\n    </div>\n   \n\n</div>\n"
 
 /***/ }),
 
@@ -75,6 +75,7 @@ var AdminComponent = /** @class */ (function () {
         this.getImages();
         this.getUser();
     };
+    // User
     AdminComponent.prototype.updateUser = function (user) {
         var _this = this;
         this._userService.update(user)
@@ -94,6 +95,7 @@ var AdminComponent = /** @class */ (function () {
         })
             .catch(function (err) { return console.log(err); });
     };
+    // image CRUD
     AdminComponent.prototype.getImages = function () {
         var _this = this;
         this._imageService.getImages()
@@ -112,7 +114,24 @@ var AdminComponent = /** @class */ (function () {
             .then(function (status) { return _this.getImages(); })
             .catch(function (err) { return console.log(err); });
     };
-    AdminComponent.prototype.getStacks = function () {
+    // Stack CRUD
+    AdminComponent.prototype.createStack = function (skill) {
+        var _this = this;
+        this._stackService.createSkill(skill)
+            .then(function (status) { return _this.getUser(); })
+            .catch(function (err) { return console.log(err); });
+    };
+    AdminComponent.prototype.destroyStack = function (id) {
+        var _this = this;
+        this._stackService.deleteSkill(id)
+            .then(function (status) { return _this.getUser(); })
+            .catch(function (err) { return console.log(err); });
+    };
+    AdminComponent.prototype.updateStack = function (id, skill) {
+        var _this = this;
+        this._stackService.update(id, skill)
+            .then(function (status) { return _this.getUser(); })
+            .catch(function (err) { return console.log(err); });
     };
     AdminComponent = __decorate([
         core_1.Component({
@@ -809,6 +828,7 @@ var summary_component_1 = __webpack_require__("../../../../../src/app/admin/summ
 var summary_edit_component_1 = __webpack_require__("../../../../../src/app/admin/summary-edit/summary-edit.component.ts");
 var stacks_component_1 = __webpack_require__("../../../../../src/app/admin/stacks/stacks.component.ts");
 var stack_edit_component_1 = __webpack_require__("../../../../../src/app/admin/stack-edit/stack-edit.component.ts");
+var skill_service_1 = __webpack_require__("../../../../../src/app/server/controllers/skill.service.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -840,7 +860,8 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 user_service_1.UserService,
-                image_service_1.ImageService
+                image_service_1.ImageService,
+                skill_service_1.SkillService
             ],
             bootstrap: [app_component_1.AppComponent]
         })

@@ -37,15 +37,4 @@ export class ImgUploadComponent implements OnInit {
   deleteImg(id) {
     this.destroyImageEvent.emit(id);
   }
-  // getUserSession(){
-  //   this._userService.getCurrentUser().subscribe(
-  //     res => {
-  //       this.currentUser = res.json()
-  //       if(this.currentUser == null){
-  //         this._router.navigateByUrl('/');
-  //       }
-  //     }
-  //   )
-  // }
-
 }
