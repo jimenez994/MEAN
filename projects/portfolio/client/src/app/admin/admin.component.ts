@@ -4,6 +4,7 @@ import { UserService } from '../server/controllers/user.service';
 import { ImageService } from '../server/controllers/image.service';
 import { User } from '../server/models/user';
 import { Router } from '@angular/router';
+import { SkillService } from '../server/controllers/skill.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -16,6 +17,7 @@ export class AdminComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _imageService: ImageService,
+    private _stackService: SkillService,
     private _router: Router,
   ) { }
 
@@ -52,6 +54,9 @@ export class AdminComponent implements OnInit {
     this._imageService.deleteImg(id)
     .then(status => this.getImages())
     .catch(err => console.log(err))
+  }
+  getStacks(){
+    
   }
 
 }

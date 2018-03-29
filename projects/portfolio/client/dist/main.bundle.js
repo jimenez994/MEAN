@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n    </div>\n   \n\n</div>\n"
+module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n        <app-stacks></app-stacks>\n    </div>\n   \n\n</div>\n"
 
 /***/ }),
 
@@ -61,10 +61,12 @@ var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var user_service_1 = __webpack_require__("../../../../../src/app/server/controllers/user.service.ts");
 var image_service_1 = __webpack_require__("../../../../../src/app/server/controllers/image.service.ts");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var skill_service_1 = __webpack_require__("../../../../../src/app/server/controllers/skill.service.ts");
 var AdminComponent = /** @class */ (function () {
-    function AdminComponent(_userService, _imageService, _router) {
+    function AdminComponent(_userService, _imageService, _stackService, _router) {
         this._userService = _userService;
         this._imageService = _imageService;
+        this._stackService = _stackService;
         this._router = _router;
         this.images = [];
         this.currentUser = null;
@@ -110,6 +112,8 @@ var AdminComponent = /** @class */ (function () {
             .then(function (status) { return _this.getImages(); })
             .catch(function (err) { return console.log(err); });
     };
+    AdminComponent.prototype.getStacks = function () {
+    };
     AdminComponent = __decorate([
         core_1.Component({
             selector: 'app-admin',
@@ -118,6 +122,7 @@ var AdminComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [user_service_1.UserService,
             image_service_1.ImageService,
+            skill_service_1.SkillService,
             router_1.Router])
     ], AdminComponent);
     return AdminComponent;
@@ -1231,6 +1236,55 @@ var ImageService = /** @class */ (function () {
     return ImageService;
 }());
 exports.ImageService = ImageService;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/controllers/skill.service.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+__webpack_require__("../../../../rxjs/Rx.js");
+__webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+var SkillService = /** @class */ (function () {
+    function SkillService(_http) {
+        this._http = _http;
+    }
+    SkillService.prototype.createSkill = function (newSkill) {
+        return this._http.post("/skill/create", newSkill).map(function (data) { return data.json(); }).toPromise();
+    };
+    SkillService.prototype.getSkills = function () {
+        return this._http.get("/skills").map(function (data) { return data.json(); }).toPromise();
+    };
+    SkillService.prototype.getOneSkill = function (id) {
+        return this._http.get("/skill/" + id).map(function (data) { return data.json(); }).toPromise();
+    };
+    SkillService.prototype.deleteSkill = function (id) {
+        return this._http.delete("/skill/delete/" + id).map(function (data) { return data.json(); }).toPromise();
+    };
+    SkillService.prototype.update = function (id, skill) {
+        return this._http.put("/skill/update/" + id, skill).map(function (data) { return data.json(); }).toPromise();
+    };
+    SkillService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], SkillService);
+    return SkillService;
+}());
+exports.SkillService = SkillService;
 
 
 /***/ }),
