@@ -1,3 +1,7 @@
-<p>
-  stacks works!
-</p>
+<form (submit)="createStack()">
+  <input type="text" name="title" [(ngModel)]="newStack.title">
+  <input type="text" name="subTitle" [(ngModel)]="newStack.subTitle">
+  <input type="text" name="description" [(ngModel)]="newStack.description">
+  <input type="text" name="other" [(ngModel)]="newStack.other">
+  <input type="submit" value="create">    
+</form>

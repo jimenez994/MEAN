@@ -470,7 +470,7 @@ exports.StackEditComponent = StackEditComponent;
 /***/ "../../../../../src/app/admin/stacks/stacks.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  stacks works!\n</p>\n"
+module.exports = "<form (submit)=\"createStack()\">\n  <input type=\"text\" name=\"title\" [(ngModel)]=\"newStack.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"newStack.subTitle\">\n  <input type=\"text\" name=\"description\" [(ngModel)]=\"newStack.description\">\n  <input type=\"text\" name=\"other\" [(ngModel)]=\"newStack.other\">\n  <input type=\"submit\" value=\"create\">    \n</form>"
 
 /***/ }),
 
@@ -508,18 +508,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var skill_1 = __webpack_require__("../../../../../src/app/server/models/skill.ts");
+var skill_service_1 = __webpack_require__("../../../../../src/app/server/controllers/skill.service.ts");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var StacksComponent = /** @class */ (function () {
-    function StacksComponent() {
+    function StacksComponent(_skillService, _router) {
+        this._skillService = _skillService;
+        this._router = _router;
+        this.newStack = new skill_1.Skill();
+        this.createStackEvent = new core_1.EventEmitter;
     }
     StacksComponent.prototype.ngOnInit = function () {
     };
+    StacksComponent.prototype.createStack = function (stack) {
+        this.createStackEvent.emit(this.newStack);
+        this.newStack = new skill_1.Skill();
+    };
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], StacksComponent.prototype, "createStackEvent", void 0);
     StacksComponent = __decorate([
         core_1.Component({
             selector: 'app-stacks',
             template: __webpack_require__("../../../../../src/app/admin/stacks/stacks.component.html"),
             styles: [__webpack_require__("../../../../../src/app/admin/stacks/stacks.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [skill_service_1.SkillService,
+            router_1.Router])
     ], StacksComponent);
     return StacksComponent;
 }());
@@ -1384,6 +1400,23 @@ var Image = /** @class */ (function () {
     return Image;
 }());
 exports.Image = Image;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/server/models/skill.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Skill = /** @class */ (function () {
+    function Skill() {
+        this.editable = false;
+    }
+    return Skill;
+}());
+exports.Skill = Skill;
 
 
 /***/ }),
