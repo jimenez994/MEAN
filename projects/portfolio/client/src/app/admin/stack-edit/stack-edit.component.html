@@ -1,3 +1,4 @@
-<p>
-  stack-edit works!
-</p>
+<form (submit)="updateStack()">
+  <input type="text" name="title" [(ngModel)]="stackEdit.title">
+  <input class="btn btn-primary" type="submit" value="update">
+</form>

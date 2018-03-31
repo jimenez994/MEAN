@@ -74,6 +74,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "about me"
     },
+    aboutMeTitle: {
+        type: String,
+        default: "about me title"
+    },
     experience: {
         type: String,
         default: "Some experience"

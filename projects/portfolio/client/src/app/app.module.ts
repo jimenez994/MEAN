@@ -24,6 +24,8 @@ import { SummaryEditComponent } from './admin/summary-edit/summary-edit.componen
 import { StacksComponent } from './admin/stacks/stacks.component';
 import { StackEditComponent } from './admin/stack-edit/stack-edit.component';
 import { SkillService } from './server/controllers/skill.service';
+import { AboutMeComponent } from './admin/about-me/about-me.component';
+import { AboutMeEditComponent } from './admin/about-me-edit/about-me-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { SkillService } from './server/controllers/skill.service';
     SummaryEditComponent,
     StacksComponent,
     StackEditComponent,
+    AboutMeComponent,
+    AboutMeEditComponent,
     
   ],
   imports: [

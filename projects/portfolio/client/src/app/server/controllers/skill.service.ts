@@ -22,7 +22,7 @@ export class SkillService {
   deleteSkill(id){
     return this._http.delete(`/skill/delete/${id}`).map(data => data.json()).toPromise()
   }
-  update(id,skill){
-    return this._http.put(`/skill/update/${id}`, skill).map(data => data.json()).toPromise()
+  update(stack){
+    return this._http.put(`/skill/update/${stack._id}`, stack).map(data => data.json()).toPromise()
   }
 }

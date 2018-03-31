@@ -1,0 +1,13 @@
+<div>
+  <div class="card">
+    <img class="card-img-top img-fluid" src="{{currentUser.myImg}}" alt="some image">
+    <div class="card-body">
+      <h5>{{currentUser.aboutMeTitle}}</h5>
+      <p>{{currentUser.aboutMe}}</p>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-info" (click)="currentUser.canEditAboutMe = !currentUser.canEditAboutMe">edit</button>
+    </div>
+  </div>
+</div>
+<app-about-me-edit [currentUser]="currentUser" [images]="images" *ngIf="currentUser.canEditAboutMe"></app-about-me-edit>

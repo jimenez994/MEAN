@@ -17,10 +17,169 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 /***/ }),
 
+/***/ "../../../../../src/app/admin/about-me-edit/about-me-edit.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  about-me-edit works!\n  lkvnao;drhgfiadsfhgkalhgidufhg;oaig\n  sdfb\n    sfg\n    hnsfg\n    ndf\n    gn\n    dfn\n    dfghndghn\n    dfgh\n\n  \n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/about-me-edit/about-me-edit.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/about-me-edit/about-me-edit.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var user_1 = __webpack_require__("../../../../../src/app/server/models/user.ts");
+var AboutMeEditComponent = /** @class */ (function () {
+    function AboutMeEditComponent() {
+        this.updateUserEvent = new core_1.EventEmitter();
+        this.userEdit = new user_1.User();
+    }
+    AboutMeEditComponent.prototype.ngOnInit = function () {
+        Object.assign(this.userEdit, this.currentUser);
+    };
+    AboutMeEditComponent.prototype.update = function () {
+        this.userEdit.canEditHeader = false;
+        console.log(this.userEdit);
+        this.updateUserEvent.emit(this.userEdit);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", user_1.User)
+    ], AboutMeEditComponent.prototype, "currentUser", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], AboutMeEditComponent.prototype, "images", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], AboutMeEditComponent.prototype, "updateUserEvent", void 0);
+    AboutMeEditComponent = __decorate([
+        core_1.Component({
+            selector: 'app-about-me-edit',
+            template: __webpack_require__("../../../../../src/app/admin/about-me-edit/about-me-edit.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/about-me-edit/about-me-edit.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AboutMeEditComponent);
+    return AboutMeEditComponent;
+}());
+exports.AboutMeEditComponent = AboutMeEditComponent;
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/about-me/about-me.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"card\">\n    <img class=\"card-img-top img-fluid\" src=\"{{currentUser.myImg}}\" alt=\"some image\">\n    <div class=\"card-body\">\n      <h5>{{currentUser.aboutMeTitle}}</h5>\n      <p>{{currentUser.aboutMe}}</p>\n    </div>\n    <div class=\"card-footer\">\n      <button class=\"btn btn-info\" (click)=\"currentUser.canEditAboutMe = !currentUser.canEditAboutMe\">edit</button>\n    </div>\n  </div>\n</div>\n<app-about-me-edit [currentUser]=\"currentUser\" [images]=\"images\" *ngIf=\"currentUser.canEditAboutMe\"></app-about-me-edit>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/about-me/about-me.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin/about-me/about-me.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var AboutMeComponent = /** @class */ (function () {
+    function AboutMeComponent() {
+        this.updateUserEvent = new core_1.EventEmitter();
+    }
+    AboutMeComponent.prototype.ngOnInit = function () {
+    };
+    AboutMeComponent.prototype.update = function (user) {
+        this.updateUserEvent.emit(user);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], AboutMeComponent.prototype, "currentUser", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], AboutMeComponent.prototype, "images", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], AboutMeComponent.prototype, "updateUserEvent", void 0);
+    AboutMeComponent = __decorate([
+        core_1.Component({
+            selector: 'app-about-me',
+            template: __webpack_require__("../../../../../src/app/admin/about-me/about-me.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin/about-me/about-me.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AboutMeComponent);
+    return AboutMeComponent;
+}());
+exports.AboutMeComponent = AboutMeComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n        <app-stacks (destroySkillEvent)=\"destroyStack$(event)\" (createStackEvent)=\"createStack($event)\"></app-stacks>\n    </div>\n   \n\n</div>\n"
+module.exports = "<div class=\"row\" *ngIf=\"currentUser != null\">\n    <div class=\"col-sm-6 col-md-4 col-lg-3 col-xl-2\">\n        <app-img-upload [images]=\"images\" (destroyImageEvent)=\"destroyImg($event)\" (createNewImageEvent)=\"uploadImg($event)\"></app-img-upload>\n    </div>\n\n    <div class=\"col-sm-6 col-md-8 col-lg-9 col-xl-10\">\n        <app-header [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\" ></app-header>\n        <app-summary [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-summary>\n        <app-stacks (destroySkillEvent)=\"destroyStack($event)\" (updateStackEvent)=\"updateStack($event)\" [images]=\"images\" [currentUser]=\"currentUser\" (createStackEvent)=\"createStack($event)\"></app-stacks>\n        <app-about-me [images]=\"images\" [currentUser]=\"currentUser\" (updateUserEvent)=\"updateUser($event)\"></app-about-me>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -74,6 +233,7 @@ var AdminComponent = /** @class */ (function () {
     AdminComponent.prototype.ngOnInit = function () {
         this.getImages();
         this.getUser();
+        console.log(this.currentUser);
     };
     // User
     AdminComponent.prototype.updateUser = function (user) {
@@ -127,9 +287,9 @@ var AdminComponent = /** @class */ (function () {
             .then(function (status) { return _this.getUser(); })
             .catch(function (err) { return console.log(err); });
     };
-    AdminComponent.prototype.updateStack = function (id, skill) {
+    AdminComponent.prototype.updateStack = function (stack) {
         var _this = this;
-        this._stackService.update(id, skill)
+        this._stackService.update(stack)
             .then(function (status) { return _this.getUser(); })
             .catch(function (err) { return console.log(err); });
     };
@@ -313,7 +473,7 @@ exports.HeaderComponent = HeaderComponent;
 /***/ "../../../../../src/app/admin/img-upload/img-upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input class=\"btn btn-info btn-block\" type=\"submit\" value=\"upload\">\n  </form>\n\n  <div class=\"card\"  *ngFor=\"let img of images\">\n    <img class=\"card-img-top img-fluid\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n    <div class=\"card-body\">\n      <button class=\"btn btn-danger btn-block\" (click)='deleteImg(img._id)'>Delete</button>\n    </div>\n  </div>\n\n\n\n\n"
+module.exports = "\n  <form (submit)=\"uploadImg()\">\n    <image-upload buttonCaption=\"Add a Image\" dropBoxMessage=\"10Mb Limit\" [max]=\"1\" [maxFileSize]=\"1000000000\" (uploadFinished)=\"onUploadStatus($event)\"></image-upload>\n    <input class=\"btn btn-info btn-block\" type=\"submit\" value=\"upload\">\n  </form>\n\n  <div class=\"card\"  *ngFor=\"let img of images\" >\n    <img class=\"card-img-top img-fluid\" src=\"{{img.src}}\" alt=\"{{img.name}}\">\n    <div class=\"card-body\">\n      <p class=\"card-text\">{{img.name}}</p>\n      <button class=\"btn btn-danger\" (click)='deleteImg(img._id)'>X</button>\n    </div>\n  </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -409,7 +569,7 @@ exports.ImgUploadComponent = ImgUploadComponent;
 /***/ "../../../../../src/app/admin/stack-edit/stack-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  stack-edit works!\n</p>\n"
+module.exports = "<form (submit)=\"updateStack()\">\n  <input type=\"text\" name=\"title\" [(ngModel)]=\"stackEdit.title\">\n  <input class=\"btn btn-primary\" type=\"submit\" value=\"update\">\n</form>\n"
 
 /***/ }),
 
@@ -447,11 +607,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var skill_1 = __webpack_require__("../../../../../src/app/server/models/skill.ts");
 var StackEditComponent = /** @class */ (function () {
     function StackEditComponent() {
+        this.updateStackEvent = new core_1.EventEmitter();
+        this.stackEdit = new skill_1.Skill();
     }
     StackEditComponent.prototype.ngOnInit = function () {
+        Object.assign(this.stackEdit, this.stack);
     };
+    StackEditComponent.prototype.updateStack = function () {
+        this.stackEdit.editable = false;
+        this.updateStackEvent.emit(this.stackEdit);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", skill_1.Skill)
+    ], StackEditComponent.prototype, "stack", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], StackEditComponent.prototype, "updateStackEvent", void 0);
     StackEditComponent = __decorate([
         core_1.Component({
             selector: 'app-stack-edit',
@@ -470,7 +646,7 @@ exports.StackEditComponent = StackEditComponent;
 /***/ "../../../../../src/app/admin/stacks/stacks.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"createStack()\">\n  <input type=\"text\" name=\"title\" [(ngModel)]=\"newStack.title\">\n  <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"newStack.subTitle\">\n  <input type=\"text\" name=\"description\" [(ngModel)]=\"newStack.description\">\n  <input type=\"text\" name=\"other\" [(ngModel)]=\"newStack.other\">\n  <input type=\"submit\" value=\"create\">    \n</form>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-lg-3 col-md-6\" *ngFor=\"let stack of currentUser._skill\">\n    <div class=\"card\">\n      <img class=\"card-img-top img-fluid\" src=\"{{stack.img}}\" alt=\"some image\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{stack.title}}</h5>\n        <p class=\"card-text\">{{stack.subTitle}}</p>\n      </div>\n      <div class=\"card-footer\">\n        <button (click)=\"deleteStack(stack._id)\">X</button>\n        <button (click)=\"stack.editable = !stack.editable\"><small>edit</small></button>\n      </div>\n    </div>\n    <app-stack-edit [stack]=\"stack\" (updateStackEvent)=\"updateStack($event)\" *ngIf=\"stack.editable\"></app-stack-edit>\n  </div>\n  <div class=\"col-lg-3 col-md-6\">\n    <div class=\"card\">\n      <div class=\"card-body\">\n          <form (submit)=\"createStack()\">\n            <div class=\"form-group\">\n              <select class=\"form-control form-control-sm\" name=\"img\" [(ngModel)]=\"newStack.img\">\n                <option *ngFor=\"let image of images\" value=\"{{image.src}}\">{{image.name}}</option>\n              </select>\n            </div>\n            <input type=\"text\" name=\"title\" [(ngModel)]=\"newStack.title\" placeholder=\"Title\">\n            <input type=\"text\" name=\"subTitle\" [(ngModel)]=\"newStack.subTitle\" placeholder=\"Sub Title\">\n            <input type=\"text\" name=\"description\" [(ngModel)]=\"newStack.description\" placeholder=\"description\">\n            <input class=\"btn btn-success\" type=\"submit\" value=\"create\">    \n          </form>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -517,6 +693,8 @@ var StacksComponent = /** @class */ (function () {
         this._router = _router;
         this.newStack = new skill_1.Skill();
         this.createStackEvent = new core_1.EventEmitter;
+        this.destroySkillEvent = new core_1.EventEmitter;
+        this.updateStackEvent = new core_1.EventEmitter;
     }
     StacksComponent.prototype.ngOnInit = function () {
     };
@@ -524,10 +702,32 @@ var StacksComponent = /** @class */ (function () {
         this.createStackEvent.emit(this.newStack);
         this.newStack = new skill_1.Skill();
     };
+    StacksComponent.prototype.deleteStack = function (stack) {
+        this.destroySkillEvent.emit(stack);
+    };
+    StacksComponent.prototype.updateStack = function (stack) {
+        this.updateStackEvent.emit(stack);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], StacksComponent.prototype, "currentUser", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], StacksComponent.prototype, "images", void 0);
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
     ], StacksComponent.prototype, "createStackEvent", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], StacksComponent.prototype, "destroySkillEvent", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], StacksComponent.prototype, "updateStackEvent", void 0);
     StacksComponent = __decorate([
         core_1.Component({
             selector: 'app-stacks',
@@ -845,6 +1045,8 @@ var summary_edit_component_1 = __webpack_require__("../../../../../src/app/admin
 var stacks_component_1 = __webpack_require__("../../../../../src/app/admin/stacks/stacks.component.ts");
 var stack_edit_component_1 = __webpack_require__("../../../../../src/app/admin/stack-edit/stack-edit.component.ts");
 var skill_service_1 = __webpack_require__("../../../../../src/app/server/controllers/skill.service.ts");
+var about_me_component_1 = __webpack_require__("../../../../../src/app/admin/about-me/about-me.component.ts");
+var about_me_edit_component_1 = __webpack_require__("../../../../../src/app/admin/about-me-edit/about-me-edit.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -865,6 +1067,8 @@ var AppModule = /** @class */ (function () {
                 summary_edit_component_1.SummaryEditComponent,
                 stacks_component_1.StacksComponent,
                 stack_edit_component_1.StackEditComponent,
+                about_me_component_1.AboutMeComponent,
+                about_me_edit_component_1.AboutMeEditComponent,
             ],
             imports: [
                 ng_bootstrap_1.NgbModule.forRoot(),
@@ -1312,8 +1516,8 @@ var SkillService = /** @class */ (function () {
     SkillService.prototype.deleteSkill = function (id) {
         return this._http.delete("/skill/delete/" + id).map(function (data) { return data.json(); }).toPromise();
     };
-    SkillService.prototype.update = function (id, skill) {
-        return this._http.put("/skill/update/" + id, skill).map(function (data) { return data.json(); }).toPromise();
+    SkillService.prototype.update = function (stack) {
+        return this._http.put("/skill/update/" + stack._id, stack).map(function (data) { return data.json(); }).toPromise();
     };
     SkillService = __decorate([
         core_1.Injectable(),

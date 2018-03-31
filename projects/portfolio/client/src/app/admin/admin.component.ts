@@ -25,6 +25,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.getImages()
     this.getUser()
+    console.log(this.currentUser)
   }
   // User
   updateUser(user:User){
@@ -71,8 +72,8 @@ export class AdminComponent implements OnInit {
     .then(status => this.getUser())
     .catch(err => console.log(err))
   }
-  updateStack(id, skill){
-    this._stackService.update(id, skill)
+  updateStack(stack){
+    this._stackService.update(stack)
     .then(status => this.getUser())
     .catch(err => console.log(err))
   }

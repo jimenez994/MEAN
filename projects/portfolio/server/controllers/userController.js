@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Skill = mongoose.model("Skill");
+const Work = mongoose.model("Work");
+const Recommendation = mongoose.model("Recommendation");
+const Project = mongoose.model("Project");
+const Message = mongoose.model("Message");
+const Image = mongoose.model("Image");
+const Accomplishment = mongoose.model("Accomplishment");
+const Link = mongoose.model("Link");
+const Tech = mongoose.model("Tech");
+
+
 
 module.exports = {
     show(rewq, res) {
@@ -57,7 +68,17 @@ module.exports = {
         })
     },
     session(req, res){
-        User.findById(req.session.user_id, (err, user) => {
+        User.findById(req.session.user_id)
+        .populate({ path: '_skill', model:'Skill' })
+        .populate({ path: '_work', model: 'Work' })
+        .populate({ path: '_recommendation', model:'Recommendation' })
+        .populate({ path: '_project', model:'Project' })
+        .populate({ path: '_message', model: 'Message' })
+        .populate({ path: '_image', model: 'Image' })
+        .populate({ path: '_accomplishment', model: 'Accomplishment' })
+        .populate({ path: '_link', model: 'Link' })
+        .populate({ path: '_tech', model: 'Tech' })
+        .exec((err, user) => {
             if(err){
                 return res.json(err);
             }

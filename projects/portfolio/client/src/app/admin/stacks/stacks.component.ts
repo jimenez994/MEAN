@@ -11,7 +11,11 @@ import { Router } from '@angular/router';
 export class StacksComponent implements OnInit {
   newStack= new Skill();
 
+  @Input() currentUser;
+  @Input() images;
   @Output() createStackEvent = new EventEmitter;
+  @Output() destroySkillEvent = new EventEmitter;
+  @Output() updateStackEvent = new EventEmitter;
   constructor(
     private _skillService: SkillService,
     private _router: Router,
@@ -22,6 +26,12 @@ export class StacksComponent implements OnInit {
   createStack(stack){
     this.createStackEvent.emit(this.newStack);
     this.newStack = new Skill();
+  }
+  deleteStack(stack){
+    this.destroySkillEvent.emit(stack)
+  }
+  updateStack(stack){
+    this.updateStackEvent.emit(stack);
   }
 
 }

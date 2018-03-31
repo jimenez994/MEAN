@@ -7,6 +7,7 @@ export class User {
     password_confirm: string;
     myImg: string;
     title: string;
+    aboutMeTitle: string;
     subTitle: string;
     summary: string;
     aboutMe: string;
