@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/admin/about-me-edit/about-me-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  about-me-edit works!\n  lkvnao;drhgfiadsfhgkalhgidufhg;oaig\n  sdfb\n    sfg\n    hnsfg\n    ndf\n    gn\n    dfn\n    dfghndghn\n    dfgh\n\n  \n</p>\n"
+module.exports = "<p>\n  \n</p>\n"
 
 /***/ }),
 
